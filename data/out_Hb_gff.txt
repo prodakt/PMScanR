@@ -1,0 +1,154 @@
+NP_000508.1	ps_scan|v1.89	PS00005	39	41	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TtK" ; SequenceDescription "NP_000508.1 hemoglobin subunit alpha [Homo sapiens]" ; SkipFlag 1
+NP_000508.1	ps_scan|v1.89	PS00005	138	140	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TsK" ; SequenceDescription "NP_000508.1 hemoglobin subunit alpha [Homo sapiens]" ; SkipFlag 1
+NP_000508.1	ps_scan|v1.89	PS00006	4	7	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SpaD" ; SequenceDescription "NP_000508.1 hemoglobin subunit alpha [Homo sapiens]" ; SkipFlag 1
+NP_000508.1	ps_scan|v1.89	PS00008	19	24	.	.	.	Name "MYRISTYL" ; Sequence "GAhaGE" ; SequenceDescription "NP_000508.1 hemoglobin subunit alpha [Homo sapiens]" ; SkipFlag 1
+NP_000508.1	ps_scan|v1.89	PS00009	59	62	.	.	.	Name "AMIDATION" ; Sequence "hGKK" ; SequenceDescription "NP_000508.1 hemoglobin subunit alpha [Homo sapiens]" ; SkipFlag 1
+NP_000508.1	ps_scan|v1.89	PS01033	2	142	42.058	.	.	Name "GLOBIN" ; Level 0 ; RawScore 4843 ; FeatureFrom 1 ; FeatureTo -1 ; Sequence "VLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHF---DLSHGSAQVKGHGKKVADALTNAVAHV---DDMPNALSALSDLHAhKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR" ; SequenceDescription "NP_000508.1 hemoglobin subunit alpha [Homo sapiens]"
+NP_000549.1	ps_scan|v1.89	PS00005	39	41	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TtK" ; SequenceDescription "NP_000549.1 hemoglobin subunit alpha [Homo sapiens]" ; SkipFlag 1
+NP_000549.1	ps_scan|v1.89	PS00005	138	140	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TsK" ; SequenceDescription "NP_000549.1 hemoglobin subunit alpha [Homo sapiens]" ; SkipFlag 1
+NP_000549.1	ps_scan|v1.89	PS00006	4	7	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SpaD" ; SequenceDescription "NP_000549.1 hemoglobin subunit alpha [Homo sapiens]" ; SkipFlag 1
+NP_000549.1	ps_scan|v1.89	PS00008	19	24	.	.	.	Name "MYRISTYL" ; Sequence "GAhaGE" ; SequenceDescription "NP_000549.1 hemoglobin subunit alpha [Homo sapiens]" ; SkipFlag 1
+NP_000549.1	ps_scan|v1.89	PS00009	59	62	.	.	.	Name "AMIDATION" ; Sequence "hGKK" ; SequenceDescription "NP_000549.1 hemoglobin subunit alpha [Homo sapiens]" ; SkipFlag 1
+NP_000549.1	ps_scan|v1.89	PS01033	2	142	42.058	.	.	Name "GLOBIN" ; Level 0 ; RawScore 4843 ; FeatureFrom 1 ; FeatureTo -1 ; Sequence "VLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHF---DLSHGSAQVKGHGKKVADALTNAVAHV---DDMPNALSALSDLHAhKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR" ; SequenceDescription "NP_000549.1 hemoglobin subunit alpha [Homo sapiens]"
+NP_000550.2	ps_scan|v1.89	PS00001	48	51	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NLSS" ; SequenceDescription "NP_000550.2 hemoglobin subunit gamma-1 [Homo sapiens]" ; SkipFlag 1
+NP_000550.2	ps_scan|v1.89	PS00005	39	41	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TqR" ; SequenceDescription "NP_000550.2 hemoglobin subunit gamma-1 [Homo sapiens]" ; SkipFlag 1
+NP_000550.2	ps_scan|v1.89	PS00005	143	145	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "SsR" ; SequenceDescription "NP_000550.2 hemoglobin subunit gamma-1 [Homo sapiens]" ; SkipFlag 1
+NP_000550.2	ps_scan|v1.89	PS00006	5	8	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "TeeD" ; SequenceDescription "NP_000550.2 hemoglobin subunit gamma-1 [Homo sapiens]" ; SkipFlag 1
+NP_000550.2	ps_scan|v1.89	PS00006	71	74	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SlgD" ; SequenceDescription "NP_000550.2 hemoglobin subunit gamma-1 [Homo sapiens]" ; SkipFlag 1
+NP_000550.2	ps_scan|v1.89	PS00008	47	52	.	.	.	Name "MYRISTYL" ; Sequence "GNlsSA" ; SequenceDescription "NP_000550.2 hemoglobin subunit gamma-1 [Homo sapiens]" ; SkipFlag 1
+NP_000550.2	ps_scan|v1.89	PS00009	64	67	.	.	.	Name "AMIDATION" ; Sequence "hGKK" ; SequenceDescription "NP_000550.2 hemoglobin subunit gamma-1 [Homo sapiens]" ; SkipFlag 1
+NP_000550.2	ps_scan|v1.89	PS01033	3	147	42.877	.	.	Name "GLOBIN" ; Level 0 ; RawScore 4943 ; FeatureFrom 1 ; FeatureTo -1 ; Sequence "HFTEEDKATITSLWGKV--NVEDAGGETLGRLLVVYPWTQRFFDSFGNlssASAIMGNPKVKAHGKKVLTSLGDATKHL---DDLKGTFAQLSELHCdKLHVDPENFKLLGNVLVTVLAIHFGKEFTPEVQASWQKMVTAVASALSSRYH" ; SequenceDescription "NP_000550.2 hemoglobin subunit gamma-1 [Homo sapiens]"
+NP_000175.1	ps_scan|v1.89	PS00001	48	51	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NLSS" ; SequenceDescription "NP_000175.1 hemoglobin subunit gamma-2 [Homo sapiens]" ; SkipFlag 1
+NP_000175.1	ps_scan|v1.89	PS00005	39	41	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TqR" ; SequenceDescription "NP_000175.1 hemoglobin subunit gamma-2 [Homo sapiens]" ; SkipFlag 1
+NP_000175.1	ps_scan|v1.89	PS00005	143	145	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "SsR" ; SequenceDescription "NP_000175.1 hemoglobin subunit gamma-2 [Homo sapiens]" ; SkipFlag 1
+NP_000175.1	ps_scan|v1.89	PS00006	5	8	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "TeeD" ; SequenceDescription "NP_000175.1 hemoglobin subunit gamma-2 [Homo sapiens]" ; SkipFlag 1
+NP_000175.1	ps_scan|v1.89	PS00006	71	74	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SlgD" ; SequenceDescription "NP_000175.1 hemoglobin subunit gamma-2 [Homo sapiens]" ; SkipFlag 1
+NP_000175.1	ps_scan|v1.89	PS00008	47	52	.	.	.	Name "MYRISTYL" ; Sequence "GNlsSA" ; SequenceDescription "NP_000175.1 hemoglobin subunit gamma-2 [Homo sapiens]" ; SkipFlag 1
+NP_000175.1	ps_scan|v1.89	PS00008	137	142	.	.	.	Name "MYRISTYL" ; Sequence "GVasAL" ; SequenceDescription "NP_000175.1 hemoglobin subunit gamma-2 [Homo sapiens]" ; SkipFlag 1
+NP_000175.1	ps_scan|v1.89	PS00009	64	67	.	.	.	Name "AMIDATION" ; Sequence "hGKK" ; SequenceDescription "NP_000175.1 hemoglobin subunit gamma-2 [Homo sapiens]" ; SkipFlag 1
+NP_000175.1	ps_scan|v1.89	PS01033	3	147	43.434	.	.	Name "GLOBIN" ; Level 0 ; RawScore 5011 ; FeatureFrom 1 ; FeatureTo -1 ; Sequence "HFTEEDKATITSLWGKV--NVEDAGGETLGRLLVVYPWTQRFFDSFGNlssASAIMGNPKVKAHGKKVLTSLGDAIKHL---DDLKGTFAQLSELHCdKLHVDPENFKLLGNVLVTVLAIHFGKEFTPEVQASWQKMVTGVASALSSRYH" ; SequenceDescription "NP_000175.1 hemoglobin subunit gamma-2 [Homo sapiens]"
+NP_001305150.1	ps_scan|v1.89	PS00006	33	36	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SeeD" ; SequenceDescription "NP_001305150.1 alpha-hemoglobin-stabilizing protein [Homo sapiens]" ; SkipFlag 1
+NP_001305150.1	ps_scan|v1.89	PS00006	39	42	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "TvvE" ; SequenceDescription "NP_001305150.1 alpha-hemoglobin-stabilizing protein [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00001	362	365	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NETC" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00001	457	460	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NKST" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00004	6	9	.	.	.	Name "CAMP_PHOSPHO_SITE" ; Sequence "KKqT" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00005	4	6	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "SgK" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00005	74	76	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "SgK" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00005	135	137	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "SkK" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00005	172	174	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TtK" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00005	258	260	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TgK" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00005	312	314	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "SfK" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00005	342	344	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TgK" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00005	366	368	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TvK" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00005	464	466	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TkK" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00005	483	485	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TqR" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00006	18	21	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SseE" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00006	152	155	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "TgeE" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00006	167	170	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "TkfE" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00006	177	180	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "TlmD" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00006	208	211	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SrgE" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00006	371	374	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "TlhD" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00006	442	445	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "TvsE" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00006	459	462	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "StgE" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00008	194	199	.	.	.	Name "MYRISTYL" ; Sequence "GAaqAD" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00008	336	341	.	.	.	Name "MYRISTYL" ; Sequence "GSgfCI" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00008	401	406	.	.	.	Name "MYRISTYL" ; Sequence "GCifCG" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00008	507	512	.	.	.	Name "MYRISTYL" ; Sequence "GStiAA" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00009	4	7	.	.	.	Name "AMIDATION" ; Sequence "sGKK" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS00017	103	110	.	.	.	Name "ATP_GTP_A" ; Sequence "GhvdaGKS" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]" ; SkipFlag 1
+NP_001350615.1	ps_scan|v1.89	PS51722	94	318	57.892	.	.	Name "G_TR_2" ; Level 0 ; RawScore 7555 ; FeatureFrom 1 ; FeatureTo -1 ; Sequence "KQLLNLVVIGHVDAGKSTLMGHMLYLLGNINKRTMhkyeqeskkagkasFAYAWVLDETGEERERGVTMDVGMTKFETTTKVITLMDAPGHKDFIPNMITGAAQADVAVLVVDASRGEfeagfetGGQTREHGLLVRSLGVTqLAVAVNKMDQVNWQQERFQEITGKLGH----FLKQAGFKESDVGF---------IPTSGLSGenlitrsqsseltkwYKGLCLLEQIDSFKPPQR" ; SequenceDescription "NP_001350615.1 HBS1-like protein isoform 4 [Homo sapiens]"
+NP_001138679.1	ps_scan|v1.89	PS00001	189	192	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NSSV" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00001	295	298	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NNSL" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00001	302	305	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NNSL" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00001	332	335	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NMTV" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00001	339	342	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NASK" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00001	348	351	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NVSL" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00001	358	361	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NHTF" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00001	387	390	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NISQ" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00001	399	402	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NQSS" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00001	451	454	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NLSL" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00004	470	473	.	.	.	Name "CAMP_PHOSPHO_SITE" ; Sequence "KKeS" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00004	577	580	.	.	.	Name "CAMP_PHOSPHO_SITE" ; Sequence "KRrT" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00005	43	45	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "SrR" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00005	127	129	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "SlK" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00005	138	140	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TgK" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00005	171	173	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "SsK" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00005	206	208	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TrK" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00005	209	211	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "SeK" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00005	215	217	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "ScK" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00005	241	243	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "SvR" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00005	355	357	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "SaK" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00005	360	362	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TfK" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00005	514	516	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "SsR" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00005	521	523	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "SsK" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00005	543	545	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TrK" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00005	575	577	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "ScK" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	25	28	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SveD" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	43	46	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SrrD" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	74	77	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SgfD" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	83	86	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SclD" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	127	130	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SlkD" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	148	151	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SssE" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	245	248	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SstD" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	272	275	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SkdD" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	304	307	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SlsD" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	328	331	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SslE" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	350	353	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SlvE" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	369	372	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SqcE" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	375	378	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SltE" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	393	396	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "TlsD" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	404	407	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SftD" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	453	456	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SlsE" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	477	480	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SlsE" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	488	491	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SniD" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	608	611	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "TpfD" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00006	616	619	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SpdD" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00008	144	149	.	.	.	Name "MYRISTYL" ; Sequence "GVlfSS" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00008	185	190	.	.	.	Name "MYRISTYL" ; Sequence "GLshNS" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00008	291	296	.	.	.	Name "MYRISTYL" ; Sequence "GTtpNN" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00008	433	438	.	.	.	Name "MYRISTYL" ; Sequence "GSlsSL" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_001138679.1	ps_scan|v1.89	PS00008	485	490	.	.	.	Name "MYRISTYL" ; Sequence "GIdsNI" ; SequenceDescription "NP_001138679.1 HBS1-like protein isoform 3 [Homo sapiens]" ; SkipFlag 1
+NP_599030.1	ps_scan|v1.89	PS00001	177	180	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NATT" ; SequenceDescription "NP_599030.1 cytoglobin [Homo sapiens]" ; SkipFlag 1
+NP_599030.1	ps_scan|v1.89	PS00005	55	57	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "SaK" ; SequenceDescription "NP_599030.1 cytoglobin [Homo sapiens]" ; SkipFlag 1
+NP_599030.1	ps_scan|v1.89	PS00005	147	149	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TqR" ; SequenceDescription "NP_599030.1 cytoglobin [Homo sapiens]" ; SkipFlag 1
+NP_599030.1	ps_scan|v1.89	PS00006	20	23	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SeaE" ; SequenceDescription "NP_599030.1 cytoglobin [Homo sapiens]" ; SkipFlag 1
+NP_599030.1	ps_scan|v1.89	PS00006	91	94	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "TvvE" ; SequenceDescription "NP_599030.1 cytoglobin [Homo sapiens]" ; SkipFlag 1
+NP_599030.1	ps_scan|v1.89	PS00008	87	92	.	.	.	Name "MYRISTYL" ; Sequence "GAlnTV" ; SequenceDescription "NP_599030.1 cytoglobin [Homo sapiens]" ; SkipFlag 1
+NP_599030.1	ps_scan|v1.89	PS00008	156	161	.	.	.	Name "MYRISTYL" ; Sequence "GLiySH" ; SequenceDescription "NP_599030.1 cytoglobin [Homo sapiens]" ; SkipFlag 1
+NP_599030.1	ps_scan|v1.89	PS01033	18	167	33.168	.	.	Name "GLOBIN" ; Level 0 ; RawScore 3758 ; FeatureFrom 1 ; FeatureTo -1 ; Sequence "ELSEAERKAVQAMWARLYANCEDVGVAILVRFFVNFPSAKQYFSQFKHmedPLEMERSPQLRKHACRVMGALNTVVENLHDPDKVSSVLALVGKAHA-LkHkVEPVYFKILSGVILEVVAEEFASDFPPETQRAWAKLRGLIYSHVTAAYK" ; SequenceDescription "NP_599030.1 cytoglobin [Homo sapiens]"
+NP_599030.1	ps_scan|v1.89	PS60007	116	123	.	.	.	Name "TYR_PHOSPHO_SITE_2" ; Sequence "KhkvEpvY" ; SequenceDescription "NP_599030.1 cytoglobin [Homo sapiens]" ; SkipFlag 1
+NP_071441.1	ps_scan|v1.89	PS00005	13	15	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TlR" ; SequenceDescription "NP_071441.1 fructosamine-3-kinase [Homo sapiens]" ; SkipFlag 1
+NP_071441.1	ps_scan|v1.89	PS00005	303	305	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TmR" ; SequenceDescription "NP_071441.1 fructosamine-3-kinase [Homo sapiens]" ; SkipFlag 1
+NP_071441.1	ps_scan|v1.89	PS00006	242	245	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SefE" ; SequenceDescription "NP_071441.1 fructosamine-3-kinase [Homo sapiens]" ; SkipFlag 1
+NP_071441.1	ps_scan|v1.89	PS00008	18	23	.	.	.	Name "MYRISTYL" ; Sequence "GGpgAG" ; SequenceDescription "NP_071441.1 fructosamine-3-kinase [Homo sapiens]" ; SkipFlag 1
+NP_071441.1	ps_scan|v1.89	PS00008	81	86	.	.	.	Name "MYRISTYL" ; Sequence "GGgaAF" ; SequenceDescription "NP_071441.1 fructosamine-3-kinase [Homo sapiens]" ; SkipFlag 1
+NP_071441.1	ps_scan|v1.89	PS00009	128	131	.	.	.	Name "AMIDATION" ; Sequence "vGRR" ; SequenceDescription "NP_071441.1 fructosamine-3-kinase [Homo sapiens]" ; SkipFlag 1
+NP_071441.1	ps_scan|v1.89	PS00029	96	117	.	.	.	Name "LEUCINE_ZIPPER" ; Sequence "LssqaskLgeqmadLhlynqkL" ; SequenceDescription "NP_071441.1 fructosamine-3-kinase [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00001	125	128	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NLTT" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00001	148	151	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NHSE" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00001	152	155	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NATA" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00001	182	185	.	.	.	Name "ASN_GLYCOSYLATION" ; Sequence "NYSQ" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00005	47	49	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "SvR" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00005	141	143	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TaK" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00005	154	156	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TaK" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00005	264	266	.	.	.	Name "PKC_PHOSPHO_SITE" ; Sequence "TpK" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00006	21	24	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SgnD" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00006	60	63	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "TegD" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00006	67	70	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "TlnD" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00006	154	157	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "TakD" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00006	184	187	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SqvD" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00006	198	201	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SvnE" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00006	258	261	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "TvpE" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00006	335	338	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "SiqD" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00006	343	346	.	.	.	Name "CK2_PHOSPHO_SITE" ; Sequence "TiaE" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00007	232	239	.	.	.	Name "TYR_PHOSPHO_SITE_1" ; Sequence "KftDhlkY" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00007	286	293	.	.	.	Name "TYR_PHOSPHO_SITE_1" ; Sequence "KyqEdtcY" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00008	5	10	.	.	.	Name "MYRISTYL" ; Sequence "GAviAL" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00008	14	19	.	.	.	Name "MYRISTYL" ; Sequence "GQlfAV" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00008	22	27	.	.	.	Name "MYRISTYL" ; Sequence "GNdvTD" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00008	297	302	.	.	.	Name "MYRISTYL" ; Sequence "GSafAV" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS00009	166	169	.	.	.	Name "AMIDATION" ; Sequence "vGKK" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS50240	103	345	26.259	.	.	Name "TRYPSIN_DOM" ; Level 0 ; RawScore 3138 ; FeatureFrom 1 ; FeatureTo -1 ; Sequence "ILGGHLDAKGSFPWQAKMVSHH-NLTTGATLINEQWLLTTAKNLFLNHsenaTAKDIAPTLTLYV-----GKKQLVEIEKVVLHPNYS----QVDIGLIKLKQKVSVNERVMPICLP-SKDYAEVGRVGYVSGWGRNAN-FKFTDHLKYVMLPVADQDQCirhyegstvpekktpkSPVGVQPILNEHTFCAGMSKYQEDTCYGDAGSAFAVHdlEEDTWYATGILSFDKSCAVAEY-GVYVKVTSIQDWVQKTIA" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]"
+NP_001305067.1	ps_scan|v1.89	PS50923	31	88	8.334	.	.	Name "SUSHI" ; Level 0 ; RawScore 586 ; FeatureFrom 1 ; FeatureTo -1 ; Sequence "DGCPKPPE---------IAHGYVE-HSVRYQCKNYYKLRteGDGVYTLNDKKQWINkavgdKLPECEA" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]"
+NP_001305067.1	ps_scan|v1.89	PS60007	59	66	.	.	.	Name "TYR_PHOSPHO_SITE_2" ; Sequence "RtegDgvY" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
+NP_001305067.1	ps_scan|v1.89	PS60007	286	293	.	.	.	Name "TYR_PHOSPHO_SITE_2" ; Sequence "KyqeDtcY" ; SequenceDescription "NP_001305067.1 haptoglobin isoform 3 preproprotein [Homo sapiens]" ; SkipFlag 1
