@@ -59,6 +59,7 @@ server <- function(input, output, session) {
   observeEvent(input$run_prosite, {
     # Update status to "running" when button is clicked
     prosite_status_text("Analysis status: running...")
+    showNotification("Please run the Prosite analysis first.", type = "warning")
 
     in_file <- input$file_upload$datapath
     out_dir <- input$output_dir
