@@ -1,0 +1,31 @@
+Package: PMScanR
+Title: Protein motifs analysis and visualisation
+Version: 0.9.0.9000
+Authors@R: 
+    person(given = "Jan Pawel",
+           family = "Jastrzebski",
+           role = c("aut", "cre"),
+           email = "bioinformatyka@gmail.com",
+           comment = c(ORCID = "0000-0001-8699-7742"))
+Description: This package is for Protein motifs analysis in simple way in R.
+License: licence
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2
+Depends:
+  dplyr (>= 1.1.0)
+Imports:
+  shiny,
+  bslib,
+  shinyFiles,
+  future,
+  promises,
+  plotly,
+  rtracklayer,
+  reshape2,
+  seqLogo,
+  ggseqlogo,
+  ggplot2,
+  seqinr,
+  Polychrome
+Suggests: 
