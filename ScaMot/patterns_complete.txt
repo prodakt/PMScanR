@@ -1,0 +1,160 @@
+ID   MYRISTYL
+DE   N-myristoylation site
+PA   G-{EDRKHPFYW}-x(2)-[STAGCN]-{P}.
+
+ID   PKC_PHOSPHO
+DE   Protein kinase C phosphorylation site
+PA   [ST]-x-[RK].
+
+ID   CK2_PHOSPHO
+DE   Casein kinase II phosphorylation site
+PA   [ST]-x(2)-[DE].
+
+ID   HELIX-HELIX
+DE   Helix-helix interaction motif
+PA   G-x(3)-G.
+
+ID   CAMP_PHOSPH
+DE   cAMP- and cGMP-dependent protein kinase phosphorylation site
+PA   [RK](2)-x-[ST].
+
+ID   AMIDATION
+DE   Amidation site
+PA   x-G-[RK]-[RK].
+
+ID   N-GLY 
+DE   Glycosylation sites for N-glycans
+PA   N-x-[STC].
+
+ID   HELIX-HELIX2
+DE   Helix-helix interaction motif
+PA   A-x(3)-A.
+
+ID   ASN_GLYCOSYLATION
+DE   N-glycosylation site
+PA   N-{P}-[ST]-{P}.
+
+ID   MYELIN_MBP
+DE   Myelin basic protein signature
+PA   V-V-H-F-F-K-N.
+
+ID   PROTEIN_KINASE_ATP
+DE   Protein kinases ATP-binding region signature
+PA   x(5,18)-[LIVMFYWCSTAR]-[AIVP]-[LIVMFAGCKR]-K.
+
+ID   RGD
+DE   Cell attachment sequence
+PA   R-G-D.
+
+ID   CRAC
+DE   CRAC motif, Cholesterol recognition/ interaction amino-acid consensus
+PA   [LV]-x(1,5)-Y-x(1,5)-[RK].
+
+ID   KTIM
+DE   Kinase tyrosine-based inhibitory motif	
+PA   [IVLS]-x-Y-x-x-[LV].
+
+ID   TYR_PHOSPHO
+DE   Tyrosine kinase phosphorylation site
+PA   [RK]-x(2,3)-[DE]-x(2,3)-Y.
+
+ID   ITIM
+DE   Immunoreceptor Tyrosine-based inhibition motif
+PA   [VI]-x-Y-x-x-[LV].
+
+ID   MICROBODIES_CTER
+DE   Microbodies C-terminal targeting signal
+PA   [STAGCN]-[RKH]-[LIVMAFY].
+
+ID   SUMO
+DE   SUMO-binding motif	
+PA   [VI]-x-[VI]-[VI].
+
+ID   STEROL
+DE   Sterol sensing motif/domain
+PA   Y-I-Y-F.
+
+ID   FABP
+DE   Cytosolic fatty-acid binding proteins signature
+PA   [GSAIVK]-{FE}-[FYW]-x-[LIVMF]-x(2)-{K}-x-[NHG]-[FY]-[DE]-x-[LIVMFY]-[LIVM]-{N}-{G}-[LIVMAKR].
+
+ID   MYELIN_P0
+DE   Myelin P0 protein signature
+PA   S-[KR]-S-x-K-[AG]-x-[SA]-E-K-K-[STA]-K.
+
+
+ID   PMP22_1
+DE   PMP-22 / EMP / MP20 family signature 1
+PA   [LIVMF]-[LIVMFC]-[LIVMF](2)-[SA]-[TL]-x(2)-[DNKS]-x-W-x(9,13)-[LIV]-W-x(2)-[CG].
+
+ID   PMP22_2
+DE   PMP-22 / EMP / MP20 family signature 2
+PA   [RQ]-[AVS]-x-[MC]-[IV]-L-[SA]-x-[LI]-x(4)-[GSA]-[LIVMF]-[LIVMFS]-[LIVMF].
+
+ID   MYELIN_PLP_1
+DE   Myelin proteolipid protein signature 1.
+PA   G-[MV]-A-L-F-C-G-C-G-H.
+
+ID   MYELIN_PLP_2
+DE   Myelin proteolipid protein signature 2
+PA   C-x-[ST]-x-[DE]-x(3)-[ST]-[FY]-x-L-[FY]-I-x(4)-G-A.
+
+ID   ATP_GTP_A
+DE   ATP/GTP-binding site motif A (P-loop)
+PA   [AG]-x(4)-G-K-[ST].
+
+ID   PRENYLATION
+DE   Prenyl group binding site (CAAX box)	
+PA   C-{DENQ}-[LIVM]-x.
+
+ID   VAC
+DE   Sequence motifs that localize several proteins that participate in vacuolar sorting or endocytosis to membranes	
+PA   [RK]-[RK]-H-H-C-R.
+
+ID   GLUC
+DE   Glucuronic acid binding site
+PA   D-Q-X-D.
+
+ID   P-INOS
+DE   Phosphoinositides binding site
+PA   F-R-R-G. 
+
+ID   Zn-F
+DE   Zinc finger motif	 
+PA   C-x(2,4)-C-x(3)-[LIVMFYWC]-x(8)-H-x(3,5)-H.
+
+ID   RING
+DE   RING motif (Really Interesting New Gene) finger domain is structural domain of zinc finger type which contains a Cys3HisCys4 amino acid motif which binds two zinc cations
+PA   C-X(2)-C-X(9,39)-C-X(1,3)-H-X(2,3)-C-X(2)-C-X(4,48)-C-X(2)-C.
+
+ID   NPXY1
+DE   Important recognition element for internalization of both insulin and transferrin receptors
+PA   N-P-X-Y.
+
+ID   NPXY2
+DE   Important recognition element for internalization of both insulin and transferrin receptors
+PA   Y-X-R-F.
+
+ID   P-SER	
+DE   Phosphatidylserine binding motif	
+PA   F-X-F-X-L-K-X-X-X-K-X-R.
+
+ID   HEMAG
+DE   Motif cleavage site of hemaglutinin
+PA   R-S-[SN]-[RG]-L.
+
+ID   RIP
+DE   RIP/RLP motif Asp box motif  Motifs found in neuroamidase that removes sialic acid from glycolipids, glycoproteins, and poly- and oligosaccharides
+PA   S-X-D-X-G-X-T-W.
+
+ID   ITAM
+DE   Immunoreceptor tyrosine-based activation motif
+PA   Y-X-X-L-X(6,8)-Y-X-X-L.
+
+ID   LEUCINE_ZIPPER
+DE   Leucine zipper pattern
+PA   L-X(6)-L-X(6)-L-X(6)-L.
+
+ID   G_PROTEIN_RECEPTOR
+DE   G-protein coupled receptors signature.
+PA   [GSTALIVMFYWC]-[GSTANCPDE]-{EDPKRH}-x(2)-[LIVMNQGA]-x(2)-[LIVMFT]-[GSTANC]-[LIVMFYWSTAC]-[DENH]-R-[FYWCSH]-x(2)-[LIVM].

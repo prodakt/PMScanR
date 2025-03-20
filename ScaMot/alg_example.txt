@@ -1,0 +1,39 @@
+Example:
+
+Sequence: LLLLLLFYVVRYCWLRRQAALQRRLSAME
+Pattern: [LV]-x(1,5)-Y-x(1,5)-[RK].
+
+Begin = 1, substring = LLLLLLFYVVRYCWLRRQAALQRRLSAME
+found? no
+
+Begin = 2, substring = LLLLLFYVVRYCWLRRQAALQRRLSAME
+found? yes: LLLLLFYVVR
+check substring: LLLLLFYVV
+found? no
+
+Begin = 3, substring = LLLLFYVVRYCWLRRQAALQRRLSAME
+found? yes: LLLLFYVVR
+check substring: LLLLFYVV
+found? no
+
+Begin = 4, substring = LLLFYVVRYCWLRRQAALQRRLSAME
+found? yes: LLLFYVVR
+check substring: LLLFYVV
+found? no
+
+Begin = 5, substring = LLFYVVRYCWLRRQAALQRRLSAME
+found? yes: LLFYVVR
+check substring: LLFYVV
+found? no
+
+Begin = 6, substring = LFYVVRYCWLRRQAALQRRLSAME
+found? yes: LFYVVRYCWLRR
+check substring: LFYVVRYCWLR
+found? yes: LFYVVR
+check substring: LFYVV
+found? no
+
+Begin = 7, substring = FYVVRYCWLRRQAALQRRLSAME
+found? no
+
+...
