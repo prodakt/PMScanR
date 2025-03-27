@@ -18,7 +18,8 @@ A list with a motif identifier (e.g. PSXXXXX) and the coresponding to it motif s
 This function reads a file in PSA format containing protein sequences and extracts motifs based on specific patterns.
 }
 \examples{
-file_path <- "file in PSA format"
-protein_motifs <- extract_protein_motifs(file_path)
-ggseqlogo(protein_motifs$PS60007, seq_type='aa')
+file_path <- system.file("extdata/out_Hb_psa.txt", package = "PMScanR")
+if (file_path != "") {
+  protein_motifs <- extract_protein_motifs(file_path)
+}
 }

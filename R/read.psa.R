@@ -2,13 +2,13 @@
 #'
 #' This function converts a PSA format data into a GFF format data frame
 #'
-#' @param psa A character vector where each element represents a line from a PSA file, file in a psa format
+#' @param psa_input A character vector where each element represents a line from a PSA file, file in a psa format
 #' @return A data frame in GFF format
 #' @examples
-#' raw_data <- 'file'
-#' s1 <- PSAtoGFF(raw_data)
-#' print(raw_data)
-#'
+#' file_path <- system.file("extdata/out_Hb_psa.txt", package = "PMScanR")
+#' if (file_path != "") {
+#'   gffdata <- read.psa(file_path)
+#' }
 #' @importFrom dplyr mutate select
 #' @export
 

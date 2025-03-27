@@ -7,9 +7,10 @@
 #' @return A list with a motif identifier (e.g. PSXXXXX) and the coresponding to it motif sequence which is
 #'          associated wuth that identifier.
 #' @examples
-#' file_path <- "file in PSA format"
-#' protein_motifs <- extract_protein_motifs(file_path)
-#' ggseqlogo(protein_motifs$PS60007, seq_type='aa')
+#' file_path <- system.file("extdata/out_Hb_psa.txt", package = "PMScanR")
+#' if (file_path != "") {
+#'   protein_motifs <- extract_protein_motifs(file_path)
+#' }
 #' @export
 
 
@@ -27,6 +28,5 @@ extract_protein_motifs <- function(file_path) {
       result[[ps_info]] <- c(result[[ps_info]], motif)
     }
   }
-
   return(result)
 }

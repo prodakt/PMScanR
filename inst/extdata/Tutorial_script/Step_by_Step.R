@@ -24,11 +24,11 @@ BiocManager::install("seqLogo")
 # 2.1 Load Required Libraries
 # We will use 'library()' function to load each required package.
 
-library(devtools)    # For package development and loading 
+library(devtools)    # For package development and loading
 library(dplyr)       # For data manipulation
 library(rtracklayer) # For handling GFF files
-library(reshape2)    # For data reshaping, especially for heatmaps 
-library(plotly)      # For interactive plots 
+library(reshape2)    # For data reshaping, especially for heatmaps
+library(plotly)      # For interactive plots
 library(seqLogo)     # For sequence logo generation
 library(ggseqlogo)  # For more advanced sequence logo generation
 library(ggplot2)     # For general plotting
@@ -56,8 +56,8 @@ in_file <- "../data/hemoglobins.fasta"   # Path to the input FASTA file (example
 # This section demonstrates how to use functions in PMScanR to run PS-Scan
 # on different operating systems (Windows, Linux MacOS) with different values of attributes.
 # Example 1: Running runPsScan() with a basic attributes of function.
-# Without specifing the rest of attributes required files will be downloaded by default from prosite page, 
-# and user will be prompted to confirm that dtetected OS is correct 
+# Without specifing the rest of attributes required files will be downloaded by default from prosite page,
+# and user will be prompted to confirm that dtetected OS is correct
 runPsScan(in_file = "protein.fasta", out_format = 'gff', out_file = "results_pfscan.gff")
 
 # Example 2: Running runPsScan() with a specific PFScan executable path for Windows
@@ -97,7 +97,7 @@ runPsScan(in_file = "test_sequence.fasta", out_format = 'psa', out_file = "linux
 # and returns a data frame in a GFF-like format, suitable for further analysis in R.
 
 # Example 5.1.1: Converting a PSA output file (using a filename variable)
-motifs_psa <- "data/out_Hb_psa.txt" 
+motifs_psa <- "data/out_Hb_psa.txt"
 psaGFF <- read.psa(motifs_psa)
 head(psaGFF) # Display the first few rows of the converted GFF-like data frame
 
@@ -230,4 +230,16 @@ ggseqlogo(protein_motifs_gff$PS60007, seq_type='aa') # Example for motif 'PS6000
 ggseqlogo(protein_motifs_gff[1], seq_type='aa')
 ggseqlogo(protein_motifs_gff[5], seq_type='aa')
 
+# --- Section 10: Shiny app run ---
+# If you want you can use shiny to use all the features of the package with user freidnly UI helping to follow all the above steps
+# To run Shiny app you can call function runPMScanRShiny()
+runPMScanRShiny()
+
+# Or if you want you can build your own function or run Shiny app from build_app() function
+app <- build_app()
+shiny::runApp(app)
+
+#or
+
+shiny::runApp(build_app())
 # --- End of PMScanR Tutorial Script ---

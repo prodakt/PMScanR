@@ -7,14 +7,14 @@
 matrix2hm(input, x = NULL, y = NULL)
 }
 \arguments{
-\item{input}{A matrix containing the data to be visualized in the heatmap}
+\item{input}{A matrix containing the data to be visualized in the heatmap.}
 
-\item{x}{A character vector specifying the columns to highlight in the heatmap}
+\item{x}{A character vector specifying the columns to highlight in the heatmap.}
 
-\item{y}{A character vector specifying the rows to highlight in the heatmap}
+\item{y}{A character vector specifying the rows to highlight in the heatmap.}
 }
 \value{
-A heatmap with highlighted specified rows and columns
+A plotly heatmap with highlighted specified rows and columns.
 }
 \description{
 This function generates a heatmap using the `plotly` package.
@@ -22,7 +22,10 @@ The heatmap highlights specific rows and columns provided by the user, while the
 The function also adds grid lines to the heatmap for better readability.
 }
 \examples{
-heatmap <- matrix2hm(input = matrix(c(1, 0, 1, 0), 2, 2), x = "Col1", y = "Row1")
+# Create a sample matrix with row and column names
+mat <- matrix(c(1, 0, 1, 0), 2, 2)
+colnames(mat) <- c("Col1", "Col2")
+rownames(mat) <- c("Row1", "Row2")
+heatmap <- matrix2hm(input = mat, x = "Col1", y = "Row1")
 heatmap
-
 }

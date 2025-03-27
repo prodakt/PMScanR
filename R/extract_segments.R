@@ -9,10 +9,12 @@
 #' @return A list which are representing the extracted sequences.
 #'          Sequences shorter than the specified range are excluded.
 #' @examples
+#' seq <- system.file(file = "inst/extdata/hemoglobins.fasta", package = "PMScanR")
 #' from = 10
 #' to = 20
-#' seq <- read.fasta(file = "data/hemoglobins.fasta", seqtype = "AA")
-#' seqShort <- extract_segments(seq = seq, from, to)
+#' if (seq != "") {
+#' segment_motifs <- extract_segments(seq, from = from, to = to)
+#' }
 #' @export
 
 extract_segments <- function(seq, from, to) {

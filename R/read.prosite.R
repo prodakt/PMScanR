@@ -4,12 +4,13 @@
 #' PROSITE is a database of protein families and domains, and this function parses the relevant information
 #' into a structured GFF data frame suitable for further analysis and visualization.
 #'
-#' @param input A file in PROSITE format from Prosite database
+#' @param prosite_input A file in PROSITE format from Prosite database
 #' @return A GFF file as data frame.
 #' @examples
-#' input <- 'file in PROSITE format'
-#' gff_data <- PrositeFormattoGFF(input)
-#' print(gff_data)
+#' prosite_file <- system.file("inst/extdata/PROSITEoutput.txt", package = "PMScanR")
+#' if (prosite_file != "") {
+#' gff_data <- read.prosite(prosite_file)
+#' }
 #'
 #' @importFrom dplyr mutate select
 #' @export

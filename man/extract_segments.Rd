@@ -22,8 +22,10 @@ This function extracts sequences from a file within the specified range (`from` 
 Sequences shorter than the specified range are excluded from the result.
 }
 \examples{
+seq <- system.file(file = "inst/extdata/hemoglobins.fasta", package = "PMScanR")
 from = 10
 to = 20
-seq <- read.fasta(file = "data/hemoglobins.fasta", seqtype = "AA")
-seqShort <- extract_segments(seq = seq, from, to)
+if (seq != "") {
+segment_motifs <- extract_segments(seq, from = from, to = to)
+}
 }

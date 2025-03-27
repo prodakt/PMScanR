@@ -2,27 +2,30 @@
 % Please edit documentation in R/matrix2hm_2.R
 \name{matrix2hm_2}
 \alias{matrix2hm_2}
-\title{Generate a heatmap from a matrix with layout which provides a square shape of heatmap}
+\title{Generate a square-shaped heatmap from a matrix}
 \usage{
 matrix2hm_2(input, x = NULL, y = NULL)
 }
 \arguments{
-\item{input}{A matrix containing the data to be visualized in the heatmap}
+\item{input}{A matrix containing the data to be visualized in the heatmap.}
 
-\item{x}{A character vector specifying the columns to highlight in the heatmap}
+\item{x}{A character vector specifying the columns to highlight in the heatmap. Must match column names in `input`.}
 
-\item{y}{A character vector specifying the rows to highlight in the heatmap}
+\item{y}{A character vector specifying the rows to highlight in the heatmap. Must match row names in `input`.}
 }
 \value{
-A heatmap with highlighted specified rows and columns
+A `plotly` object representing a square-shaped heatmap with highlighted rows and columns, and grid lines for readability.
 }
 \description{
-This function generates a heatmap using the `plotly` package.
+This function generates a heatmap using the `plotly` package, with a square-shaped layout.
 The heatmap highlights specific rows and columns provided by the user, while the rest of the matrix is dimmed.
 The function also adds grid lines to the heatmap for better readability.
 }
 \examples{
-heatmap <- matrix2hm_2(input = matrix(c(1, 0, 1, 0), 2, 2), x = "Col1", y = "Row1")
+# Create a sample matrix with row and column names
+mat <- matrix(c(1, 0, 1, 0), 2, 2)
+colnames(mat) <- c("Col1", "Col2")
+rownames(mat) <- c("Row1", "Row2")
+heatmap <- matrix2hm_2(input = mat, x = "Col1", y = "Row1")
 heatmap
-
 }

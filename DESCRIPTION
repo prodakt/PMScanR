@@ -17,9 +17,8 @@ Depends:
 Imports:
   shiny,
   bslib,
+  bsicons,
   shinyFiles,
-  future,
-  promises,
   plotly,
   rtracklayer,
   reshape2,
@@ -27,5 +26,4 @@ Imports:
   ggseqlogo,
   ggplot2,
   seqinr,
-  Polychrome
 Suggests: 

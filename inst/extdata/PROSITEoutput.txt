@@ -1,0 +1,35 @@
+>BAA83389.1 : PS00001 ASN_GLYCOSYLATION N-glycosylation site.
+    276 - 279  NESF
+>BAA83389.1 : PS00005 PKC_PHOSPHO_SITE Protein kinase C phosphorylation site.
+      51 - 53  SmK
+    119 - 121  SlR
+    411 - 413  SmK
+>BAA83389.1 : PS00006 CK2_PHOSPHO_SITE Casein kinase II phosphorylation site.
+       9 - 12  SlpD
+      96 - 99  TdeE
+    146 - 149  TysD
+    185 - 188  ScsD
+    192 - 195  TssD
+    203 - 206  SnlD
+    208 - 211  SeeD
+    255 - 258  TseD
+    266 - 269  SaiE
+    280 - 283  TmdD
+    392 - 395  SlnE
+>BAA83389.1 : PS00008 MYRISTYL N-myristoylation site.
+    164 - 169  GShpSR
+    345 - 350  GVqdAA
+>BAA83389.1 : PS00031 NUCLEAR_REC_DBD_1 Nuclear hormones receptors DNA-binding region signature.
+      24 - 50  CgvCg.Dratgf.HFnamtCegCkgFFrR
+>BAA83389.1 : PS50324 SER_RICH Serine-rich region profile.
+    165 - 225  Shpsrpnsrhtpsfsgdsssscsdhcitssdmmdsssfsnldlseedsddpsvtlelsql L=0
+ S
+>BAA83389.1 : PS51030 NUCLEAR_REC_DBD_2 Nuclear hormone receptors DNA-binding domain profile.
+      21 - 96  PRICGVCGDRATGFHFNAMTCEGCKGFFRRSMKRKALFTCPFNGDCRITKDNRRHCQACR L=0
+ LKRCVDIGMMKEFILT
+>BAA83389.1 : PS51843 NR_LBD Nuclear receptor (NR) ligand-binding (LBD) domain profile.
+    127 - 423  EQQRIIAILLDAHHKTYdPTYSDFCQFRPPVRvndgggshpsrpnsrhtpsfsgdssssc L=0
+ sdhcitssdmmdsssfsnldlseedsddpsvtLELSQLSMLPHLADLVSYSIQKVIGFAK
+ MIPGFRDLTSEDQIVLLKSSAIEVIMLRSNESFTMDD-MSWTCGNQDYKYRVSDVTKAGH
+ SLELIEPLIKFQVGLKKLNLHEEEHVLLMAICIVS-PDRPGVQDAALIEAIQDRLSNTLQ
+ TYIRCRHPPPGsHLLYAKMIQKLADLRSLNEEHSKQYRCLSFQPECSMKLTPLVLEVFG

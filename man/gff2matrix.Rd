@@ -19,15 +19,11 @@ A matrix, where values are binary: `1` indicates the presence of a feature in a 
 This function takes a GFF data frame and converts it into a matrix
 }
 \examples{
-Load required libraries
-library(rtracklayer)
-library(reshape2)
-
-gff_file <- system.file("extdata", "example.gff", package = "rtracklayer")
-gff_data <- rtracklayer::import.gff(gff_file)
-gff_data <- as.data.frame(gff_data)
-
-matrix <- gfftomatrix(gff_data)
-print(matrix)
-
+gff_file <- system.file("extdata/out_Hb_gff.txt", package = "PMScanR")
+if (gff_file != "") {
+  gff_data <- rtracklayer::import.gff(gff_file)
+  gff_data <- as.data.frame(gff_data)
+  matrix <- gff2matrix(gff_data)
+  print(matrix)
+}
 }

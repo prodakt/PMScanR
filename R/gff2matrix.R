@@ -8,17 +8,13 @@
 #' @return A matrix, where values are binary: `1` indicates the presence of a feature in a sequence,
 #'          and `0` indicates its absence
 #' @examples
-#' Load required libraries
-#' library(rtracklayer)
-#' library(reshape2)
-#'
-#' gff_file <- system.file("extdata", "example.gff", package = "rtracklayer")
-#' gff_data <- rtracklayer::import.gff(gff_file)
-#' gff_data <- as.data.frame(gff_data)
-#'
-#' matrix <- gfftomatrix(gff_data)
-#' print(matrix)
-#'
+#' gff_file <- system.file("extdata/out_Hb_gff.txt", package = "PMScanR")
+#' if (gff_file != "") {
+#'   gff_data <- rtracklayer::import.gff(gff_file)
+#'   gff_data <- as.data.frame(gff_data)
+#'   matrix <- gff2matrix(gff_data)
+#'   print(matrix)
+#' }
 #' @importFrom reshape2 dcast
 #' @export
 gff2matrix <- function(input) {
