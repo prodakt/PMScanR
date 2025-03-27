@@ -5,6 +5,7 @@
 #' @import shiny
 #' @import bslib
 #' @import bsicons
+#' @import plotly
 #' @return A Shiny UI object
 #' @noRd
 build_ui <- function() {
