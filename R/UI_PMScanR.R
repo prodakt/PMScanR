@@ -1,15 +1,12 @@
-#' Create the main UI for PMScanR
-#'
-#' @import shiny
-#' @import bslib
-#' @import bsicons
-#' @return A Shiny UI object
+#' Create a display card for the UI
+#' @param header Card header text
+#' @param body Card body content
+#' @param colour Background color class for the header
+#' @param fs Enable full-screen option
+#' @param min_height Minimum height of the card body
+#' @param fillable Whether the card body should be fillable
+#' @return A Shiny card UI element
 #' @noRd
-link_PMScanR <- tags$a(shiny::icon("github"), "PMScanR", href = "https://github.com/prodakt/PMScanR", target = "_blank")
-link_posit <- tags$a(shiny::icon("github"), "lncRna", href = "https://github.com/prodakt/lncRna", target = "_blank")
-detected_os <- detect_os()
-
-
 display_card <- function(header, body, colour = "bg-dark", fs = T, min_height = "10em", fillable = T) {
   card(
     full_screen = fs,
@@ -18,6 +15,36 @@ display_card <- function(header, body, colour = "bg-dark", fs = T, min_height = 
   )
 }
 
+#' Detect the operating system
+#' @return A string indicating the OS ("WIN", "LINUX", "MAC")
+#' @noRd
+detect_os <- function() {
+  os <- .Platform$OS.type
+  if (os == "windows") {
+    return("WIN")
+  } else if (os == "unix") {
+    if (Sys.info()["sysname"] == "Darwin") {
+      return("MAC")
+    } else {
+      return("LINUX")
+    }
+  } else {
+    return("UNKNOWN")
+  }
+}
+
+link_PMScanR <- tags$a(shiny::icon("github"), "PMScanR", href = "https://github.com/prodakt/PMScanR", target = "_blank")
+link_posit <- tags$a(shiny::icon("github"), "lncRna", href = "https://github.com/prodakt/lncRna", target = "_blank")
+detected_os <- detect_os()
+
+#' Create the main UI for PMScanR
+#'
+#' @import shiny
+#' @import bslib
+#' @import bsicons
+#' @import plotly
+#' @return A Shiny UI object
+#' @noRd
 build_ui <- page_navbar(
   title = "PMScanR",
   navbar_options = navbar_options(
