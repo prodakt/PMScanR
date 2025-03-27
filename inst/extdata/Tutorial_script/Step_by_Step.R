@@ -221,15 +221,6 @@ ggseqlogo(protein_motifs_psa$PS60007, seq_type='aa') # Sequence logo for motif '
 ggseqlogo(protein_motifs_psa[1], seq_type='aa')       # Sequence logo for the first motif in the list
 ggseqlogo(protein_motifs_psa[5], seq_type='aa')       # Sequence logo for the fifth motif in the list
 
-# Example 9.2.2: Creating sequence logos for motifs from GFF format output
-# Similarly, you can extract motifs from a GFF format object (e.g., 'gff_format' or 'psaGFF').
-protein_motifs_gff <- extract_protein_motifs(gff_format) # or use 'psaGFF' object
-
-# Generate sequence logos for motifs extracted from GFF data.
-ggseqlogo(protein_motifs_gff$PS60007, seq_type='aa') # Example for motif 'PS60007'
-ggseqlogo(protein_motifs_gff[1], seq_type='aa')
-ggseqlogo(protein_motifs_gff[5], seq_type='aa')
-
 # --- Section 10: Shiny app run ---
 # If you want you can use shiny to use all the features of the package with user freidnly UI helping to follow all the above steps
 # To run Shiny app you can call function runPMScanRShiny()
