@@ -7,7 +7,6 @@
 #' @return A Shiny server function
 #' @noRd
 build_server <- function(input, output, session) {
-  bs_themer()
 
   # Reactive variables
   prosite_results_data <- reactiveVal(NULL)

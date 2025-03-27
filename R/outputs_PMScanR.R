@@ -61,6 +61,7 @@ setup_outputs <- function(input, output, session, prosite_results_data, data_mat
 
   # Prosite results
   output$prosite_results_output <- renderTable({
+    print(prosite_results_data())
     if (!is.null(prosite_results_data())) {
       as.data.frame(prosite_results_data())
     } else {

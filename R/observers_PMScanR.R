@@ -86,6 +86,7 @@ setup_observers <- function(input, output, session, prosite_status_text, prosite
       prosite_params$output_name <- out_name
       prosite_params$output_dir <- out_dir
       prosite_params$output_format <- out_format
+      print(prosite_results_data())
 
       prosite_status_text("Analysis status: completed")
     }, error = function(e) {
