@@ -11,7 +11,7 @@
 #' @param pf_scan A character string specifying the path to the pfscan executable. If NULL, it will be downloaded and extracted based on OS.
 #' @param OS Operating system ("WIN", "LINUX", "MAC"). If NULL, it will be detected automatically.
 #' @return Writes the results of the PS-Scan analysis to the specified output file.
-#' @examples 
+#' @examples
 #' \dontrun{
 #' ps_scan <- "path/to/ps_scan.pl"
 #' patterns_dat <- "path/to/prosite.dat"
@@ -28,15 +28,15 @@ runPsScan <- function(in_file, out_file, out_format, ps_scan = NULL, patterns_da
     detected_os <- detect_os()
     OS <- confirm_os(detected_os)
   }
-  
+
   # Download and extract files if not provided
   downloaded_files <- download_files(OS, ps_scan, pf_scan, patterns_dat)
-  
+
   # Update paths with downloaded/extracted files if necessary
   ps_scan <- if (is.null(ps_scan)) downloaded_files$ps_scan else ps_scan
   pf_scan <- if (is.null(pf_scan)) downloaded_files$pf_scan else pf_scan
   patterns_dat <- if (is.null(patterns_dat)) downloaded_files$patterns_dat else patterns_dat
-  
+
   # Verify required files are available
   if (is.null(ps_scan)) {
     stop("ps_scan is not provided and could not be downloaded. Please specify the path manually.")
@@ -47,7 +47,7 @@ runPsScan <- function(in_file, out_file, out_format, ps_scan = NULL, patterns_da
   if (is.null(patterns_dat)) {
     stop("patterns_dat is not provided and could not be downloaded. Please specify the path manually.")
   }
-  
+
   # Construct and execute the command
   command <- construct_command(ps_scan, patterns_dat, in_file, out_format, pf_scan, out_file)
   execute_command(command, OS, out_file)
@@ -133,11 +133,11 @@ download_files <- function(os, ps_scan = NULL, pf_scan = NULL, patterns_dat = NU
       patterns_dat = "prosite.dat"
     )
   )
-  
+
   if (!(os %in% names(files))) {
     stop("Unsupported operating system for file download.")
   }
-  
+
   # Download ps_scan if not provided
   if (is.null(ps_scan)) {
     ps_scan_url <- paste0(base_url, files[[os]]$ps_scan)
@@ -150,14 +150,14 @@ download_files <- function(os, ps_scan = NULL, pf_scan = NULL, patterns_dat = NU
       ps_scan <- NULL
     })
   }
-  
+
   # Download and extract pf_scan if not provided
   if (is.null(pf_scan)) {
     pf_scan_url <- paste0(base_url, files[[os]]$pf_scan_archive)
     pf_scan_archive <- basename(pf_scan_url)
     tryCatch({
       download.file(pf_scan_url, pf_scan_archive, mode = "wb")
-      
+
       # Extract the archive based on OS
       if (os == "WIN") {
         unzip(pf_scan_archive, exdir = "pfscan_temp")
@@ -166,12 +166,12 @@ download_files <- function(os, ps_scan = NULL, pf_scan = NULL, patterns_dat = NU
         untar(pf_scan_archive, exdir = "pfscan_temp")
         pf_scan <- file.path("pfscan_temp", files[[os]]$pf_scan_exe)
       }
-      
+
       # Verify extraction
       if (!file.exists(pf_scan)) {
         stop("Failed to extract pf_scan executable from archive.")
       }
-      
+
       # Make executable on Linux/macOS
       if (os %in% c("LINUX", "MAC")) {
         Sys.chmod(pf_scan, mode = "0755")
@@ -181,7 +181,7 @@ download_files <- function(os, ps_scan = NULL, pf_scan = NULL, patterns_dat = NU
       pf_scan <- NULL
     })
   }
-  
+
   # Download patterns_dat if not provided
   if (is.null(patterns_dat)) {
     patterns_dat_url <- paste0(data_url, files[[os]]$patterns_dat)
@@ -194,7 +194,7 @@ download_files <- function(os, ps_scan = NULL, pf_scan = NULL, patterns_dat = NU
       patterns_dat <- NULL
     })
   }
-  
+
   return(list(ps_scan = ps_scan, pf_scan = pf_scan, patterns_dat = patterns_dat))
 }
 

@@ -1,14 +1,17 @@
-# R/server.R
-
 #' Create the server function for PMScanR
 #' @param input Shiny input object
 #' @param output Shiny output object
 #' @param session Shiny session object
+#' @import shiny
+#' @import shinyFiles
+#' @import bslib
+#' @import bsicons
+#' @import rtracklayer
 #' @return A Shiny server function
 #' @noRd
 build_server <- function(input, output, session) {
 
-  # Reactive variables
+  # Existing reactive variables for Prosite analysis
   prosite_results_data <- reactiveVal(NULL)
   prosite_params <- reactiveValues(
     output_dir = getwd(),
@@ -17,26 +20,293 @@ build_server <- function(input, output, session) {
     ps_scan_path = NULL,
     patterns_dat_path = NULL,
     pf_scan_path = NULL,
-    os_choice = .Platform$OS.type
-  )
+    os_choice = .Platform$OS.type)
   prosite_analysis_run <- reactiveVal(FALSE)
-  prosite_status_text <- reactiveVal("Analysis status: waiting for inputs")
+  prosite_status_text <- reactiveVal("Analysis status: waiting for inputs") # Initial status
   data_matrix <- reactiveVal(NULL)
   original_data <- reactiveVal(NULL)
   volumes <- getLogicalDrives()
   loading <- reactiveVal(FALSE)
 
-  # Set up observers and outputs
-  setup_observers(input, output, session, prosite_status_text, prosite_analysis_run, prosite_params, data_matrix, original_data, loading, volumes)
-  setup_outputs(input, output, session, prosite_results_data, data_matrix, original_data, prosite_status_text, loading)
+  output$logo <- renderImage(
+    {
+      list(src = "ins/img/PMlogo.png", height = "100%")
+    },
+    deleteFile = FALSE
+  )
 
-  return(list(
-    prosite_results_data = prosite_results_data,
-    prosite_params = prosite_params,
-    prosite_analysis_run = prosite_analysis_run,
-    prosite_status_text = prosite_status_text,
-    data_matrix = data_matrix,
-    original_data = original_data,
-    loading = loading
-  ))
+  output$run_prosite_button <- renderUI({
+    if (loading()) {
+      # Loading state button with spinner
+      tags$button(
+        class = "btn btn-primary",
+        type = "button",
+        disabled = "disabled",
+        tags$span(class = "spinner-border spinner-border-sm", `aria-hidden` = "true"),
+        tags$span(role = "status", "Loading...")
+      )
+    } else {
+      # Normal state button
+      actionButton(
+        "run_prosite",
+        "Run Analysis",
+        class = "btn btn-primary",
+        style = "background-color: #4e62c8; color: white; font-family: 'Inter', sans-serif; border-radius: 5px; padding: 10px 15px; font-size: 1.1em;"
+      )
+    }
+  })
+
+  # Status outputs
+  output$prosite_analysis_status_home <- renderText({
+    "Ready (Home)"
+  })
+  output$prosite_analysis_status_prosite <- renderText({
+    if (is.null(input$file_upload)) {
+      "No file uploaded yet"
+    } else {
+      paste("File uploaded:", input$file_upload$name)
+    }
+  })
+
+  # Simulate analysis when button is clicked
+  observeEvent(input$run_prosite, {
+    # Set loading state to TRUE
+    loading(TRUE)
+
+    # Simulate a long-running process (e.g., 3 seconds)
+    Sys.sleep(3)
+
+    # After process completes, set loading back to FALSE
+    loading(FALSE)
+  })
+
+  # Render the Prosite analysis status text
+  output$prosite_analysis_status <- renderText({
+    prosite_status_text()
+  })
+
+  observeEvent(input$output_dir_button, {
+    shinyDirChoose(input, 'output_dir_button', roots = volumes, filetypes = NULL, restrictions = NULL, session = session)
+  })
+
+  observe({
+    if (is.list(input$output_dir_button) && length(input$output_dir_button) > 0) {
+      tryCatch({
+        selected_dir <- parseDirPath(volumes, input$output_dir_button)
+        updateTextInput(session, "output_dir", value = selected_dir)
+      }, error = function(e) {
+        print(paste("Error parsing directory:", e$message))
+        updateTextInput(session, "output_dir", value = "Error selecting directory")
+      })
+    } else {
+      updateTextInput(session, "output_dir", value = "")
+    }
+  })
+
+  # Existing "Run Analysis" for Prosite
+  observeEvent(input$run_prosite, {
+    # Update status to "running" when button is clicked
+    prosite_status_text("Analysis status: running...")
+
+    in_file <- input$file_upload$datapath
+    out_dir <- input$output_dir
+    out_name <- input$output_name
+    out_format <- input$output_format
+    ps_scan_path <- input$ps_scan_file$datapath
+    patterns_dat_path <- input$patterns_dat_file$datapath
+    pf_scan_path <- input$pf_scan_file$datapath
+    os_choice <- input$os_choice
+    print(out_name)
+    print(out_format)
+    if (is.null(in_file)) {
+      showNotification("Please upload an input file.", type = "warning")
+      prosite_status_text("Analysis status: waiting for inputs") # Reset status on error
+      return()
+    }
+
+    full_output_path <- file.path(out_dir, out_name)
+
+    tryCatch({
+      print(paste("Running Prosite analysis with:", in_file, full_output_path, out_format, ps_scan_path, patterns_dat_path, pf_scan_path, os_choice))
+      runPsScan(in_file = in_file, out_file = full_output_path, out_format = out_format,
+                ps_scan = if (!is.null(ps_scan_path) && length(ps_scan_path) > 0) ps_scan_path else NULL,
+                patterns_dat = if (!is.null(patterns_dat_path) && length(patterns_dat_path) > 0) patterns_dat_path else NULL,
+                pf_scan = if (!is.null(pf_scan_path) && length(pf_scan_path) > 0) pf_scan_path else NULL,
+                OS = if (!is.null(os_choice) && os_choice != "") os_choice else NULL)
+
+      if (out_format == "gff") {
+        prosite_results_data(rtracklayer::import.gff(full_output_path))
+      } else if (out_format == "psa") {
+        prosite_results_data(read.psa(full_output_path))
+      }
+
+      prosite_analysis_run(TRUE)
+
+      prosite_params$output_name <- out_name
+      prosite_params$output_dir <- out_dir
+      prosite_params$output_format <- out_format
+
+      output$prosite_results_output <- renderTable({
+        if (!is.null(prosite_results_data())) {
+          as.data.frame(prosite_results_data())
+        } else {
+          data.frame(Message = "Analysis completed. Results are ready in the 'Results' tab.")
+        }
+      })
+
+      updateTabsetPanel(session, "results_tabs", selected = "results")
+      prosite_status_text("Analysis status: completed") # Update status on success
+
+    }, error = function(e) {
+      showNotification(paste("Error during analysis:", e$message), type = "error", duration = 10)
+      prosite_status_text("Analysis status: error") # Update status on error
+    })
+  })
+
+  # "Analyse Data" observer for Data analysis
+  observeEvent(input$analyse_data, {
+    if (input$data_source == "Use Prosite analysis data") {
+      if (!prosite_analysis_run()) {
+        showNotification("Please run the Prosite analysis first.", type = "warning")
+        return()
+      }
+      data <- prosite_results_data()
+      if (inherits(data, "GRanges")) {
+        data <- as.data.frame(data)
+      }
+    } else {
+      req(input$uploaded_file)
+      if (input$input_format == "gff") {
+        data <- rtracklayer::import.gff(input$uploaded_file$datapath)
+        data <- as.data.frame(data)
+      } else if (input$input_format == "psa") {
+        data <- read.psa(input$uploaded_file$datapath)
+      }
+    }
+    matrix <- gff2matrix(data)
+    data_matrix(matrix)
+    original_data(data)
+  })
+
+  observe({
+    if (input$seqlogo_type == "Motifs") {
+      if (input$motif_data_source == "Upload my own PSA file") {
+        req(input$psa_file_seqlogo)
+        motifs <- extract_protein_motifs(input$psa_file_seqlogo$datapath)
+        updateSelectInput(session, "motif_id", choices = names(motifs))
+      } else if (input$motif_data_source == "Use Prosite analysis PSA output") {
+        if (prosite_analysis_run() && prosite_params$output_format == "psa") {
+          psa_file <- file.path(prosite_params$output_dir, prosite_params$output_name)
+          motifs <- extract_protein_motifs(psa_file)
+          updateSelectInput(session, "motif_id", choices = names(motifs))
+        }
+        else{
+          updateSelectInput(session, "motif_id", choices = NULL)
+          showNotification("Prosite analysis output is not available. Please run analysis first", type = "warning")
+        }
+      }
+    } else {
+      updateSelectInput(session, "motif_id", choices = NULL)
+    }
+  })
+
+  # Rendering for Heatmap 1
+  output$heatmap1_output <- renderPlotly({
+    req(data_matrix())
+    matrix2hm(input = data_matrix(), x = NULL, y = NULL)
+  })
+
+  # Rendering for Heatmap 2
+  output$heatmap2_output <- renderPlotly({
+    req(data_matrix())
+    matrix2hm_2(input = data_matrix(), x = NULL, y = NULL)
+  })
+
+  observe({
+    req(data_matrix())
+    updateSelectInput(session, "highlight_x1", choices = colnames(data_matrix()))
+    updateSelectInput(session, "highlight_y1", choices = rownames(data_matrix()))
+    updateSelectInput(session, "highlight_x2", choices = colnames(data_matrix()))
+    updateSelectInput(session, "highlight_y2", choices = rownames(data_matrix()))
+  })
+
+  # Rendering for Heatmap 1
+  output$heatmap1_output <- renderPlotly({
+    req(data_matrix())
+    matrix2hm(input = data_matrix(), x = input$highlight_x1, y = input$highlight_y1)
+  })
+  # Rendering for home heatmap
+  output$home_heatmap_output <- renderPlotly({
+    req(data_matrix())
+    matrix2hm(input = data_matrix(), x = NULL, y = NULL)
+  })
+
+  # Rendering for Heatmap 2
+  output$heatmap2_output <- renderPlotly({
+    req(data_matrix())
+    matrix2hm_2(input = data_matrix(), x = input$highlight_x2, y = input$highlight_y2)
+  })
+
+  # Rendering for Pie Chart
+  output$piechart_output <- renderPlot({
+    req(original_data())
+    freqPie(original_data())
+  }, height = 800)
+
+  observeEvent(input$generate_seqlogo, {
+    if (input$seqlogo_type == "Raw Sequences") {
+      if (input$seqtype == "Protein") {
+        req(input$fasta_file_seqlogo)
+        seq <- read.fasta(file = input$fasta_file_seqlogo$datapath, seqtype = "AA")
+        from <- input$from_pos
+        to <- input$to_pos
+        seq_short <- extract_segments(seq = seq, from = from, to = to)
+        if (length(seq_short) > 0) {
+          output$seqlogo_plot <- renderPlot({
+            ggseqlogo(unlist(seq_short), seq_type = "aa")
+          })
+        } else {
+          showNotification("No sequences found in the specified range.", type = "warning")
+        }
+      } else {
+        req(input$fasta_file_seqlogo)
+        seq <- read.fasta(file = input$fasta_file_seqlogo$datapath, seqtype = "DNA")
+        from <- input$from_pos
+        to <- input$to_pos
+        seq_short <- extract_segments(seq = seq, from = from, to = to)
+        if (length(seq_short) > 0) {
+          output$seqlogo_plot <- renderPlot({
+            ggseqlogo(unlist(seq_short), seq_type = "dna")
+          })
+        } else {
+          showNotification("No sequences found in the specified range.", type = "warning")
+        }
+      }
+    } else if (input$seqlogo_type == "Motifs") {
+      # Generate seqlogo from motifs
+      motifs <- NULL
+      if (input$motif_data_source == "Upload my own PSA file") {
+        req(input$psa_file_seqlogo)
+        motifs <- extract_protein_motifs(input$psa_file_seqlogo$datapath)
+      } else if (input$motif_data_source == "Use Prosite analysis PSA output") {
+        if (prosite_analysis_run() && prosite_params$output_format == "psa") {
+          psa_file <- file.path(prosite_params$output_dir, prosite_params$output_name)
+          motifs <- extract_protein_motifs(psa_file)
+        } else {
+          showNotification("Prosite analysis with PSA output is not available.", type = "warning")
+          return()
+        }
+      }
+      req(input$motif_id, motifs)
+      if (input$motif_id %in% names(motifs)) {
+        motif_seqs <- motifs[[input$motif_id]]
+        output$seqlogo_plot <- renderPlot({
+          ggseqlogo(motif_seqs, seq_type = "aa")
+        })
+      } else {
+        showNotification("Selected motif ID not found.", type = "warning")
+      }
+    }
+  })
+
 }
