@@ -26,9 +26,9 @@ Alternatively, if the user wishes to work directly with the code, the library pr
 ### List of functions and their description:
 -***runPsScan()***: A function that allows ps_scan to be run from user's operating system, they receive an output file containing information about the protein motifs - used for further analysis. The function works on the idea that the user selects the files needed to run ps_scan analysis, or if the user does not select these files they are automatically downloaded from the PROSITE database, then it is possible to specify the operating system the user is working on, but if this is not selected a message is displayed as to whether the detected operating system is the correct one (on a yes/no response basis).
 
-- <span style="color: blue;">***readPM.prosite()*** </span> : A function that enables an input file in prosite format to be converted into a GFF format file, which is a more universal format used for analysis and visualisation such as heatmap or pie chart.
+- *** <span style="color: blue;">***readPM.prosite() </span> *** : A function that enables an input file in prosite format to be converted into a GFF format file, which is a more universal format used for analysis and visualisation such as heatmap or pie chart.
 
--***readPM.psa()***: A function that enables an input file in prosite format to be converted into a GFF format file, which is a more universal format used for analysis and visualisation such as heatmap or pie chart.
+- <span style="color: blue;">readPM.psa() : A function that enables an input file in prosite format to be converted into a GFF format file, which is a more universal format used for analysis and visualisation such as heatmap or pie chart.
 
 -***gff2matrix()***: Function used when the user receives a file in GFF format. this function enables the creation of a matrix of the occurrence from a GFF file of all the motifs in the entire sequence (or only those selected by the user), which contains 0/1 digits so even for very large-scale analyses it should not take up much disk space and is easy to visualise and analyse in any external program in which tables can be imported as calculation sheets.
 
