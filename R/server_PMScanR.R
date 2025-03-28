@@ -7,6 +7,7 @@
 #' @import bslib
 #' @import bsicons
 #' @import rtracklayer
+#' @import seqinr
 #' @return A Shiny server function
 #' @noRd
 build_server <- function(input, output, session) {
@@ -257,7 +258,7 @@ build_server <- function(input, output, session) {
     if (input$seqlogo_type == "Raw Sequences") {
       if (input$seqtype == "Protein") {
         req(input$fasta_file_seqlogo)
-        seq <- read.fasta(file = input$fasta_file_seqlogo$datapath, seqtype = "AA")
+        seq <- seqinr::read.fasta(file = input$fasta_file_seqlogo$datapath, seqtype = "AA")
         from <- input$from_pos
         to <- input$to_pos
         seq_short <- extract_segments(seq = seq, from = from, to = to)
@@ -270,7 +271,7 @@ build_server <- function(input, output, session) {
         }
       } else {
         req(input$fasta_file_seqlogo)
-        seq <- read.fasta(file = input$fasta_file_seqlogo$datapath, seqtype = "DNA")
+        seq <- seqinr::read.fasta(file = input$fasta_file_seqlogo$datapath, seqtype = "DNA")
         from <- input$from_pos
         to <- input$to_pos
         seq_short <- extract_segments(seq = seq, from = from, to = to)
