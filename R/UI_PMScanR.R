@@ -57,7 +57,7 @@ build_ui <- page_navbar(
       div(
         style = " margin-bottom: 20px;",
         layout_columns(
-          display_card("", imageOutput("logo"), fs = F),
+          imageOutput("logo"),
           display_card("Description", p(
             "Explore protein sequences for functional motifs using the Prosite Analysis tool.
           This feature allows you to input a protein sequence either as a raw string or by uploading a FASTA file.
