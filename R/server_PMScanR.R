@@ -8,7 +8,7 @@
 #' @import bsicons
 #' @import rtracklayer
 #' @return A Shiny server function
-#' @export
+#' @noRd
 build_server <- function(input, output, session) {
 
   # Existing reactive variables for Prosite analysis
