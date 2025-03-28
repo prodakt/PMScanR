@@ -173,7 +173,7 @@ build_ui <- page_navbar(
             tags$li(strong("Analyse Data:"), "Click this button to process the data and generate visualizations."))
         ),
         nav_panel(
-          title = "Heatmap 1",
+          title = "Heatmap",
           h3("Heatmap"),
           p("The graphical pressentation of motifs occurence accross submitted sequences"),
           page_fillable(
