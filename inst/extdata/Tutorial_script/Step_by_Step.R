@@ -222,7 +222,7 @@ ggseqlogo(protein_motifs_psa[1], seq_type='aa')       # Sequence logo for the fi
 ggseqlogo(protein_motifs_psa[5], seq_type='aa')       # Sequence logo for the fifth motif in the list
 
 # --- Section 10: Shiny app run ---
-# If you want you can use shiny to use all the features of the package with user freidnly UI helping to follow all the above steps
+# If you want you can use shiny to use all the features of the package with user friendly UI helping to follow all the above steps
 # To run Shiny app you can call function runPMScanRShiny()
 runPMScanRShiny()
 
