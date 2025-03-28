@@ -11,15 +11,25 @@ Secondly, if the user wishes to work with the code, the library provides a set o
 
 ### List of functions and their description:
 -**runPsScan_Win()**: A function that allows ps_scan to be run from the Windows operating system, they receive an output file containing information about the protein motifs - used for further analysis.
+
 -**runPsScan_LUM()**: A function that allows ps_scan to be run from the Linux operating system, they receive an output file containing information about the protein motifs - used for further analysis.
+
 -**runPsScan_ext()**: This function also enables the user to run ps_scan to identify protein motifs. However, it differs from the two functions above in that it is a function with extended input parameter configuration allowing the user to manipulate the function arguments more freely to suit their needs.
+
 -**readPM.prosite()**: A function that enables an input file in prosite format to be converted into a GFF format file, which is a more universal format used for analysis and visualisation such as heatmap or pie chart.
+
 -**readPM.psa()**: A function that enables an input file in prosite format to be converted into a GFF format file, which is a more universal format used for analysis and visualisation such as heatmap or pie chart.
+
 -**gff2matrix()**: Function used when the user receives a file in GFF format. this function enables the creation of a matrix of the occurrence from a GFF file of all the motifs in the entire sequence (or only those selected by the user), which contains 0/1 digits so even for very large-scale analyses it should not take up much disk space and is easy to visualise and analyse in any external program in which tables can be imported as calculation sheets.
+
 -**matrix2hm()**: Once the matrix of the occurrence is obtained, this function is used to generate a heatmap, which is one of the options for visualising user data. This function provides the ability to adjust the plot size - this facilitates comparative analysis. By using the plotly library, the plots are interactive, allowing both extensive manipulation of the plot area, but also precise identification of individual results.
+
 -**matrix2hm_2()**: Also the function used after receiving the matrix of the occurrence to generate the heatmap, but differing from the above heatmap dimension to allow easier identification of individual variations. By using the plotly library, the plots are interactive, allowing both extensive manipulation of the plot area, but also precise identification of individual results.
+
 -**prepare_segments()**: Function used for another type of data visualisation which is a seqlogo generated based on the frequency of occurrence of individual amino acid residues in a selected part of the sequence that is, the consensus of the motif sequence. This function is used for the psa format input file.
+
 -**extract_segments()**: Function used for another type of data visualisation which is a seqlogo generated based on the frequency of occurrence of individual amino acid residues in a selected part of the sequence, that is the defined region in selected sequences. Function used for a psa format input file, after using the prepare_segments() function. This function extracts the protein motifs present on the sequence thus preparing the file for seqlogo creation.
+
 -**extract_protein_motifs()**: Function used for another type of data visualisation which is a seqlogo generated based on the frequency of occurrence of individual amino acid residues in a selected part of the sequence, that is the defined region in selected sequences. The function used for the input file in FASTA format, which extracts the protein motifs present on the sequence in the file, thus preparing them for data visualisation using seqlogo
 
 There is also a visualization that generates a pie chart of the frequency of each motif type from the GFF format file containing information about the motif names and their locations. The pie chart shows the percentage of each motif/protein motif type in the analyzed dataset. This function uses the ggplot2 library. The pie chart allows a quick assessment of motif frequencies. If you want to run a pie chart visualization use the function named freqPie().
