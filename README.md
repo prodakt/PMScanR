@@ -109,7 +109,8 @@ mom <- gff2matrix(psaGFF) # 'psaGFF' is the GFF-like data frame from PSA convers
 head(mom) # Display the first few rows of the Motif Occurrence Matrix (MOM)
 
 # Example of usage for creating a heatmap using matrix2hm() - from PSA-converted Matrix:
-# The 'matrix2hm()' function (assumed from PMScanR) generates a heatmap from a motif occurrence matrix. This example creates a heatmap from the MOM derived from PSA-converted GFF data ('mom').
+# The 'matrix2hm()' function (assumed from PMScanR) generates a heatmap from a motif occurrence matrix.
+# This example creates a heatmap from the MOM derived from PSA-converted GFF data ('mom').
 
 hm1 <- matrix2hm(x = colnames(mom),   # 'x' argument specifies columns (motifs) to be shown on heatmap's x-axis
                  y = row.names(mom),    # 'y' argument specifies rows (sequences) to be shown on heatmap's y-axis
@@ -117,7 +118,9 @@ hm1 <- matrix2hm(x = colnames(mom),   # 'x' argument specifies columns (motifs) 
 hm1 #  Display the heatmap 'hm1'
 
 # Example of usage for creating a heatmap using matrix2hm_2() - from PSA-converted Matrix:
-# The 'matrix2hm_2()' function (assumed from PMScanR) is another function for heatmap generation, possibly with a different style or options compared to 'matrix2hm()'. This example uses 'matrix2hm_2()' to visualize the MOM from PSA-converted data ('mom').
+# The 'matrix2hm_2()' function (assumed from PMScanR) is another function for heatmap generation, possibly
+# with a different style or options compared to 'matrix2hm()'. This example uses 'matrix2hm_2()' to visualize
+# the MOM from PSA-converted data ('mom').
 
 hm2 <- matrix2hm_2(x = colnames(mom),
                    y = row.names(mom),
@@ -131,16 +134,18 @@ from_pos <- 10  # Starting position of the region
 to_pos <- 20    # Ending position of the region
 
 
-seq <- seqinr::read.fasta(file = fasta_file, seqtype = "AA")   # Read the FASTA file containing protein sequences
-seqShort <- extract_segments(seq = seq, from_pos, to_pos)          # Extract segments from position 'from_pos' to 'to_pos' for all sequences
-ggseqlogo::ggseqlogo(unlist(seqShort), seq_type= "aa")                        # Generate and display the sequence logo of the extracted segments
+seq <- seqinr::read.fasta(file = fasta_file, seqtype = "AA")  # Read the FASTA file containing protein sequences
+seqShort <- extract_segments(seq = seq, from_pos, to_pos)     # Extract segments from position 'from_pos' to 'to_pos' for all sequences
+ggseqlogo::ggseqlogo(unlist(seqShort), seq_type= "aa")        # Generate and display the sequence logo of the extracted segments
 
 
 
 # //////////////////////////////////////////////////////////////////////////////
 # GUI ----
-# This example below show how to use the function for running a user intarface GUI for a complete analysis without having to work with the code - Shiny app run:
-# If you want you can use shiny to use all the features of the library with user friendly GUI helping to follow all the steps which are contained in this library
+# This example below show how to use the function for running a user intarface GUI for a complete
+# analysis without having to work with the code - Shiny app run:
+# If you want you can use shiny to use all the features of the library with user friendly GUI
+# helping to follow all the steps which are contained in this library
 # To run Shiny app you can call function: runPMScanRShiny()
 
 runPMScanRShiny()
