@@ -1,6 +1,11 @@
-# lncRna <img src="https://github.com/prodakt/PMScanR/blob/main/inst/img/PMlogo.png" align="right" height = 150/>
+# PMScanR <img src="https://github.com/prodakt/PMScanR/blob/main/inst/img/PMlogo.png" align="right" height = 150/>
 
-# PMScanR
+![GitHub last commit](https://img.shields.io/github/last-commit/prodakt/PMScanR)
+![GitHub R package version](https://img.shields.io/github/r-package/v/prodakt/PMScanR)
+![GitHub License](https://img.shields.io/github/license/prodakt/MPScanR)
+![GitHub top language](https://img.shields.io/github/languages/top/prodakt/PMScanR)
+
+
 R library for the large-scale identification, analysis and visualization of protein motifs. 
 The package integrates various methods to facilitate motif identification, characterization, and visualization. It includes functions for running PS-Scan, a PROSITE database tool. Additionally, PMScanR supports format conversion to GFF, enhancing downstream analyses such as graphical representation and database integration. The library offers multiple visualization tools, including heatmaps, sequence logos, and pie charts, enabling a deeper understanding of motif distribution and conservation. Through its integration with PROSITE, PMScanR provides access to up-to-date motif data.
 
