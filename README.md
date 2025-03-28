@@ -4,10 +4,12 @@ The package integrates various methods to facilitate motif identification, chara
 
 There is a step-by-step tutorial available in the repository explaining, with examples, in turn the use/exploitation of each of the functions contained in this library. Tutorial available: PMScanR/inst/extdata/Tutorial_script and in this folder the "Step_by_Step.R" file is available for the detailed descripion of the usage of the individual functions.
 
-## Ways to use the library
-Firstly, if the user wishes to carry out the analysis in the GUI - user interface, simply use the function: runPMScanRShiny() and then a window will appear providing a clickable window-base in which it is possible to carry out the entire analysis including visualisations without having to work with code.
 
-Secondly, if the user wishes to work with the code, the library provides a set of functions to perform the entire analysis including identification and visualisation of protein motifs. Each function included in the package is described below, along with a description of what it does.
+## GUI
+If the user prefers to perform the analysis using a graphical user interface (GUI), they can simply run the function runPMScanRShiny(). This will launch a Shiny app that opens an interactive window. The window can be used both within R and in a web browser, providing a clickable, user-friendly interface that allows the entire analysis, including visualizations, to be carried out without needing to write code.
+
+## Command Line
+Alternatively, if the user wishes to work directly with the code, the library provides a set of functions to perform the full analysis, including protein motif identification and visualization. This can be done through an R script, where users can execute and customize the analysis programmatically. Each function included in the package is described below, along with an explanation of its purpose and functionality.
 
 ### List of functions and their description:
 -***runPsScan()***: A function that allows ps_scan to be run from user's operating system, they receive an output file containing information about the protein motifs - used for further analysis. The function works on the idea that the user selects the files needed to run ps_scan analysis, or if the user does not select these files they are automatically downloaded from the PROSITE database, then it is possible to specify the operating system the user is working on, but if this is not selected a message is displayed as to whether the detected operating system is the correct one (on a yes/no response basis).
