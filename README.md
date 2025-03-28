@@ -90,7 +90,7 @@ If you want you can use shiny to use all the features of the library with user f
 To run Shiny app you can call function runPMScanRShiny():
 runPMScanRShiny()
 
-Or if you want you can build your own function or run Shiny app from build_app() function
+Or if you want you can build your own function or run Shiny app from build_app() function:
 app <- build_app()
 shiny::runApp(app)
 
