@@ -32,8 +32,9 @@ Alternatively, if the user wishes to work directly with the code, the library pr
 
 There is also a visualization that generates a pie chart of the frequency of each motif type from the GFF format file containing information about the motif names and their locations. The pie chart shows the percentage of each motif/protein motif type in the analyzed dataset. This function uses the ggplot2 library. The pie chart allows a quick assessment of motif frequencies. If you want to run a pie chart visualization use the function named freqPie().
 
-#### Examples of the use of the functions described above with the use of sample data contained in the extdata folder of the PMScanR repository:
+### Example usage
 
+Examples of the use of the functions described above with the use of sample data contained in the extdata folder of the PMScanR repository:
 ```
 Example of usage for running ps_scan for matif scanning by using runPsScan() function:
 
