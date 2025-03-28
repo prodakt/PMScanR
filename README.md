@@ -64,7 +64,7 @@ library(PMScanR)
 # //////////////////////////////////////////////////////////////////////////////
 # R script ----
 # setting the working directory
-setwd("d:/GIT/test/")
+setwd("disc:/your/path/to/working/directory")
 
 # //////////////////////////////////////////////////////////////////////////////
 # Example of usage for running ps_scan for matif scanning by using runPsScan() function:
@@ -78,7 +78,7 @@ runPsScan(in_file = fasta_file, out_format = 'gff', out_file = "results_pfscan.g
 
 
 
-# or alternatively you can manually point the paths to all the files and the version of the operation system
+# or alternatively you can manually point the paths to each of the files and the version of the operation system
 
   ps_scan <- "ps_scan/ps_scan.pl"        # Path to the PS-Scan perl script (e.g., 'ps_scan/ps_scan.pl')
   patterns_dat <- "ps_scan/prosite.dat"   # Path to the PROSITE database file (e.g., 'ps_scan/prosite.dat')
