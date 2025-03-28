@@ -2,7 +2,7 @@
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/prodakt/PMScanR)
 ![GitHub R package version](https://img.shields.io/github/r-package/v/prodakt/PMScanR)
-![GitHub License](https://img.shields.io/github/license/prodakt/MPScanR)
+![GitHub License](https://img.shields.io/github/license/prodakt/PMScanR)
 ![GitHub top language](https://img.shields.io/github/languages/top/prodakt/PMScanR)
 
 
