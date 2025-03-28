@@ -14,6 +14,10 @@ library(PMScanR)
 ## GUI
 If the user prefers to perform the analysis using a graphical user interface (GUI), they can simply run the function runPMScanRShiny(). This will launch a Shiny app that opens an interactive window. The window can be used both within R and in a web browser, providing a clickable, user-friendly interface that allows the entire analysis, including visualizations, to be carried out without needing to write code.
 
+![GUI_1](https://github.com/prodakt/PMScanR/blob/main/inst/img/PMScanR_1small.png)
+
+![GUI_2](https://github.com/prodakt/PMScanR/blob/main/inst/img/PMScanR_2small.png)
+
 ## Command Line
 Alternatively, if the user wishes to work directly with the code, the library provides a set of functions to perform the full analysis, including protein motif identification and visualization. This can be done through an R script, where users can execute and customize the analysis programmatically. Each function included in the package is described below, along with an explanation of its purpose and functionality.
 
