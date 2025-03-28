@@ -4,6 +4,12 @@ The package integrates various methods to facilitate motif identification, chara
 
 There is a step-by-step tutorial available in the repository explaining, with examples, in turn the use/exploitation of each of the functions contained in this library. Tutorial available: PMScanR/inst/extdata/Tutorial_script and in this folder the "Step_by_Step.R" file is available for the detailed descripion of the usage of the individual functions.
 
+## Install and load
+You can install PMScanR directly from GitHub using devtools library. 
+```
+devtools::install_github("prodakt/PMScanR")
+library(PMScanR)
+```
 
 ## GUI
 If the user prefers to perform the analysis using a graphical user interface (GUI), they can simply run the function runPMScanRShiny(). This will launch a Shiny app that opens an interactive window. The window can be used both within R and in a web browser, providing a clickable, user-friendly interface that allows the entire analysis, including visualizations, to be carried out without needing to write code.
@@ -36,7 +42,7 @@ There is also a visualization that generates a pie chart of the frequency of eac
 
 Examples of the use of the functions described above with the use of sample data contained in the extdata folder of the PMScanR repository:
 ```
-Example of usage for running ps_scan for matif scanning by using runPsScan() function:
+# Example of usage for running ps_scan for matif scanning by using runPsScan() function:
 
 ps_scan <- "ps_scan/ps_scan.pl"        # Path to the PS-Scan perl script (e.g., 'ps_scan/ps_scan.pl')
 patterns_dat <- "ps_scan/prosite.dat"   # Path to the PROSITE database file (e.g., 'ps_scan/prosite.dat')
@@ -66,7 +72,7 @@ head(momGFF) # Display the first few rows of the MOM from direct GFF input
 hm1 <- matrix2hm(x = colnames(mom),   # 'x' argument specifies columns (motifs) to be shown on heatmap's x-axis
                  y = row.names(mom),    # 'y' argument specifies rows (sequences) to be shown on heatmap's y-axis
                  input = mom)           # 'input' argument takes the Motif Occurrence Matrix
-hm1  Display the heatmap 'hm1'
+hm1 #  Display the heatmap 'hm1'
 
 # Example of usage for creating a heatmap using matrix2hm_2() - from PSA-converted Matrix:
 # The 'matrix2hm_2()' function (assumed from PMScanR) is another function for heatmap generation, possibly with a different style or options compared to 'matrix2hm()'. This example uses 'matrix2hm_2()' to visualize the MOM from PSA-converted data ('mom').
@@ -74,7 +80,7 @@ hm1  Display the heatmap 'hm1'
 hm2 <- matrix2hm_2(x = colnames(mom),
                    y = row.names(mom),
                    input = mom)
-hm2 Display heatmap 'hm2'
+hm2 # Display heatmap 'hm2'
 
 # Exmaple of usage for creating sequence logo for a selected region from FASTA:
 
