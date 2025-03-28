@@ -33,7 +33,7 @@ There is also a visualization that generates a pie chart of the frequency of eac
 #### Examples of the use of the functions described above with the use of sample data contained in the extdata folder of the PMScanR repository:
 Example of usage for running ps_scan for matif scanning by using runPsScan() function:
 
-'''
+```
 ps_scan <- "ps_scan/ps_scan.pl"        # Path to the PS-Scan perl script (e.g., 'ps_scan/ps_scan.pl')
 patterns_dat <- "ps_scan/prosite.dat"   # Path to the PROSITE database file (e.g., 'ps_scan/prosite.dat')
 out_format <- "psa"                    # Default output format for PS-Scan (PSA - PROSITE scan ASCII)
@@ -85,4 +85,4 @@ ggseqlogo(unlist(seqShort), seq_type= "aa")                        # Generate an
 # This example below show how to use the function for running a user intarface GUI for a complete analysis without having to work with the code - Shiny app run:
 # If you want you can use shiny to use all the features of the library with user friendly GUI helping to follow all the steps which are contained in this library
 # To run Shiny app you can call function: runPMScanRShiny()
-'''
+```
