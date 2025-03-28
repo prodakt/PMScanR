@@ -44,7 +44,7 @@ detected_os <- detect_os()
 #' @import bsicons
 #' @import plotly
 #' @return A Shiny UI object
-#' @noRd
+#' @export
 build_ui <- page_navbar(
   title = "PMScanR",
   navbar_options = navbar_options(

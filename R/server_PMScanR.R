@@ -8,7 +8,7 @@
 #' @import bsicons
 #' @import rtracklayer
 #' @return A Shiny server function
-#' @noRd
+#' @export
 build_server <- function(input, output, session) {
 
   # Existing reactive variables for Prosite analysis
@@ -30,7 +30,7 @@ build_server <- function(input, output, session) {
 
   output$logo <- renderImage(
     {
-      list(src = "ins/img/PMlogo.png", height = "100%")
+      list(src = "inst/img/PMlogo.png", height = "100%")
     },
     deleteFile = FALSE
   )
