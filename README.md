@@ -87,13 +87,5 @@ ggseqlogo(unlist(seqShort), seq_type= "aa")                        Generate and 
 
 This example below show how to use the function for running a user intarface GUI for a complete analysis without having to work with the code - Shiny app run:
 If you want you can use shiny to use all the features of the library with user friendly GUI helping to follow all the steps which are contained in this library
-To run Shiny app you can call function runPMScanRShiny():
-runPMScanRShiny()
+To run Shiny app you can call function: runPMScanRShiny()
 
-Or if you want you can build your own function or run Shiny app from build_app() function:
-app <- build_app()
-shiny::runApp(app)
-
-or by using:
-
-shiny::runApp(build_app())
