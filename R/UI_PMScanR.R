@@ -34,7 +34,8 @@ detect_os <- function() {
 }
 
 link_PMScanR <- tags$a(shiny::icon("github"), "PMScanR", href = "https://github.com/prodakt/PMScanR", target = "_blank")
-link_posit <- tags$a(shiny::icon("github"), "lncRna", href = "https://github.com/prodakt/lncRna", target = "_blank")
+link_lncRna <- tags$a(shiny::icon("github"), "lncRna", href = "https://github.com/prodakt/lncRna", target = "_blank")
+link_PROSITE <- tags$a(shiny::icon("sitemap"), "PROSITE", href = "https://prosite.expasy.org/", target = "_blank")
 detected_os <- detect_os()
 
 #' Create the main UI for PMScanR
@@ -224,6 +225,7 @@ build_ui <- page_navbar(
     title = "Links",
     align = "right",
     nav_item(link_PMScanR),
-    nav_item(link_posit)
+    nav_item(link_lncRna),
+    nav_item(link_PROSITE)
   )
 )
