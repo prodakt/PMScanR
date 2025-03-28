@@ -1,4 +1,4 @@
-# PMScanR <img src="https://github.com/prodakt/PMScanR/blob/main/inst/img/PMlogo.png" align="right" height = 150/>
+# PMScanR <img src="https://github.com/prodakt/PMScanR/blob/main/inst/img/PMlogo_3D.png" align="right" height = 150/>
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/prodakt/PMScanR)
 ![GitHub R package version](https://img.shields.io/github/r-package/v/prodakt/PMScanR)
