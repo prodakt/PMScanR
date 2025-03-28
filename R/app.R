@@ -6,4 +6,3 @@ runPMScanRShiny <- function() {
   app <- build_app()
   shiny::runApp(app)
 }
-runPMScanRShiny()
