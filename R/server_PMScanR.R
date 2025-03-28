@@ -8,6 +8,7 @@
 #' @import bsicons
 #' @import rtracklayer
 #' @import seqinr
+#' @import ggseqlogo
 #' @return A Shiny server function
 #' @noRd
 build_server <- function(input, output, session) {
@@ -21,7 +22,8 @@ build_server <- function(input, output, session) {
     ps_scan_path = NULL,
     patterns_dat_path = NULL,
     pf_scan_path = NULL,
-    os_choice = .Platform$OS.type)
+    os_choice = .Platform$OS.type
+  )
   prosite_analysis_run <- reactiveVal(FALSE)
   prosite_status_text <- reactiveVal("Analysis status: waiting for inputs") # Initial status
   data_matrix <- reactiveVal(NULL)
@@ -29,9 +31,14 @@ build_server <- function(input, output, session) {
   volumes <- getLogicalDrives()
   loading <- reactiveVal(FALSE)
 
+  # Render the logo with the correct path
   output$logo <- renderImage(
     {
-      list(src = "inst/img/PMlogo.png", height = "100%")
+      logo_path <- system.file("img/PMlogo.png", package = "PMScanR")
+      if (logo_path == "") {
+        stop("Logo file not found in the package.")
+      }
+      list(src = logo_path, height = "100%")
     },
     deleteFile = FALSE
   )
@@ -125,6 +132,21 @@ build_server <- function(input, output, session) {
       return()
     }
 
+    # Check if output directory exists and is writable
+    if (!dir.exists(out_dir)) {
+      dir.create(out_dir, recursive = TRUE)
+      if (!dir.exists(out_dir)) {
+        showNotification("Failed to create output directory.", type = "error")
+        prosite_status_text("Analysis status: error")
+        return()
+      }
+    }
+    if (!file.access(out_dir, mode = 2) == 0) {
+      showNotification("Output directory is not writable.", type = "error")
+      prosite_status_text("Analysis status: error")
+      return()
+    }
+
     full_output_path <- file.path(out_dir, out_name)
 
     tryCatch({
@@ -160,7 +182,7 @@ build_server <- function(input, output, session) {
 
     }, error = function(e) {
       showNotification(paste("Error during analysis:", e$message), type = "error", duration = 10)
-      prosite_status_text("Analysis status: error") # Update status on error
+      prosite_status_text(paste("Analysis status: error -", e$message)) # Include error message in status
     })
   })
 
@@ -198,12 +220,16 @@ build_server <- function(input, output, session) {
       } else if (input$motif_data_source == "Use Prosite analysis PSA output") {
         if (prosite_analysis_run() && prosite_params$output_format == "psa") {
           psa_file <- file.path(prosite_params$output_dir, prosite_params$output_name)
+          if (!file.exists(psa_file)) {
+            showNotification("Prosite analysis PSA output file not found.", type = "warning")
+            updateSelectInput(session, "motif_id", choices = NULL)
+            return()
+          }
           motifs <- extract_protein_motifs(psa_file)
           updateSelectInput(session, "motif_id", choices = names(motifs))
-        }
-        else{
+        } else {
           updateSelectInput(session, "motif_id", choices = NULL)
-          showNotification("Prosite analysis output is not available. Please run analysis first", type = "warning")
+          showNotification("Prosite analysis with PSA output is not available.", type = "warning")
         }
       }
     } else {
@@ -214,38 +240,27 @@ build_server <- function(input, output, session) {
   # Rendering for Heatmap 1
   output$heatmap1_output <- renderPlotly({
     req(data_matrix())
-    matrix2hm(input = data_matrix(), x = NULL, y = NULL)
-  })
-
-  # Rendering for Heatmap 2
-  output$heatmap2_output <- renderPlotly({
-    req(data_matrix())
-    matrix2hm_2(input = data_matrix(), x = NULL, y = NULL)
-  })
-
-  observe({
-    req(data_matrix())
-    updateSelectInput(session, "highlight_x1", choices = colnames(data_matrix()))
-    updateSelectInput(session, "highlight_y1", choices = rownames(data_matrix()))
-    updateSelectInput(session, "highlight_x2", choices = colnames(data_matrix()))
-    updateSelectInput(session, "highlight_y2", choices = rownames(data_matrix()))
-  })
-
-  # Rendering for Heatmap 1
-  output$heatmap1_output <- renderPlotly({
-    req(data_matrix())
     matrix2hm(input = data_matrix(), x = input$highlight_x1, y = input$highlight_y1)
   })
+
   # Rendering for home heatmap
   output$home_heatmap_output <- renderPlotly({
     req(data_matrix())
     matrix2hm(input = data_matrix(), x = NULL, y = NULL)
   })
 
-  # Rendering for Heatmap 2
-  output$heatmap2_output <- renderPlotly({
+  # # Rendering for Heatmap 2
+  # output$heatmap2_output <- renderPlotly({
+  #   req(data_matrix())
+  #   matrix2hm_2(input = data_matrix(), x = input$highlight_x2, y = input$highlight_y2)
+  # })
+
+  observe({
     req(data_matrix())
-    matrix2hm_2(input = data_matrix(), x = input$highlight_x2, y = input$highlight_y2)
+    updateSelectInput(session, "highlight_x1", choices = colnames(data_matrix()))
+    updateSelectInput(session, "highlight_y1", choices = rownames(data_matrix()))
+    # updateSelectInput(session, "highlight_x2", choices = colnames(data_matrix()))
+    # updateSelectInput(session, "highlight_y2", choices = rownames(data_matrix()))
   })
 
   # Rendering for Pie Chart
@@ -256,33 +271,26 @@ build_server <- function(input, output, session) {
 
   observeEvent(input$generate_seqlogo, {
     if (input$seqlogo_type == "Raw Sequences") {
-      if (input$seqtype == "Protein") {
-        req(input$fasta_file_seqlogo)
-        seq <- seqinr::read.fasta(file = input$fasta_file_seqlogo$datapath, seqtype = "AA")
+      req(input$fasta_file_seqlogo)
+      tryCatch({
+        seq <- seqinr::read.fasta(file = input$fasta_file_seqlogo$datapath, seqtype = if (input$seqtype == "Protein") "AA" else "DNA")
         from <- input$from_pos
         to <- input$to_pos
+        if (from > to) {
+          showNotification("From position must be less than or equal to To position.", type = "warning")
+          return()
+        }
         seq_short <- extract_segments(seq = seq, from = from, to = to)
         if (length(seq_short) > 0) {
           output$seqlogo_plot <- renderPlot({
-            ggseqlogo(unlist(seq_short), seq_type = "aa")
+            ggseqlogo(unlist(seq_short), seq_type = if (input$seqtype == "Protein") "aa" else "dna")
           })
         } else {
           showNotification("No sequences found in the specified range.", type = "warning")
         }
-      } else {
-        req(input$fasta_file_seqlogo)
-        seq <- seqinr::read.fasta(file = input$fasta_file_seqlogo$datapath, seqtype = "DNA")
-        from <- input$from_pos
-        to <- input$to_pos
-        seq_short <- extract_segments(seq = seq, from = from, to = to)
-        if (length(seq_short) > 0) {
-          output$seqlogo_plot <- renderPlot({
-            ggseqlogo(unlist(seq_short), seq_type = "dna")
-          })
-        } else {
-          showNotification("No sequences found in the specified range.", type = "warning")
-        }
-      }
+      }, error = function(e) {
+        showNotification(paste("Error generating SeqLogo:", e$message), type = "error")
+      })
     } else if (input$seqlogo_type == "Motifs") {
       # Generate seqlogo from motifs
       motifs <- NULL
@@ -292,6 +300,10 @@ build_server <- function(input, output, session) {
       } else if (input$motif_data_source == "Use Prosite analysis PSA output") {
         if (prosite_analysis_run() && prosite_params$output_format == "psa") {
           psa_file <- file.path(prosite_params$output_dir, prosite_params$output_name)
+          if (!file.exists(psa_file)) {
+            showNotification("Prosite analysis PSA output file not found.", type = "warning")
+            return()
+          }
           motifs <- extract_protein_motifs(psa_file)
         } else {
           showNotification("Prosite analysis with PSA output is not available.", type = "warning")
@@ -309,5 +321,4 @@ build_server <- function(input, output, session) {
       }
     }
   })
-
 }

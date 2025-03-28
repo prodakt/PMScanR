@@ -173,8 +173,8 @@ build_ui <- page_navbar(
         ),
         nav_panel(
           title = "Heatmap 1",
-          h3("Heatmap ......"),
-          p("Presented Hea"),
+          h3("Heatmap"),
+          p("The graphical pressentation of motifs occurence accross submitted sequences"),
           page_fillable(
             layout_columns(
               display_card("Highlight Columns", selectInput("highlight_x1", "", choices = NULL, multiple = TRUE)),
@@ -185,22 +185,22 @@ build_ui <- page_navbar(
 
 
         ),
-        nav_panel(
-          title = "Heatmap 2",
-          h3("Heatmap ......"),
-          p("Presented Hea"),
-          sidebar = sidebar(
-            title = "test sidebar",
-            sliderInput("to_range", "To Position", min = 1, max = 1000, value = 100, step = 1)
-          ),
-          page_fillable(
-            layout_columns(
-              display_card("Highlight Columns", selectInput("highlight_x2", "", choices = NULL, multiple = TRUE)),
-              display_card("Highlight Rows", selectInput("highlight_y2", "",choices = NULL, multiple = TRUE))
-            ),
-            display_card("Heatmap", plotlyOutput("heatmap2_output", height = "100%"))
-          )
-        ),
+        # nav_panel(
+        #   title = "Heatmap 2",
+        #   h3("Heatmap ......"),
+        #   p("Presented Hea"),
+        #   sidebar = sidebar(
+        #     title = "test sidebar",
+        #     sliderInput("to_range", "To Position", min = 1, max = 1000, value = 100, step = 1)
+        #   ),
+        #   page_fillable(
+        #     layout_columns(
+        #       display_card("Highlight Columns", selectInput("highlight_x2", "", choices = NULL, multiple = TRUE)),
+        #       display_card("Highlight Rows", selectInput("highlight_y2", "",choices = NULL, multiple = TRUE))
+        #     ),
+        #     display_card("Heatmap", plotlyOutput("heatmap2_output", height = "100%"))
+        #   )
+        # ),
         nav_panel(
           title = "Pie Chart",
           page_fillable(
