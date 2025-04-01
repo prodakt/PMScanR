@@ -8,7 +8,7 @@
 #' @param ps_scan A character string specifying the path to the PS-Scan Perl script. If NULL, it will be downloaded.
 #' @param patterns_dat A character string specifying the path to the PROSITE patterns database file. If NULL, it will be downloaded.
 #'                     This file can be downloaded from: https://ftp.expasy.org/databases/prosite/
-#' @param pf_scan A character string specifying the path to the pfscan executable. If NULL, it will be downloaded and extracted based on OS.
+#' @param pf_scan A character string specifying the path to the pfscan executable. If NULL, it will be downloaded and extracted based on OS (except for MAC).
 #' @param OS Operating system ("WIN", "LINUX", "MAC"). If NULL, it will be detected automatically.
 #' @return Writes the results of the PS-Scan analysis to the specified output file.
 #' @examples
@@ -41,11 +41,18 @@ runPsScan <- function(in_file, out_file, out_format, ps_scan = NULL, patterns_da
   if (is.null(ps_scan)) {
     stop("ps_scan is not provided and could not be downloaded. Please specify the path manually.")
   }
-  if (is.null(pf_scan)) {
-    stop("pf_scan is not provided and could not be downloaded/extracted. Please specify the path manually.")
-  }
   if (is.null(patterns_dat)) {
     stop("patterns_dat is not provided and could not be downloaded. Please specify the path manually.")
+  }
+
+  # For MAC, allow pf_scan to be NULL to use --r option; for other OSes, stop if NULL after download attempt
+  if (is.null(pf_scan) && OS != "MAC") {
+    stop("pf_scan is not provided and could not be downloaded/extracted. Please specify the path manually.")
+  }
+
+  # Inform user when running on MAC without pf_scan
+  if (OS == "MAC" && is.null(pf_scan)) {
+    message("On macOS, running PS-Scan without pf_scan executable using the --r option. This may have limitations.")
   }
 
   # Construct and execute the command
@@ -151,35 +158,55 @@ download_files <- function(os, ps_scan = NULL, pf_scan = NULL, patterns_dat = NU
     })
   }
 
-  # Download and extract pf_scan if not provided
+  # Download and extract pf_scan if not provided, but skip downloading for MAC
   if (is.null(pf_scan)) {
-    pf_scan_url <- paste0(base_url, files[[os]]$pf_scan_archive)
-    pf_scan_archive <- basename(pf_scan_url)
-    tryCatch({
-      download.file(pf_scan_url, pf_scan_archive, mode = "wb")
+    if (os != "MAC") {
+      pf_scan_url <- paste0(base_url, files[[os]]$pf_scan_archive)
+      pf_scan_archive <- basename(pf_scan_url)
+      tryCatch({
+        download.file(pf_scan_url, pf_scan_archive, mode = "wb")
 
-      # Extract the archive based on OS
-      if (os == "WIN") {
-        unzip(pf_scan_archive, exdir = "pfscan_temp")
-        pf_scan <- file.path("pfscan_temp", files[[os]]$pf_scan_exe)
-      } else if (os %in% c("LINUX", "MAC")) {
-        untar(pf_scan_archive, exdir = "pfscan_temp")
-        pf_scan <- file.path("pfscan_temp", files[[os]]$pf_scan_exe)
-      }
+        # Extract the archive based on OS
+        if (os == "WIN") {
+          unzip(pf_scan_archive, exdir = "pfscan_temp")
+          pf_scan <- file.path("pfscan_temp", files[[os]]$pf_scan_exe)
+        } else if (os == "LINUX") {
+          untar(pf_scan_archive, exdir = "pfscan_temp")
+          pf_scan <- file.path("pfscan_temp", files[[os]]$pf_scan_exe)
+        }
 
-      # Verify extraction
-      if (!file.exists(pf_scan)) {
-        stop("Failed to extract pf_scan executable from archive.")
-      }
+        # Verify extraction
+        if (!file.exists(pf_scan)) {
+          stop("Failed to extract pf_scan executable from archive.")
+        }
 
-      # Make executable on Linux/macOS
-      if (os %in% c("LINUX", "MAC")) {
-        Sys.chmod(pf_scan, mode = "0755")
-      }
-    }, error = function(e) {
-      warning(paste("Failed to download or extract pf_scan. Please download it manually from:", pf_scan_url))
+        # Make executable on Linux
+        if (os == "LINUX") {
+          Sys.chmod(pf_scan, mode = "0755")
+        }
+      }, error = function(e) {
+        warning(paste("Failed to download or extract pf_scan. Please download it manually from:", pf_scan_url))
+        pf_scan <- NULL
+      })
+    } else {
+      # For MAC, do not download pf_scan; keep it NULL to use --r option
       pf_scan <- NULL
-    })
+      # Old behavior for MAC (commented out for future reference):
+      # pf_scan_url <- paste0(base_url, files[[os]]$pf_scan_archive)
+      # pf_scan_archive <- basename(pf_scan_url)
+      # tryCatch({
+      #   download.file(pf_scan_url, pf_scan_archive, mode = "wb")
+      #   untar(pf_scan_archive, exdir = "pfscan_temp")
+      #   pf_scan <- file.path("pfscan_temp", files[[os]]$pf_scan_exe)
+      #   if (!file.exists(pf_scan)) {
+      #     stop("Failed to extract pf_scan executable from archive.")
+      #   }
+      #   Sys.chmod(pf_scan, mode = "0755")
+      # }, error = function(e) {
+      #   warning(paste("Failed to download or extract pf_scan. Please download it manually from:", pf_scan_url))
+      #   pf_scan <- NULL
+      # })
+    }
   }
 
   # Download patterns_dat if not provided
