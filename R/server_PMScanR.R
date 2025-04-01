@@ -126,6 +126,7 @@ build_server <- function(input, output, session) {
     os_choice <- input$os_choice
     print(out_name)
     print(out_format)
+    print(out_dir)
     if (is.null(in_file)) {
       showNotification("Please upload an input file.", type = "warning")
       prosite_status_text("Analysis status: waiting for inputs") # Reset status on error
@@ -148,6 +149,7 @@ build_server <- function(input, output, session) {
     }
 
     full_output_path <- file.path(out_dir, out_name)
+    print(full_output_path)
 
     tryCatch({
       print(paste("Running Prosite analysis with:", in_file, full_output_path, out_format, ps_scan_path, patterns_dat_path, pf_scan_path, os_choice))
