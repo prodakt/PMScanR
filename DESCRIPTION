@@ -10,11 +10,13 @@ Authors@R:
 Description: This package is for Protein motifs analysis in simple way in R.
 License: licence
 Encoding: UTF-8
-LazyData: true
+LazyData: false
 RoxygenNote: 7.3.2
+VignetteBuilder: knitr
 Depends:
   dplyr (>= 1.1.0)
 Imports:
+  knitr,
   shiny,
   bslib,
   bsicons,
