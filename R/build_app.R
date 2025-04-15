@@ -4,7 +4,7 @@
 #' @return A Shiny app object
 #' @export
 build_app <- function() {
-  options(shiny.maxRequestSize = 30*1024^2)
+  options(shiny.maxRequestSize = 60*1024^2)
   ui <- build_ui
   server <- build_server
   shinyApp(ui = ui, server = server)

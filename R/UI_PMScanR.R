@@ -7,7 +7,7 @@
 #' @param fillable Whether the card body should be fillable
 #' @return A Shiny card UI element
 #' @noRd
-display_card <- function(header, body, colour = "bg-dark", fs = T, min_height = "10em", fillable = T) {
+display_card <- function(header, body, colour = "bg-dark", fs = TRUE, min_height = "10em", fillable = TRUE) {
   card(
     full_screen = fs,
     card_header(header, class = colour),
@@ -114,7 +114,7 @@ build_ui <- page_navbar(
                                             tags$li(strong("PROSITE Patterns Database Path:"), "Optionally provide the path to the PROSITE patterns database file (prosite.dat). If left empty, the package will attempt to use a default or download it."),
                                             tags$li(strong("PFScan Executable Path:"), "Optionally provide the path to the PFScan executable. If left empty, the package will attempt to use a default or download and extract it based on your OS."),
                                             tags$li(strong("Operating System:"), "Select your operating system. This helps in choosing the correct PFScan executable if the path is not provided.")
-                ), fs = T),
+                ), fs = TRUE),
                 div(
                   style = "overflow-y: auto;",
                   display_card("Results", tableOutput("prosite_results_output"))

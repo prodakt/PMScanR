@@ -22,7 +22,7 @@ corresponding paths.
 - On Windows, drives are retrieved using WMIC if available; otherwise, PowerShell is used as a fallback.
 }
 \examples{
-\dontrun{
+{
    getLogicalDrives()
 }
 

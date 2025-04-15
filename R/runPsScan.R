@@ -12,7 +12,7 @@
 #' @param OS Operating system ("WIN", "LINUX", "MAC"). If NULL, it will be detected automatically.
 #' @return Writes the results of the PS-Scan analysis to the specified output file.
 #' @examples
-#' \dontrun{
+#' {
 #' ps_scan <- "path/to/ps_scan.pl"
 #' patterns_dat <- "path/to/prosite.dat"
 #' out_format <- "fasta"
@@ -89,7 +89,7 @@ detect_os <- function() {
 #' @param detected_os The detected operating system from \code{detect_os()}.
 #' @return The confirmed OS if the user selects "1" (yes), otherwise stops with an error.
 #' @examples
-#' \dontrun{
+#' {
 #' confirm_os("WIN")
 #' }
 #' @noRd
@@ -113,7 +113,7 @@ confirm_os <- function(detected_os) {
 #' @param patterns_dat Path to \code{patterns_dat} if already provided, otherwise \code{NULL}.
 #' @return A list containing paths to \code{ps_scan}, \code{pf_scan} (extracted executable), and \code{patterns_dat}.
 #' @examples
-#' \dontrun{
+#' {
 #' download_files("WIN", ps_scan = NULL, pf_scan = NULL, patterns_dat = NULL)
 #' }
 #' @importFrom utils download.file untar unzip

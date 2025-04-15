@@ -14,14 +14,14 @@
 #' - On Windows, drives are retrieved using WMIC if available; otherwise, PowerShell is used as a fallback.
 #'
 #' @examples
-#' \dontrun{
+#' {
 #'    getLogicalDrives()
 #' }
 #'
 #' @export
 getLogicalDrives <- function() {
   osType <- Sys.info()["sysname"]
-  
+
   if (osType == "Darwin") {
     # macOS: List volumes in /Volumes
     logicalDrives <- list.dirs("/Volumes", full.names = TRUE, recursive = FALSE)
@@ -42,17 +42,17 @@ getLogicalDrives <- function() {
       # Use WMIC to retrieve drive information
       captionCommand <- paste(wmicPath, "logicaldisk get Caption")
       volumeNameCommand <- paste(wmicPath, "logicaldisk get VolumeName")
-      
+
       driveCaptionsOutput <- system(captionCommand, intern = TRUE, ignore.stderr = TRUE)
       captionStatus <- attr(driveCaptionsOutput, "status")
       driveCaptions <- sub(" *\\r$", "", driveCaptionsOutput)
       driveCaptions <- driveCaptions[!tolower(driveCaptions) %in% c("caption", "")]
-      
+
       volumeNamesOutput <- system(volumeNameCommand, intern = TRUE, ignore.stderr = TRUE)
       volumeNameStatus <- attr(volumeNamesOutput, "status")
       volumeNames <- sub(" *\\r$", "", volumeNamesOutput)
       volumeNames <- volumeNames[!tolower(volumeNames) %in% c("volumename", "")]
-      
+
       if (is.null(captionStatus) && is.null(volumeNameStatus) &&
           length(driveCaptions) > 0 && length(volumeNames) > 0 &&
           length(driveCaptions) == length(volumeNames)) {
@@ -64,7 +64,7 @@ getLogicalDrives <- function() {
         }
       }
     }
-    
+
     if (!useWMIC) {
       # Fallback to PowerShell
       driveInfo <- system2("powershell",
@@ -95,6 +95,6 @@ getLogicalDrives <- function() {
   } else {
     stop("Unsupported OS")
   }
-  
+
   return(logicalDrives)
 }

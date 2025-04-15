@@ -7,29 +7,32 @@ Authors@R:
            role = c("aut", "cre"),
            email = "bioinformatyka@gmail.com",
            comment = c(ORCID = "0000-0001-8699-7742"))
-Description: This package is for Protein motifs analysis in simple way in R.
+Description: Provides tools for large-scale protein motif analysis and visualization in R. PMScanR facilitates the identification of motifs using external tools like PROSITE's ps_scan (handling necessary file downloads and execution) and enables downstream analysis of results. Key features include parsing scan outputs, converting formats (e.g., to GFF-like structures), generating motif occurrence matrices, and creating informative visualizations such as heatmaps, sequence logos (via seqLogo/ggseqlogo). The package also offers an optional Shiny-based graphical user interface for interactive analysis, aiming to streamline the process of exploring motif patterns across multiple protein sequences.
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: false
 RoxygenNote: 7.3.2
 VignetteBuilder: knitr
+biocViews: MotifDiscovery, Visualization
 Depends:
 Imports:
-  dplyr (>= 1.1.0),
-  shiny,
-  bslib,
-  bsicons,
-  shinyFiles,
-  plotly,
-  rtracklayer,
-  reshape2,
-  ggseqlogo,
-  ggplot2,
-  seqinr,
-  magrittr,
-  rlang
+    dplyr (>= 1.1.0),
+    shiny,
+    bslib,
+    bsicons,
+    shinyFiles,
+    plotly,
+    rtracklayer,
+    reshape2,
+    ggseqlogo,
+    ggplot2,
+    seqinr,
+    magrittr,
+    rlang,
+    utils,
+	stringr
 Suggests: 
-  BiocStyle,
-  knitr,
-  seqLogo,
-  rmarkdown
+    BiocStyle,
+    knitr,
+    seqLogo,
+    rmarkdown

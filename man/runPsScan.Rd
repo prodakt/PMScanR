@@ -37,7 +37,7 @@ Writes the results of the PS-Scan analysis to the specified output file.
 Extended function to run PS-Scan with automatic OS detection, file downloading, extraction, and improved error handling.
 }
 \examples{
-\dontrun{
+{
 ps_scan <- "path/to/ps_scan.pl"
 patterns_dat <- "path/to/prosite.dat"
 out_format <- "fasta"

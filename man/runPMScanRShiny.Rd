@@ -6,6 +6,12 @@
 \usage{
 runPMScanRShiny()
 }
+\value{
+Launches the GUI for users not familiar with R and those who prefer graphical interface.
+}
 \description{
 Launch the PMScanR Shiny app
+}
+\examples{
+runPMScanRShiny()
 }
