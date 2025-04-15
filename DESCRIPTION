@@ -8,15 +8,14 @@ Authors@R:
            email = "bioinformatyka@gmail.com",
            comment = c(ORCID = "0000-0001-8699-7742"))
 Description: This package is for Protein motifs analysis in simple way in R.
-License: licence
+License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: false
 RoxygenNote: 7.3.2
 VignetteBuilder: knitr
 Depends:
-  dplyr (>= 1.1.0)
 Imports:
-  knitr,
+  dplyr (>= 1.1.0),
   shiny,
   bslib,
   bsicons,
@@ -24,8 +23,13 @@ Imports:
   plotly,
   rtracklayer,
   reshape2,
-  seqLogo,
   ggseqlogo,
   ggplot2,
   seqinr,
+  magrittr,
+  rlang
 Suggests: 
+  BiocStyle,
+  knitr,
+  seqLogo,
+  rmarkdown

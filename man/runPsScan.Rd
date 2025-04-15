@@ -26,7 +26,7 @@ runPsScan(
 \item{patterns_dat}{A character string specifying the path to the PROSITE patterns database file. If NULL, it will be downloaded.
 This file can be downloaded from: https://ftp.expasy.org/databases/prosite/}
 
-\item{pf_scan}{A character string specifying the path to the pfscan executable. If NULL, it will be downloaded and extracted based on OS.}
+\item{pf_scan}{A character string specifying the path to the pfscan executable. If NULL, it will be downloaded and extracted based on OS (except for MAC).}
 
 \item{OS}{Operating system ("WIN", "LINUX", "MAC"). If NULL, it will be detected automatically.}
 }

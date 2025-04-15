@@ -116,6 +116,7 @@ confirm_os <- function(detected_os) {
 #' \dontrun{
 #' download_files("WIN", ps_scan = NULL, pf_scan = NULL, patterns_dat = NULL)
 #' }
+#' @importFrom utils download.file untar unzip
 #' @noRd
 download_files <- function(os, ps_scan = NULL, pf_scan = NULL, patterns_dat = NULL) {
   base_url <- "https://ftp.expasy.org/databases/prosite/ps_scan/"

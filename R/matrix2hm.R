@@ -16,7 +16,7 @@
 #' heatmap <- matrix2hm(input = mat, x = "Col1", y = "Row1")
 #' heatmap
 #' @import reshape2
-#' @importFrom dplyr mutate across
+#' @importFrom dplyr mutate across everything
 #' @importFrom plotly plot_ly add_segments layout
 #' @export
 matrix2hm <- function(input, x = NULL, y = NULL) {

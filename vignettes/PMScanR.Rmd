@@ -133,7 +133,7 @@ motifs_psa_file <- system.file("extdata", "out_Hb_psa.txt", package = "PMScanR")
 
 # Check if file exists
 if (file.exists(motifs_psa_file)) {
-  psaGFF <- readPM.psa(motifs_psa_file)
+  psaGFF <- read.psa(motifs_psa_file)
   # Optional: display structure or head if needed
   # str(psaGFF)
   # head(psaGFF)
@@ -225,7 +225,7 @@ if (exists("fasta_file") && file.exists(fasta_file)) {
   # Extract segments from position 'from_pos' to 'to_pos' for all sequences
   # Ensure the function exists and seq has content
   if (length(seq) > 0) {
-     seqShort <- extract_segments(seq = seq, from_pos = from_pos, to_pos = to_pos)
+     seqShort <- extract_segments(seq = seq, from = from_pos, to = to_pos)
      # Check if seqShort has content before plotting
      if (length(unlist(seqShort)) > 0) {
         ggseqlogo::ggseqlogo(unlist(seqShort), seq_type = "aa")

@@ -12,14 +12,14 @@ freqPie(data)
 \value{
 A pie chart in ggplot which displays the percentage distribution of each protein motifs
         in the `Name` column, with labels showing the protein motifs name and its corresponding percentage.
- @example 
+ @example
 data <- 'GFF file'
 count <- name_counts(data)
 piechart <- ggplot(name_counts, aes(x = "", y = count, fill = Name_and_procent)) +
              geom_bar(stat = "identity", width = 1) +
              coord_polar(theta = "y") +
              theme_minimal() +
-             scale_fill_brewer(palette = "Set1") +    # Optional colour selection to be included  
+             scale_fill_brewer(palette = "Set1") +    # Optional colour selection to be included
              theme(axis.text.x = element_blank())
 }
 \description{

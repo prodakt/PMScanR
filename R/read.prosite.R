@@ -13,6 +13,8 @@
 #' }
 #'
 #' @importFrom dplyr mutate select
+#' @importFrom magrittr %>%
+#' @importFrom rlang .data
 #' @export
 
 
