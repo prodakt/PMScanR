@@ -105,7 +105,8 @@ read.prosite <- function(prosite_input) {
 
     split_hit_data <- strsplit(cleaned_hit_lines, " ")
 
-    valid_splits <- sapply(split_hit_data, length) == 4
+    lengths <- vapply(split_hit_data, length, FUN.VALUE = integer(1))
+    valid_splits <- lengths == 4
     if(!all(valid_splits)){
       warning("Skipping malformed hit lines for sequence: ", seq_name, call. = FALSE)
       split_hit_data <- split_hit_data[valid_splits]

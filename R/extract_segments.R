@@ -9,7 +9,7 @@
 #' @return A list which are representing the extracted sequences.
 #'          Sequences shorter than the specified range are excluded.
 #' @examples
-#' seq <- system.file(file = "inst/extdata/hemoglobins.fasta", package = "PMScanR")
+#' seq <- system.file(file = "extdata/hemoglobins.fasta", package = "PMScanR")
 #' from = 10
 #' to = 20
 #' if (seq != "") {

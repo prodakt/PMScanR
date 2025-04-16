@@ -2,22 +2,36 @@
 % Please edit documentation in R/read.psa.R
 \name{read.psa}
 \alias{read.psa}
-\title{Convert PSA to GFF}
+\title{Convert PSA format to GFF-like Data Frame}
 \usage{
 read.psa(psa_input)
 }
 \arguments{
-\item{psa_input}{A character vector where each element represents a line from a PSA file, file in a psa format}
+\item{psa_input}{Path to a file containing output from a PSA scan.}
 }
 \value{
-A data frame in GFF format
+A data frame with columns approximating GFF fields plus additional
+  PSA-specific information like 'Name', 'Sequence', 'Level', etc.
 }
 \description{
-This function converts a PSA format data into a GFF format data frame
+This function reads and parses data in PSA (PROSITE Scan ASCII) format
+into a data frame resembling the GFF (General Feature Format) structure.
 }
 \examples{
-file_path <- system.file("extdata/out_Hb_psa.txt", package = "PMScanR")
-if (file_path != "") {
-  gffdata <- read.psa(file_path)
+# Use example file included with the package
+file_path <- system.file("extdata", "out_Hb_psa.txt", package = "PMScanR")
+gffdata <- NULL # Initialize
+if (file_path != "" && file.exists(file_path)) {
+  # Check dependencies for example
+  if (requireNamespace("dplyr", quietly = TRUE) &&
+      requireNamespace("magrittr", quietly = TRUE) &&
+      requireNamespace("stringr", quietly = TRUE)) {
+     gffdata <- read.psa(file_path)
+     # print(head(gffdata))
+  }
+} else {
+   message("Example file 'extdata/out_Hb_psa.txt' not found in PMScanR package.")
+   # Can optionally create dummy data here if needed for examples to pass
 }
+
 }

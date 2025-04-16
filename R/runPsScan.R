@@ -265,6 +265,6 @@ execute_command <- function(command, os, out_file) {
   } else {
     stop("Unsupported operating system")
   }
-  cat("Prosite analysis done and saved to ", out_file)
+  message("Prosite analysis done and saved to ", out_file)
 }
 

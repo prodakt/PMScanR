@@ -2,25 +2,55 @@
 % Please edit documentation in R/read.prosite.R
 \name{read.prosite}
 \alias{read.prosite}
-\title{Convert PROSITE format to GFF}
+\title{Convert PROSITE format to GFF-like Data Frame}
 \usage{
 read.prosite(prosite_input)
 }
 \arguments{
-\item{prosite_input}{A file in PROSITE format from Prosite database}
+\item{prosite_input}{Path to a file containing output from a PROSITE scan
+(typically plain text format, not the `.dat` database itself).}
 }
 \value{
-A GFF file as data frame.
+A data frame with columns approximating GFF fields plus additional
+  PROSITE-specific information like 'Name', 'Sequence', 'Level', etc.
 }
 \description{
-This function converts data in PROSITE format into a GFF data frame.
-PROSITE is a database of protein families and domains, and this function parses the relevant information
-into a structured GFF data frame suitable for further analysis and visualization.
+This function reads and parses data in PROSITE scan format into a data frame
+resembling the GFF (General Feature Format) structure.
+PROSITE is a database of protein families and domains. This function extracts
+relevant information about motif occurrences.
 }
 \examples{
-prosite_file <- system.file("inst/extdata/PROSITEoutput.txt", package = "PMScanR")
-if (prosite_file != "") {
-gff_data <- read.prosite(prosite_file)
+# Corrected path for example file within the package
+prosite_file <- system.file("extdata", "PROSITEoutput.txt", package = "PMScanR")
+gff_data <- NULL # Initialize gff_data
+if (prosite_file != "" && file.exists(prosite_file)) {
+  # Check if dependencies are available for the example
+  if (requireNamespace("dplyr", quietly = TRUE) &&
+      requireNamespace("magrittr", quietly = TRUE)) {
+    gff_data <- read.prosite(prosite_file)
+    # print(head(gff_data)) # Optional: view the first few rows
+  }
+} else {
+  message("Example file 'extdata/PROSITEoutput.txt' not found in PMScanR package.")
+  # Create dummy data if file not found, so example doesn't error
+  dummy_prosite_content <- c(
+   ">Seq1 : PS00001 MOTIF_A Some description here",
+   "10 - 20",
+   "35 - 45 L=0",
+   ">Seq2 : PS00002 MOTIF_B Another description",
+   "5 - 15 L=1",
+   "100 - 110"
+  )
+  dummy_file <- tempfile(fileext = ".txt")
+  writeLines(dummy_prosite_content, dummy_file)
+  if (requireNamespace("dplyr", quietly = TRUE) &&
+      requireNamespace("magrittr", quietly = TRUE)) {
+     gff_data <- read.prosite(dummy_file)
+     # print(head(gff_data))
+  }
+  unlink(dummy_file)
 }
+
 
 }

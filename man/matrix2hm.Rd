@@ -7,14 +7,14 @@
 matrix2hm(input, x = NULL, y = NULL)
 }
 \arguments{
-\item{input}{A matrix containing the data to be visualized in the heatmap.}
+\item{input}{A matrix containing the data to be visualized in the heatmap}
 
-\item{x}{A character vector specifying the columns to highlight in the heatmap.}
+\item{x}{A character vector specifying the columns to highlight in the heatmap}
 
-\item{y}{A character vector specifying the rows to highlight in the heatmap.}
+\item{y}{A character vector specifying the rows to highlight in the heatmap}
 }
 \value{
-A plotly heatmap with highlighted specified rows and columns.
+A heatmap with highlighted specified rows and columns
 }
 \description{
 This function generates a heatmap using the `plotly` package.

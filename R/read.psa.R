@@ -26,7 +26,7 @@
 #'
 #' @importFrom dplyr mutate select
 #' @importFrom magrittr %>%
-#' @importFrom stringr str_match # Added for efficient parsing
+#' @importFrom stringr str_match
 #' @export
 read.psa <- function(psa_input) {
 
@@ -56,8 +56,6 @@ read.psa <- function(psa_input) {
   output_list <- list() # Initialize a list to store data frames for each block
 
   # Define the regular expression pattern to capture parts of the header line
-  # Handles optional L=level at the end
-  # Groups: 1=SeqID, 2=Start, 3=End, 4=Type, 5=Name, 6=Level (optional)
   pattern <- "^>\\s*([^/]+)/(\\d+)-(\\d+)\\s*:\\s*(\\S+)\\s+(\\S+)(\\s+L=(\\d+))?\\s*$"
 
   # Process each block defined by headers
@@ -102,7 +100,6 @@ read.psa <- function(psa_input) {
       warning("Could not convert start/end to integer in header: ", header_line, call. = FALSE)
       next # Skip this block
     }
-
 
     # Create a temporary data frame for this hit
     tmpdf <- data.frame(

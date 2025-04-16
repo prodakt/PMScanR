@@ -50,7 +50,7 @@ patterns_dat <- "ps_scan/prosite.dat"   # Path to the PROSITE database file (e.g
 out_format <- "psa"                    # Default output format for PS-Scan (PSA - PROSITE scan ASCII)
 pf_scan <- "ps_scan/pfscan.exe"          # Path to the PFSCAN executable (Windows, e.g., 'ps_scan/pfscan.exe') - for Windows version
 out_file <- "out_Hb_psa.txt"           # Default output filename for PSA format results (e.g., 'out_Hb_psa.txt')
-in_file <- "../data/hemoglobins.fasta"   # Path to the input FASTA file (example: hemoglobin sequences, e.g., '../data/hemoglobins.fasta')
+in_file <- system.file("extdata", "hemoglobins.fasta", package = "PMScanR")   # Path to the input FASTA file (example: hemoglobin sequences, e.g., '../data/hemoglobins.fasta')
 
 # --- Section 4: Running PS-Scan for Motif Scanning ---
 # This section demonstrates how to use functions in PMScanR to run PS-Scan
@@ -58,37 +58,37 @@ in_file <- "../data/hemoglobins.fasta"   # Path to the input FASTA file (example
 # Example 1: Running runPsScan() with a basic attributes of function.
 # Without specifing the rest of attributes required files will be downloaded by default from prosite page,
 # and user will be prompted to confirm that dtetected OS is correct
-runPsScan(in_file = "protein.fasta", out_format = 'gff', out_file = "results_pfscan.gff")
+runPsScan(in_file = in_file, out_format = 'gff', out_file = "results_pfscan.gff")
 
 # Example 2: Running runPsScan() with a specific PFScan executable path for Windows
 # Set the pf_scan parameter to the location of your pfscan.exe file.
-runPsScan(in_file = "protein.fasta", out_format = 'gff', out_file = "results_pfscan.gff",
+runPsScan(in_file = in_file, out_format = 'gff', out_file = "results_pfscan.gff",
           ps_scan = "ps_scan/ps_scan.pl", patterns_dat = "prosite.dat",
           pf_scan = "path/to/your/pfscan.exe", OS = "WIN")
 
 # Example 3: Running runPsScan() for macOS (MAC) with default file downloads
 # Set OS = "MAC" to run PS-Scan on macOS, allowing the function to download necessary files.
-runPsScan(in_file = "another_protein.fasta", out_format = 'psa', out_file = "macos_analysis.psa", OS = "MAC")
+runPsScan(in_file = in_file, out_format = 'psa', out_file = "macos_analysis.psa", OS = "MAC")
 
 # Example 4: Running runPsScan() with all paths explicitly defined for Linux
 # Provide full paths to all the required files for a Linux system.
-runPsScan(in_file = "/home/user/data/long_sequence.fasta", out_format = 'fasta', out_file = "/home/user/results/full_analysis.fasta",
+runPsScan(in_file = in_file, out_format = 'fasta', out_file = "/home/user/results/full_analysis.fasta",
           ps_scan = "/opt/prosite/ps_scan.pl", patterns_dat = "/opt/prosite/prosite.dat",
           pf_scan = "/opt/prosite/pfscan", OS = "LINUX")
 
 # Example 5: Running runPsScan() with a different output file name
 # This example shows how to change the name of the output file.
-runPsScan(in_file = "input_seq.fasta", out_format = 'gff', out_file = "unique_output_name.gff")
+runPsScan(in_file = in_file, out_format = 'gff', out_file = "unique_output_name.gff")
 
 # Example 6: Running runPsScan() and relying on automatic OS detection for Linux
 # If the OS is correctly detected as Linux, you can omit the OS parameter.
-runPsScan(in_file = "test_sequence.fasta", out_format = 'psa', out_file = "linux_default.psa",
+runPsScan(in_file = in_file, out_format = 'psa', out_file = "linux_default.psa",
           ps_scan = "ps_scan/ps_scan.pl", patterns_dat = "prosite.dat")
 
 
-# --- Section 5: File Format Conversion from PSA to GFF ---
-# This section demonstrates how to convert PS-Scan output files from PSA format
-# to GFF (General Feature Format) using the 'read.psa()' function from PMScanR.
+# --- Section 5: File Format Conversion from PSA or PROSITE to GFF ---
+# This section demonstrates how to convert PS-Scan output files from PSA or PROSITE format
+# to GFF (General Feature Format) using the 'read.psa()' or 'read.prosite()'function from PMScanR package.
 # GFF format is widely used in bioinformatics and is compatible with many tools,
 # including genome browsers and data analysis packages.
 
@@ -97,14 +97,26 @@ runPsScan(in_file = "test_sequence.fasta", out_format = 'psa', out_file = "linux
 # and returns a data frame in a GFF-like format, suitable for further analysis in R.
 
 # Example 5.1.1: Converting a PSA output file (using a filename variable)
-motifs_psa <- "data/out_Hb_psa.txt"
+motifs_psa <- system.file("extdata", "out_Hb_psa.txt", package = "PMScanR", mustWork = TRUE)
 psaGFF <- read.psa(motifs_psa)
 head(psaGFF) # Display the first few rows of the converted GFF-like data frame
 
 # Example 5.1.2: Converting a PSA output file (using a relative path directly)
-psaGFF <- read.psa("data/out_Hb_psa.txt") # Using a relative path to PSA file
+psaGFF <- read.psa(".../out_Hb_psa.txt") # Using a relative path to PSA file
 head(psaGFF)
 
+# 5.2 Converting PROSITE Format to GFF using read.prosite()
+# The 'read.prosite()' function takes a PS-Scan PROSITE format output file as input
+# and returns a data frame in a GFF-like format, suitable for further analysis in R.
+
+# Example 5.2.1: Converting a PROSTIE output file (using a filename variable)
+motifs_prosite <- system.file("extdata", "PROSITEoutput.txt", package = "PMScanR", mustWork = TRUE)
+prositeGFF <- read.prosite(motifs_prosite)
+head(prositeGFF) # Display the first few rows of the converted GFF-like data frame
+
+# Example 5.2.2: Converting a PROSITE output file (using a relative path directly)
+prositeGFF <- read.prosite(".../PROSITEoutput.txt") # Using a relative path to PSA file
+head(prositeGFF)
 
 # --- Section 6: Reading GFF Format Files Directly ---
 # If you have generated PS-Scan output directly in GFF format (using 'out_format = "gff"'),
@@ -133,6 +145,7 @@ head(gff_format)
 # 7.1 Creating Motif Occurrence Matrix using gff2matrix()
 # The 'gff2matrix()' function in PMScanR takes GFF-formatted data (either as a data frame
 # from 'read.psa()' or an imported GFF object) and creates a motif occurrence matrix.
+# from 'read.prosite()' or an imported GFF object) and creates a motif occurrence matrix.
 
 # Example 7.1.1: Creating matrix from PSA-converted GFF data
 mom <- gff2matrix(psaGFF) # 'psaGFF' is the GFF-like data frame from PSA conversion
@@ -141,6 +154,10 @@ head(mom) # Display the first few rows of the Motif Occurrence Matrix (MOM)
 # Example 7.1.2: Creating matrix from directly read GFF format data
 momGFF <- gff2matrix(as.data.frame(gff_format)) # 'gff_format' is the GFF object imported by rtracklayer
 head(momGFF) # Display the first few rows of the MOM from direct GFF input
+
+# Example 7.1.3: Creating matrix from PROSITE-converted GFF data
+mom <- gff2matrix(prositeGFF) # 'prositeGFF' is the GFF-like data frame from PROSITE conversion
+head(mom) # Display the first few rows of the Motif Occurrence Matrix (MOM)
 
 # 7.2 Saving Motif Occurrence Matrix to CSV file
 # For further analysis, visualization, or sharing, you can save the generated

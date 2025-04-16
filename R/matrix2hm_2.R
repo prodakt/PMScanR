@@ -1,13 +1,13 @@
-#' Generate a square-shaped heatmap from a matrix
+#' Generate a heatmap from a matrix with layout which provides a square shape of heatmap
 #'
-#' This function generates a heatmap using the `plotly` package, with a square-shaped layout.
+#' This function generates a heatmap using the `plotly` package.
 #' The heatmap highlights specific rows and columns provided by the user, while the rest of the matrix is dimmed.
 #' The function also adds grid lines to the heatmap for better readability.
 #'
-#' @param input A matrix containing the data to be visualized in the heatmap.
-#' @param x A character vector specifying the columns to highlight in the heatmap. Must match column names in `input`.
-#' @param y A character vector specifying the rows to highlight in the heatmap. Must match row names in `input`.
-#' @return A `plotly` object representing a square-shaped heatmap with highlighted rows and columns, and grid lines for readability.
+#' @param input A matrix containing the data to be visualized in the heatmap
+#' @param x A character vector specifying the columns to highlight in the heatmap
+#' @param y A character vector specifying the rows to highlight in the heatmap
+#' @return A heatmap with highlighted specified rows and columns
 #' @examples
 #' # Create a sample matrix with row and column names
 #' mat <- matrix(c(1, 0, 1, 0), 2, 2)
@@ -20,27 +20,12 @@
 #' @importFrom plotly plot_ly add_segments layout
 #' @export
 matrix2hm_2 <- function(input, x = NULL, y = NULL) {
-  # Validate input
-  if (nrow(input) == 0 || ncol(input) == 0) {
-    stop("Input matrix must have at least one row and one column.")
-  }
-
-  # Ensure input has row and column names
-  if (is.null(colnames(input))) {
-    colnames(input) <- paste0("Col", seq_len(ncol(input)))
-  }
-  if (is.null(rownames(input))) {
-    rownames(input) <- paste0("Row", seq_len(nrow(input)))
-  }
-
-  # Set x and y to all columns/rows if NULL
   if (is.null(x)) {
     x <- colnames(input)
   }
   if (is.null(y)) {
     y <- rownames(input)
   }
-
   # Ensure input is a matrix
   mat_sel <- as.data.frame(input) %>% mutate(across(.cols = everything(), .fns = ~ -1))
   mat_sel <- as.matrix(mat_sel)
@@ -59,45 +44,35 @@ matrix2hm_2 <- function(input, x = NULL, y = NULL) {
     type = "heatmap",
     colors = c("white", "#80274f", "#008caf"),
     showscale = FALSE,
-    height = plot_height
-  )
-
-  # Add vertical grid lines (one for each column)
-  for (col in colnames(mat_sel)) {
-    heatmap_plot <- heatmap_plot %>% add_segments(
-      x = col, xend = col,
-      y = rownames(mat_sel)[1], yend = rownames(mat_sel)[n_rows],
+    height = plot_height  # Moved height here
+  ) %>%
+    layout(
+      xaxis = list(
+        scaleanchor = "y",
+        tickfont = list(size = 10),
+        tickangle = 45,
+        automargin = TRUE
+      ),
+      yaxis = list(
+        scaleanchor = "x",
+        tickfont = list(size = 10),
+        tickangle = 45,
+        automargin = TRUE
+      ),
+      margin = list(l = 150, r = 50, t = 50, b = 100)
+    ) %>%
+    add_segments(
+      x = colnames(mat_sel), xend = colnames(mat_sel),
+      y = rownames(mat_sel)[1], yend = rownames(mat_sel)[nrow(mat_sel)],
       line = list(color = "black", width = 0.3),
       inherit = FALSE
-    )
-  }
-
-  # Add horizontal grid lines (one for each row)
-  for (row in rownames(mat_sel)) {
-    heatmap_plot <- heatmap_plot %>% add_segments(
+    ) %>%
+    add_segments(
+      y = rownames(mat_sel), yend = rownames(mat_sel),
       x = colnames(mat_sel)[1], xend = colnames(mat_sel)[ncol(mat_sel)],
-      y = row, yend = row,
       line = list(color = "black", width = 0.3),
       inherit = FALSE
     )
-  }
-
-  # Add layout adjustments for square shape
-  heatmap_plot <- heatmap_plot %>% layout(
-    xaxis = list(
-      scaleanchor = "y",  # Ensures square shape by anchoring x-axis to y-axis
-      tickfont = list(size = 10),
-      tickangle = 45,
-      automargin = TRUE
-    ),
-    yaxis = list(
-      scaleanchor = "x",  # Ensures square shape by anchoring y-axis to x-axis
-      tickfont = list(size = 10),
-      tickangle = 45,
-      automargin = TRUE
-    ),
-    margin = list(l = 150, r = 50, t = 50, b = 100)
-  )
 
   return(heatmap_plot)
 }

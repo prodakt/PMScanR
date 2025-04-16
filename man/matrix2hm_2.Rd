@@ -2,22 +2,22 @@
 % Please edit documentation in R/matrix2hm_2.R
 \name{matrix2hm_2}
 \alias{matrix2hm_2}
-\title{Generate a square-shaped heatmap from a matrix}
+\title{Generate a heatmap from a matrix with layout which provides a square shape of heatmap}
 \usage{
 matrix2hm_2(input, x = NULL, y = NULL)
 }
 \arguments{
-\item{input}{A matrix containing the data to be visualized in the heatmap.}
+\item{input}{A matrix containing the data to be visualized in the heatmap}
 
-\item{x}{A character vector specifying the columns to highlight in the heatmap. Must match column names in `input`.}
+\item{x}{A character vector specifying the columns to highlight in the heatmap}
 
-\item{y}{A character vector specifying the rows to highlight in the heatmap. Must match row names in `input`.}
+\item{y}{A character vector specifying the rows to highlight in the heatmap}
 }
 \value{
-A `plotly` object representing a square-shaped heatmap with highlighted rows and columns, and grid lines for readability.
+A heatmap with highlighted specified rows and columns
 }
 \description{
-This function generates a heatmap using the `plotly` package, with a square-shaped layout.
+This function generates a heatmap using the `plotly` package.
 The heatmap highlights specific rows and columns provided by the user, while the rest of the matrix is dimmed.
 The function also adds grid lines to the heatmap for better readability.
 }
