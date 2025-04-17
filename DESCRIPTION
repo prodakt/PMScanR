@@ -1,7 +1,7 @@
 Package: PMScanR
 Title: Protein motifs analysis and visualisation
 Version: 0.9.9
-Authors@R: 
+Authors@R: c(
     person(given = "Jan Pawel",
            family = "Jastrzebski",
            role = c("aut", "cre"),
@@ -10,18 +10,18 @@ Authors@R:
 	person(given = "Monika",
            family = "Gawronska",    
            role = c("ctb"),
-		   email = "gawronska572@gmail.com"
+		   email = "gawronska572@gmail.com",
            comment = c(ORCID = "0009-0001-2677-6371")), 
     person(given = "Wiktor",
            family = "Babis",        
            role = c("ctb"),          
-           email = "wiktorbabis@gmail.com"
+           email = "wiktorbabis@gmail.com",
 		   comment = c(ORCID = "0009-0006-3648-3413")),
 	person(given = "Damian",
            family = "Czopek",        
-           role = c("ctb" "cre),          
-           email = "dcwmpl@gmail.com"
-		   comment = c(ORCID = "0009-0005-3471-4866")),
+           role = c("ctb", "aut"),          
+           email = "dcwmpl@gmail.com",
+		   comment = c(ORCID = "0009-0005-3471-4866")))
 Description: Provides tools for large-scale protein motif analysis and visualization in R. PMScanR facilitates the identification of motifs using external tools like PROSITE's ps_scan (handling necessary file downloads and execution) and enables downstream analysis of results. Key features include parsing scan outputs, converting formats (e.g., to GFF-like structures), generating motif occurrence matrices, and creating informative visualizations such as heatmaps, sequence logos (via seqLogo/ggseqlogo). The package also offers an optional Shiny-based graphical user interface for interactive analysis, aiming to streamline the process of exploring motif patterns across multiple protein sequences.
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
