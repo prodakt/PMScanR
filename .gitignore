@@ -1,1 +1,5 @@
-.Rproj.user
+# R specific ignores
+.RData
+.Rhistory
+*.Rproj
+.Rproj.user/
