@@ -6,10 +6,10 @@ located in the `inst/extdata/` directory of the PMScanR package.
 ## File: hemoglobins.fasta
 
 * **Source:** Example sequences,  for hemoglobin proteins.
-    * ("Derived from NCBI GenBank accession numbers X, Y, Z" or "Manually created representative sequences for demonstration.")*
+    * ("Manually created representative sequences for demonstration.")*
 * **Generation/Processing Date:** *("2023-03-18")*
 * **Processing Steps:** *("Sequences were formatted into a multi-FASTA file.")*
-* **Original Licensing:** *("Public Domain" or specific terms if from a database)*
+* **Original Licensing:** *("GPL-3")*
 
 ## File: out_Hb_psa.txt
 
