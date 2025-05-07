@@ -40,10 +40,12 @@ detected_os <- detect_os()
 
 #' Create the main UI for PMScanR
 #'
-#' @import shiny
+#' @importFrom shiny div imageOutput p textOutput fileInput textInput selectInput uiOutput tags
+#' @importFrom shiny actionButton conditionalPanel numericInput h3 strong plotOutput tableOutput
 #' @import bslib
 #' @import bsicons
-#' @import plotly
+#' @importFrom shinyFiles shinyDirButton
+#' @importFrom plotly plotlyOutput
 #' @return A Shiny UI object
 #' @noRd
 build_ui <- page_navbar(

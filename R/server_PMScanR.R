@@ -2,13 +2,11 @@
 #' @param input Shiny input object
 #' @param output Shiny output object
 #' @param session Shiny session object
-#' @import shiny
-#' @import shinyFiles
-#' @import bslib
-#' @import bsicons
-#' @import rtracklayer
-#' @import seqinr
-#' @import ggseqlogo
+#' @importFrom shiny reactiveVal reactiveValues renderImage renderUI tags
+#' @importFrom shiny actionButton renderText observeEvent updateTextInput
+#' @importFrom shiny showNotification updateTabsetPanel req updateSelectInput renderPlot
+#' @importFrom shinyFiles shinyDirChoose parseDirPath
+#' @importFrom ggseqlogo ggseqlogo
 #' @return A Shiny server function
 #' @noRd
 build_server <- function(input, output, session) {
