@@ -93,22 +93,7 @@ A function that allows ps_scan to be run from the user's operating system, they 
 # runPsScan(in_file = fasta_file, out_format = 'gff', out_file = "results_pfscan.gff")
 ```
 
-This function is an automatic form of analysis loading, which searches the sequence for protein motifs present on it, but there is also an alternative option where the user can manually point the path to each of the flies and the version of the operation system.
-
-```{r run-ps-scan-manual, eval=FALSE}
-# Manual paths - definitely set eval=FALSE as these paths are examples
-# Path to the PS-Scan perl script (e.g., 'ps_scan/ps_scan.pl')
-# ps_scan <- "ps_scan/ps_scan.pl"
-# Path to the PROSITE database file (e.g., 'ps_scan/prosite.dat')
-# patterns_dat <- "ps_scan/prosite.dat"
-# Default output format for PS-Scan (PSA - PROSITE scan ASCII)
-# out_format <- "psa"
-# Path to the PFSCAN executable (Windows, e.g., 'ps_scan/pfscan.exe') - for # Windows version
-# pf_scan <- "ps_scan/pfscan.exe"
-
-# runPsScan(in_file = fasta_file, out_format = 'gff', out_file = "results_pfscan.gff",
-#           ps_scan = ps_scan, patterns_dat = patterns_dat, pf_scan = pf_scan , OS = "WIN")
-```
+This function is an automatic form of analysis loading, which searches the sequence for protein motifs present on it, but there is also an alternative option where the user can manually point the path to each of the files and the version of the operation system.
 
 After analysis, which finally searched for protein motifs located on the input file sequence, the two functions below can be used to convert the output files into GFF format:
 
