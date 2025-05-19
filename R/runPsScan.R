@@ -13,13 +13,8 @@
 #' @return Writes the results of the PS-Scan analysis to the specified output file.
 #' @examples
 #' {
-#' ps_scan <- "path/to/ps_scan.pl"
-#' patterns_dat <- "path/to/prosite.dat"
-#' out_format <- "fasta"
-#' pf_scan <- "path/to/pfscan.exe"
-#' out_file <- "out_Hb_fasta.txt"
-#' in_file <- "hemoglobins.fasta"
-#' runPsScan(in_file, out_file, out_format, ps_scan, patterns_dat, pf_scan, OS = "WIN")
+#' in_file <- system.file("extdata", "hemoglobins.fasta", package = "PMScanR")
+#' runPsScan(in_file = in_file, out_format = 'gff', out_file = "results_pfscan.gff")
 #' }
 #' @export
 runPsScan <- function(in_file, out_file, out_format, ps_scan = NULL, patterns_dat = NULL, pf_scan = NULL, OS = NULL) {
@@ -112,10 +107,6 @@ confirm_os <- function(detected_os) {
 #' @param pf_scan Path to \code{pf_scan} executable if already provided, otherwise \code{NULL}.
 #' @param patterns_dat Path to \code{patterns_dat} if already provided, otherwise \code{NULL}.
 #' @return A list containing paths to \code{ps_scan}, \code{pf_scan} (extracted executable), and \code{patterns_dat}.
-#' @examples
-#' {
-#' download_files("WIN", ps_scan = NULL, pf_scan = NULL, patterns_dat = NULL)
-#' }
 #' @importFrom utils download.file untar unzip
 #' @noRd
 download_files <- function(os, ps_scan = NULL, pf_scan = NULL, patterns_dat = NULL) {
@@ -250,21 +241,48 @@ construct_command <- function(ps_scan, patterns_dat, in_file, out_format, pf_sca
 
 #' Execute System Command
 #'
-#' Helper function to execute the PS-Scan command based on the operating system.
+#' Helper function to execute an external command based on the operating system.
+#' It now checks the command's exit status before printing a success message.
 #'
 #' @param command The command string to execute.
 #' @param os The operating system ("WIN", "LINUX", "MAC").
-#' @param out_file file path where analysis result is saved
+#' @param out_file file path where the analysis result is expected to be saved.
+#'        This is used for the success message.
+#' @return Invisibly returns the exit status of the command (0 for success,
+#'         non-zero for errors, or specific codes depending on the command).
 #' @noRd
+#' @keywords internal system command execution
+#'
 execute_command <- function(command, os, out_file) {
-  cat("Beggining of Prosite analysis", "\n")
-  if (os == "LINUX" || os == "MAC") {
-    system(command)
-  } else if (os == "WIN") {
-    shell(command)
-  } else {
-    stop("Unsupported operating system")
-  }
-  message("Prosite analysis done and saved to ", out_file)
-}
+  # Print a message indicating the start of the analysis
+  cat("Beginning of Prosite analysis", "\n")
 
+  # Initialize status_code to a non-success value
+  status_code <- -1
+
+  # Execute the command based on the operating system
+  if (os == "LINUX" || os == "MAC") {
+    # On Linux or Mac, use system(); it returns an OS-dependent exit status.
+    status_code <- system(command)
+  } else if (os == "WIN") {
+    # On Windows, use shell(); it also returns an exit status.
+    status_code <- shell(command)
+  } else {
+    # If the OS is not supported, stop execution with an error message.
+    stop(paste("Unsupported operating system specified:", os))
+  }
+
+  # Check the command's exit status to determine if it was successful
+  if (status_code == 0) {
+    # If status is 0, print a success message
+    message("Prosite analysis done and saved to ", out_file)
+  } else {
+    # If status is not 0, print a warning indicating a potential failure
+    warning(paste("Prosite analysis may have failed or encountered an error.",
+                  "Command exit status:", status_code,
+                  "\nPlease check the console for any error messages from the command itself."))
+  }
+
+  # Return the status code invisibly.
+  invisible(status_code)
+}

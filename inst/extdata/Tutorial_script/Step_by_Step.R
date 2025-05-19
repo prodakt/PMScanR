@@ -45,12 +45,12 @@ library(seqinr)      # For reading and handling biological sequences (FASTA file
 # Define variables for the paths to PS-Scan perl script, PROSITE database,
 # output format, PFSCAN executable, output file, and input FASTA file.
 
-ps_scan <- "ps_scan/ps_scan.pl"        # Path to the PS-Scan perl script (e.g., 'ps_scan/ps_scan.pl')
+ps_scan <- "ps_scan/ps_scan.pl"        # Path to the PS-Scan script (e.g., 'ps_scan/ps_scan.pl')
 patterns_dat <- "ps_scan/prosite.dat"   # Path to the PROSITE database file (e.g., 'ps_scan/prosite.dat')
 out_format <- "psa"                    # Default output format for PS-Scan (PSA - PROSITE scan ASCII)
 pf_scan <- "ps_scan/pfscan.exe"          # Path to the PFSCAN executable (Windows, e.g., 'ps_scan/pfscan.exe') - for Windows version
 out_file <- "out_Hb_psa.txt"           # Default output filename for PSA format results (e.g., 'out_Hb_psa.txt')
-in_file <- system.file("extdata", "hemoglobins.fasta", package = "PMScanR")   # Path to the input FASTA file (example: hemoglobin sequences, e.g., '../data/hemoglobins.fasta')
+in_file <- system.file("extdata", "hemoglobins.fasta", package = "PMScanR")   # Path to the input FASTA file (example: hemoglobin sequences)
 
 # --- Section 4: Running PS-Scan for Motif Scanning ---
 # This section demonstrates how to use functions in PMScanR to run PS-Scan
