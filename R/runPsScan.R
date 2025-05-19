@@ -13,8 +13,12 @@
 #' @return Writes the results of the PS-Scan analysis to the specified output file.
 #' @examples
 #' {
-#' in_file <- system.file("extdata", "hemoglobins.fasta", package = "PMScanR")
-#' runPsScan(in_file = in_file, out_format = 'gff', out_file = "results_pfscan.gff")
+#' if (interactive()) {
+#'   in_file <- system.file("extdata", "hemoglobins.fasta", package = "PMScanR")
+#'   out_file <- tempfile(fileext = ".gff")
+#'   runPsScan(in_file = in_file, out_format = 'gff', out_file = out_file)
+#' }
+
 #' }
 #' @export
 runPsScan <- function(in_file, out_file, out_format, ps_scan = NULL, patterns_dat = NULL, pf_scan = NULL, OS = NULL) {
