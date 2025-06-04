@@ -126,13 +126,13 @@ download_files <- function(os, ps_scan = NULL, pf_scan = NULL, patterns_dat = NU
     LINUX = list(
       ps_scan = "ps_scan.pl",
       pf_scan_archive = "ps_scan_linux_x86_elf.tar.gz",
-      pf_scan_exe = "pfscan",              # Direct executable name
+      pf_scan_exe = "ps_scan/pfscan",              # Direct executable name
       patterns_dat = "prosite.dat"
     ),
     MAC = list(
       ps_scan = "ps_scan.pl",
       pf_scan_archive = "ps_scan_macosx.tar.gz",
-      pf_scan_exe = "pfscan",              # Direct executable name
+      pf_scan_exe = "ps_scan/pfscan",              # Direct executable name
       patterns_dat = "prosite.dat"
     )
   )
