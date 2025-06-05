@@ -1,6 +1,6 @@
 Package: PMScanR
 Title: Protein motifs analysis and visualisation
-Version: 0.99.2
+Version: 0.99.3
 Authors@R: c(
     person(given = "Jan Pawel",
            family = "Jastrzebski",
@@ -17,6 +17,11 @@ Authors@R: c(
            role = c("ctb"),          
            email = "wiktorbabis@gmail.com",
 		   comment = c(ORCID = "0009-0006-3648-3413")),
+	person(given = "Miriana",
+           family = "Quaranta",        
+           role = c("ctb"),          
+           email = "miriana.quaranta@uniroma1.it",
+		   comment = c(ORCID = "0009-0003-0855-485X")),
 	person(given = "Damian",
            family = "Czopek",        
            role = c("ctb", "aut"),          
