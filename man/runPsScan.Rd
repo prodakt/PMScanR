@@ -38,12 +38,10 @@ Extended function to run PS-Scan with automatic OS detection, file downloading, 
 }
 \examples{
 {
-ps_scan <- "path/to/ps_scan.pl"
-patterns_dat <- "path/to/prosite.dat"
-out_format <- "fasta"
-pf_scan <- "path/to/pfscan.exe"
-out_file <- "out_Hb_fasta.txt"
-in_file <- "hemoglobins.fasta"
-runPsScan(in_file, out_file, out_format, ps_scan, patterns_dat, pf_scan, OS = "WIN")
+if (interactive()) {
+  in_file <- system.file("extdata", "hemoglobins.fasta", package = "PMScanR")
+  out_file <- tempfile(fileext = ".gff")
+  runPsScan(in_file = in_file, out_format = 'gff', out_file = out_file)
+}
 }
 }
