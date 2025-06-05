@@ -1,6 +1,6 @@
 Package: PMScanR
 Title: Protein motifs analysis and visualisation
-Version: 0.99.1
+Version: 0.99.2
 Authors@R: c(
     person(given = "Jan Pawel",
            family = "Jastrzebski",
