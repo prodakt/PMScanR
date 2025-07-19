@@ -26,16 +26,15 @@ displayCard <- function(header, body, colour = "bg-dark", fs = TRUE, min_height 
 #' @importFrom bslib page_navbar navbar_options nav_panel page_fillable
 #' @importFrom bslib layout_columns page_sidebar sidebar navset_tab nav_spacer
 #' @importFrom bslib nav_menu nav_item card card_header card_body
-#' @importFrom bsicons bs_icon
 #' @importFrom shinyFiles shinyDirButton
 #' @importFrom plotly plotlyOutput
 #'
 #' @return A Shiny UI object.
 #' @noRd
 buildUi <- function() {
-  link_PMScanR <- tags$a(bs_icon("github"), "PMScanR", href = "https://github.com/prodakt/PMScanR", target = "_blank")
-  link_lncRna <- tags$a(bs_icon("github"), "lncRna", href = "https://github.com/prodakt/lncRna", target = "_blank")
-  link_PROSITE <- tags$a(bs_icon("sitemap"), "PROSITE", href = "https://prosite.expasy.org/", target = "_blank")
+  link_PMScanR <- tags$a(icon("github"), "PMScanR", href = "https://github.com/prodakt/PMScanR", target = "_blank")
+  link_lncRna <- tags$a(icon("github"), "lncRna", href = "https://github.com/prodakt/lncRna", target = "_blank")
+  link_PROSITE <- tags$a(icon("sitemap"), "PROSITE", href = "https://prosite.expasy.org/", target = "_blank")
   detected_os_val <- detectOs()
 
   page_navbar(
