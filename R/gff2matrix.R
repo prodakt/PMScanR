@@ -24,6 +24,7 @@
 
 
 gff2matrix <- function(input) {
+<<<<<<< Updated upstream
   input$matchID <- paste0(input$type, ":", input$start, "-", input$end) 
   input$matchName <- paste0(input$Name, ":", input$start, "-", input$end) 
   at <- input[c("seqnames", "matchID")] 
@@ -32,4 +33,17 @@ gff2matrix <- function(input) {
   rownames(df_at) <- df_at$matchID 
   df_at <- df_at[,-1] 
   return(df_at)
+=======
+  if (nrow(input) == 0) {
+    return(matrix(nrow = 0, ncol = 0))
+  }
+
+  input$matchID <- paste0(input$type, ":", input$start, "-", input$end)
+  at <- input[c("seqnames", "matchID")]
+  at$exist <- 1
+  df_at <- reshape2::dcast(at, matchID ~ seqnames, value.var = "exist", fill = 0)
+  rownames(df_at) <- df_at$matchID
+  df_at <- df_at[, -1, drop = FALSE]
+  return(as.matrix(df_at))
+>>>>>>> Stashed changes
 }

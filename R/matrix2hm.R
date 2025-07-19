@@ -11,9 +11,15 @@
 #' @example 
 #' heatmap <- matrixtoheatmap(x = colnames('file'), y = row.names('file'), input = 'file')
 #' heatmap
+<<<<<<< Updated upstream
 #' 
 #' @importFrom dplyr mutate_all
 #' @importFrom plotly plot_ly add_segments
+=======
+#' @importFrom magrittr %>%
+#' @importFrom dplyr mutate across everything
+#' @importFrom plotly plot_ly add_segments layout
+>>>>>>> Stashed changes
 #' @export
 
 
