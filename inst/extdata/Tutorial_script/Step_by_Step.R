@@ -15,7 +15,7 @@ if (!require("BiocManager", quietly = TRUE))
 
 # Install 'seqLogo' and PMScanR packages from Bioconductor using BiocManager
 BiocManager::install("seqLogo")
-BiocManager::install("prodakt/PMScanR")
+BiocManager::install("PMScanR")
 # --- Section 2: Package and Library Loading -----------
 # This section loads all the necessary R libraries that will be used in this tutorial.
 # We will load libraries for package development, data manipulation, file handling,

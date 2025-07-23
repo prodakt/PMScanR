@@ -2,9 +2,9 @@
 title: "PMScanR: An R Package for the large-scale identification, analysis, and visualization of protein motifs"
 author:
   - Jan Pawel Jastrzebski
+  - Damian Czopek
   - Monika Gawronska
   - Wiktor Babis
-  - Damian Czopek
   - Miriana Quaranta
 date: "`r Sys.Date()`"
 output: BiocStyle::html_document
@@ -63,7 +63,7 @@ The following list of commands provides a step-by-step description of the functi
 
 The first step of the analyses is to establish the working environment through the use of functions:
 
-```{r set-working-directory, eval=FALSE}
+```{r set-working-directory}
 # Setting working directory is user-specific,
 # setwd("disc:/your/path/to/working/directory")
 ```
@@ -150,7 +150,7 @@ These functions are used to prepare data for sequence logo visualizations. A seq
 
 The example below demonstrates how to extract a segment from our sample hemoglobin sequences and generate a logo.
 
-```{r extract-segments-from-fasta}
+```{r extract-segments-from-fasta, fig.show='hold'}
 # Read the FASTA file into a list of sequences
 sequences <- seqinr::read.fasta(file = fasta_file, seqtype = "AA")
 
@@ -159,6 +159,20 @@ segments <- extractSegments(sequences, from = 10, to = 20)
 
 # Generate the sequence logo from the extracted segments
 ggseqlogo::ggseqlogo(unlist(segments), seq_type = "aa")
+```
+
+### `extractProteinMotifs()`
+
+This function is used to extract all protein motifs belonging to specific PROSITE IDs from a PSA-formatted file. It returns a list where each element is named by a PROSITE ID (e.g., "PS00223") and contains all the sequence instances found for that motif. This is used for sequence logo visualizations of specific motifs.
+
+```{r extract-motifs-from-psa, fig.show='hold'}
+# Extract all protein motifs into a list
+protein_motifs <- extractProteinMotifs(motifs_psa_file)
+
+# Generate the sequence logo from the extracted protein motifs
+ggseqlogo::ggseqlogo(protein_motifs$PS60007, seq_type='aa') # Sequence logo for motif 'PS60007' (example motif ID)
+ggseqlogo::ggseqlogo(protein_motifs[1], seq_type='aa')       # Sequence logo for the first motif in the list
+ggseqlogo::ggseqlogo(protein_motifs[5], seq_type='aa')       # Sequence logo for the fifth motif in the list
 ```
 
 #### `freqPie()`

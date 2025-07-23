@@ -38,81 +38,63 @@ buildUi <- function() {
   detected_os_val <- detectOs()
 
   page_navbar(
-  title = "PMScanR",
-  navbar_options = navbar_options(
-    bg = "#0062cc",
-    underline = TRUE
-  ),
-  nav_panel(
-    title = "Home",
-    page_fillable(
-      div(
-        style = " margin-bottom: 20px;",
-        layout_columns(
-          imageOutput("logo"),
-          displayCard("Description", p(
-            "Explore protein sequences for functional motifs using the Prosite Analysis tool.
-          This feature allows you to input a protein sequence either as a raw string or by uploading a FASTA file.
-          Once submitted, the app will scan the sequence using the Prosite database to identify known motifs and patterns,
-          such as phosphorylation sites, glycosylation sites, and more. The results are displayed in a detailed table,
-          showing each motif's location, type, and additional attributes. You can then use these results for further analysis in
-          the Data Analysis section, where they can be visualized as heatmaps or pie charts to better understand motif distribution
-          across your sequence.
-          Visualize and analyze protein motif data with the Data Analysis tool. Here, you can either upload your own motif data
-          in GFF or PSA format or use the results generated from the Prosite Analysis. The app processes your data into a binary matrix,
-          where rows represent motifs (e.g., specific patterns or features) and columns represent sequences or proteins.
-          Two interactive heatmaps allow you to explore motif presence across sequences: one with a standard layout and another
-          with a square-shaped layout for better comparison. Additionally, a pie chart visualizes the frequency distribution of different
-          motif types. Use the highlighting feature in the heatmaps to focus on specific motifs or sequences, making it easier to identify
-          patterns and trends in your data."
-          ))
+    title = "PMScanR",
+    navbar_options = navbar_options(
+      bg = "#0062cc",
+      underline = TRUE
+    ),
+    nav_panel(
+      title = "Home",
+      page_fillable(
+        div(
+          style = " margin-bottom: 20px;",
+          layout_columns(
+            imageOutput("logo"),
+            displayCard("Description", p(
+              "Explore protein sequences for functional motifs using the Prosite Analysis tool.
+               This feature allows you to input a protein sequence by uploading a FASTA file.
+               Once submitted, the app will scan the sequence using the Prosite database to identify known motifs and patterns.
+               The results are displayed in a detailed table, which can be used for further analysis in
+               the Data Analysis section."
+            ))
+          )
+        ),
+        div(
+          style = " overflow-y: auto;",
+          displayCard("Heatmap", plotlyOutput("home_heatmap_output", height = "100%"))
         )
-      ),
-      div(
-        style = " overflow-y: auto;",
-        displayCard("Heatmap", plotlyOutput("home_heatmap_output", height = "100%"))
       )
-    )
-  ),
-  nav_panel(title = "Prosite analysis",
-            page_sidebar(
-              sidebar = sidebar(
-                width = "25em",
-                title = "Input load",
-                tags$div(
-                  style = "background-color: #f0f0f0; border-radius: 5px; padding: 10px; margin-bottom: 10px; text-align: center;",
-                  textOutput("prosite_analysis_status", inline = TRUE) # Display status message
+    ),
+    nav_panel(title = "Prosite analysis",
+              page_sidebar(
+                sidebar = sidebar(
+                  width = "25em",
+                  title = "Input settings",
+                  tags$div(
+                    style = "background-color: #f0f0f0; border-radius: 5px; padding: 10px; margin-bottom: 10px; text-align: center;",
+                    textOutput("prosite_analysis_status", inline = TRUE)
+                  ),
+                  fileInput("file_upload", "Upload FASTA file", buttonLabel = "Browse", placeholder = "No file selected", accept = c(".fasta", ".fa", "txt")),
+                  textInput("output_dir", "Output Directory", value = getwd(), placeholder = "Select output directory"),
+                  shinyDirButton("output_dir_button", "Browse", title = "Select an output directory"),
+                  textInput("output_name", "Output Filename", value = "prosite_results.txt", placeholder = "Enter file name"),
+                  selectInput("output_format", "Select Output Format", choices = c("gff", "psa"), selected = "gff"),
+                  uiOutput("run_prosite_button")
                 ),
-                fileInput("file_upload", "Data to analyse", buttonLabel = "Browse", placeholder = "No file selected", accept = c(".fasta", ".fa", "txt")),
-                textInput("output_dir", "Output Directory", value = getwd(), placeholder = "Select output directory"),
-                shinyDirButton("output_dir_button", "Browse", title = "Select an output directory"),
-                textInput("output_name", "Output Name", value = "prosite_results.txt", placeholder = "Enter file name"),
-                selectInput("output_format", "Select Format", choices = c("gff", "psa"), selected = "gff"),
-                fileInput("ps_scan_file", "ps-scan file", buttonLabel = "Browse", placeholder = "(Empty will be downloaded)", accept = ".pl"),
-                fileInput("patterns_dat_file", "Prosite dat file", buttonLabel = "Browse", placeholder = "(Empty will be downloaded)", accept = ".dat"),
-                fileInput("pf_scan_file", "pf scan executable", buttonLabel = "Browse", placeholder = "(Empty will be downloaded)"),
-                selectInput("os_choice", "Select OS", choices = c("WIN", "LINUX", "MAC"), selected = detected_os_val),
-                uiOutput("run_prosite_button")
-
-              ),
-              page_fillable(
-                displayCard("Help",tags$ul(tags$li(strong("Load File:"), "Browse and select your input FASTA file."),
-                                            tags$li(strong("Output Directory:"), "Choose the directory where the results will be saved. Defaults to the current working directory."),
-                                            tags$li(strong("Output Name:"), "Specify the name for your output file."),
-                                            tags$li(strong("Output Format:"), "Select the desired output format for the Prosite analysis (gff or psa)."),
-                                            tags$li(strong("PS-Scan Script Path:"), "Optionally provide the path to the PS-Scan Perl script. If left empty, the package will attempt to use a default or download it."),
-                                            tags$li(strong("PROSITE Patterns Database Path:"), "Optionally provide the path to the PROSITE patterns database file (prosite.dat). If left empty, the package will attempt to use a default or download it."),
-                                            tags$li(strong("PFScan Executable Path:"), "Optionally provide the path to the PFScan executable. If left empty, the package will attempt to use a default or download and extract it based on your OS."),
-                                            tags$li(strong("Operating System:"), "Select your operating system. This helps in choosing the correct PFScan executable if the path is not provided.")
-                ), fs = TRUE),
-                div(
-                  style = "overflow-y: auto;",
-                  displayCard("Results", tableOutput("prosite_results_output"))
+                page_fillable(
+                  displayCard("Help", tags$ul(
+                    tags$li(strong("Upload FASTA file:"), "Browse and select your input FASTA file."),
+                    tags$li(strong("Output Directory:"), "Choose the directory where the results will be saved."),
+                    tags$li(strong("Output Filename:"), "Specify the name for your output file."),
+                    tags$li(strong("Note:"), "The required PROSITE executables and databases will be automatically downloaded and cached in a standardized location on the first run. Subsequent analyses will use these cached files.")
+                  )),
+                  div(
+                    style = "overflow-y: auto;",
+                    displayCard("Results", tableOutput("prosite_results_output"))
+                  )
                 )
-
               )
-            )
-  ),
+    ),
   nav_panel(
     title = "Data analysis",
     page_sidebar(
