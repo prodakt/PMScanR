@@ -104,103 +104,89 @@ buildUi <- function() {
                 )
               )
     ),
-  nav_panel(
-    title = "Data analysis",
-    page_sidebar(
-      sidebar = sidebar(
-        width = "25em",
-        title = "Input analysis data",
-        selectInput("data_source", "Select Data Source", choices = c("Use Prosite analysis data", "Upload my own file"), width = "100%"),
-        conditionalPanel(
-          condition = "input.data_source == 'Upload my own file'",
-          tags$div(
-            fileInput("uploaded_file", "Upload File", accept = c(".gff", ".txt")),
-            selectInput("input_format", "Input Format", choices = c("gff", "psa")))),
-        actionButton("analyse_data", "Analyse Data", style = "background-color: #4e62c8; color: white; font-family: 'Inter', sans-serif; border-radius: 5px; padding: 10px 15px; font-size: 1.1em;"),
-        conditionalPanel(
-          condition = "input.data_analysis_tabs == 'SeqLogo'",
-          selectInput("seqlogo_type", "Select SeqLogo Type", choices = c("Raw Sequences", "Motifs")),
+    nav_panel(
+      title = "Data analysis",
+      page_sidebar(
+        sidebar = sidebar(
+          width = "25em",
+          title = "Input analysis data",
           conditionalPanel(
-            condition = "input.seqlogo_type == 'Raw Sequences'",
-            fileInput("fasta_file_seqlogo", "Upload FASTA File for SeqLogo", accept = c(".fasta", ".fa", ".txt")),
-            selectInput("seqtype", "Choose nature of the sequence", choices = c("Protein", "Nucleotide" ), selected = "Protein"),
-            numericInput("from_pos", "From Position", value = 1, min = 1),
-            numericInput("to_pos", "To Position", value = 100, min = 1)
-          ),
-          conditionalPanel(
-            condition = "input.seqlogo_type == 'Motifs'",
-            selectInput("motif_data_source", "Select Motif Data Source", choices = c("Use Prosite analysis PSA output", "Upload my own PSA file")),
-            #selectInput("seqtype", "Choose nature of the sequence", choices = c("Protein", "Nucleotide"), selected = "Protein"),
+            condition = "input.data_analysis_tabs != 'SeqLogo'",
+            selectInput("data_source", "Select Data Source", choices = c("Use Prosite analysis data", "Upload my own file"), width = "100%"),
             conditionalPanel(
-              condition = "input.motif_data_source == 'Upload my own PSA file'",
-              fileInput("psa_file_seqlogo", "Upload PSA File for SeqLogo", accept = c(".txt", ".psa"))
+              condition = "input.data_source == 'Upload my own file'",
+              tags$div(
+                fileInput("uploaded_file", "Upload File", accept = c(".gff", ".txt")),
+                selectInput("input_format", "Input Format", choices = c("gff", "psa"))
+              )
             ),
-            selectInput("motif_id", "Select Motif ID", choices = NULL) # Choices will be updated dynamically
+            actionButton("analyse_data", "Analyse Data", style = "background-color: #4e62c8; color: white; font-family: 'Inter', sans-serif; border-radius: 5px; padding: 10px 15px; font-size: 1.1em;")
           ),
-          actionButton("generate_seqlogo", "Generate SeqLogo", style = "background-color: #4e62c8; color: white; font-family: 'Inter', sans-serif; border-radius: 5px; padding: 10px 15px; font-size: 1.1em;")
-        )
-
-      ),
-      navset_tab(
-        id = "data_analysis_tabs",
-        nav_panel(
-          title = "Help",
-          h3("Data Overview"),
-          p("Here you will find help information to understand the inputs in the sidebar."),
-          tags$ul(
-            tags$li(strong("Select Data Source:"), "Choose whether to use the data from Prosite analysis or upload your own file."),
-            tags$li(strong("Upload File:"), "If uploading, select a GFF or TXT file."),
-            tags$li(strong("Input Format:"), "Specify the format of the uploaded file: 'gff' or 'psa'."),
-            tags$li(strong("Analyse Data:"), "Click this button to process the data and generate visualizations."))
-        ),
-        nav_panel(
-          title = "Heatmap",
-          h3("Heatmap"),
-          p("The graphical pressentation of motifs occurence accross submitted sequences"),
-          page_fillable(
-            layout_columns(
-              displayCard("Highlight Columns", selectInput("highlight_x1", "", choices = NULL, multiple = TRUE)),
-              displayCard("Highlight Rows", selectInput("highlight_y1", "",choices = NULL, multiple = TRUE))
+          conditionalPanel(
+            condition = "input.data_analysis_tabs == 'SeqLogo'",
+            selectInput("seqlogo_type", "Select SeqLogo Type", choices = c("Raw Sequences", "Motifs")),
+            conditionalPanel(
+              condition = "input.seqlogo_type == 'Raw Sequences'",
+              fileInput("fasta_file_seqlogo", "Upload FASTA File for SeqLogo", accept = c(".fasta", ".fa", ".txt")),
+              selectInput("seqtype", "Choose nature of the sequence", choices = c("Protein", "Nucleotide" ), selected = "Protein"),
+              numericInput("from_pos", "From Position", value = 1, min = 1),
+              numericInput("to_pos", "To Position", value = 100, min = 1)
             ),
-            displayCard("Heatmap", plotlyOutput("heatmap1_output", height = "100%"))
-          )
-
-
-        ),
-        # nav_panel(
-        #   title = "Heatmap 2",
-        #   h3("Heatmap ......"),
-        #   p("Presented Hea"),
-        #   sidebar = sidebar(
-        #     title = "test sidebar",
-        #     sliderInput("to_range", "To Position", min = 1, max = 1000, value = 100, step = 1)
-        #   ),
-        #   page_fillable(
-        #     layout_columns(
-        #       displayCard("Highlight Columns", selectInput("highlight_x2", "", choices = NULL, multiple = TRUE)),
-        #       displayCard("Highlight Rows", selectInput("highlight_y2", "",choices = NULL, multiple = TRUE))
-        #     ),
-        #     displayCard("Heatmap", plotlyOutput("heatmap2_output", height = "100%"))
-        #   )
-        # ),
-        nav_panel(
-          title = "Pie Chart",
-          page_fillable(
-            displayCard("Pie chart plot", plotOutput("piechart_output", height = "100%"))
+            conditionalPanel(
+              condition = "input.seqlogo_type == 'Motifs'",
+              selectInput("motif_data_source", "Select Motif Data Source", choices = c("Use Prosite analysis PSA output", "Upload my own PSA file")),
+              conditionalPanel(
+                condition = "input.motif_data_source == 'Upload my own PSA file'",
+                fileInput("psa_file_seqlogo", "Upload PSA File for SeqLogo", accept = c(".txt", ".psa"))
+              ),
+              selectInput("motif_id", "Select Motif ID", choices = NULL)
+            ),
+            actionButton("generate_seqlogo", "Generate SeqLogo", style = "background-color: #4e62c8; color: white; font-family: 'Inter', sans-serif; border-radius: 5px; padding: 10px 15px; font-size: 1.1em;")
           )
         ),
-        nav_panel(id = "SeqLogo",
-                  title = "SeqLogo",
-                  page_fillable(
-                    displayCard(
-                      header = "SeqLogo Plot",
-                      body = plotOutput("seqlogo_plot", height = "50em")
-                    )
-                  )
+        navset_tab(
+          id = "data_analysis_tabs",
+          nav_panel(
+            title = "Help",
+            h3("Data Overview"),
+            p("Here you will find help information to understand the inputs in the sidebar."),
+            tags$ul(
+              tags$li(strong("Select Data Source:"), "Choose whether to use the data from Prosite analysis or upload your own file."),
+              tags$li(strong("Upload File:"), "If uploading, select a GFF or TXT file."),
+              tags$li(strong("Input Format:"), "Specify the format of the uploaded file: 'gff' or 'psa'."),
+              tags$li(strong("Analyse Data:"), "Click this button to process the data and generate visualizations.")
+            )
+          ),
+          nav_panel(
+            title = "Heatmap",
+            h3("Heatmap"),
+            p("The graphical pressentation of motifs occurence accross submitted sequences"),
+            page_fillable(
+              layout_columns(
+                displayCard("Highlight Columns", selectInput("highlight_x1", "", choices = NULL, multiple = TRUE)),
+                displayCard("Highlight Rows", selectInput("highlight_y1", "",choices = NULL, multiple = TRUE))
+              ),
+              displayCard("Heatmap", plotlyOutput("heatmap1_output", height = "100%"))
+            )
+          ),
+          nav_panel(
+            title = "Pie Chart",
+            page_fillable(
+              displayCard("Pie chart plot", plotOutput("piechart_output", height = "100%"))
+            )
+          ),
+          nav_panel(
+            title = "SeqLogo",
+            page_fillable(
+              displayCard(
+                header = "SeqLogo Plot",
+                body = plotOutput("seqlogo_plot", height = "50em")
+              )
+            )
+          )
         )
       )
-    )
-  ),
+    ),
   nav_spacer(),
   nav_menu(
     title = "Links",
