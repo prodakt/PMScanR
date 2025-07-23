@@ -31,27 +31,35 @@
 #' @importFrom magrittr %>%
 #' @export
 freqPie <- function(data) {
-  # Calculate the number of occurrences for each protein motif
-  name_counts <- data %>%
-    count(.data$Name, name = "count") %>%
-    mutate(
-      percentage = .data$count / sum(.data$count) * 100,
-      Name_and_procent = paste0(.data$Name, " (", round(.data$percentage, 1), "%)")
-    ) %>%
-    arrange(desc(.data$Name))
-
-  pie_chart <- ggplot(name_counts, aes(x = "", y = .data$count, fill = .data$Name_and_procent)) +
-    geom_bar(stat = "identity", width = 1, color = "white") +
-    coord_polar(theta = "y", start = 0) +
-    theme_minimal() +
-    theme(
-      axis.title.x = element_blank(),
-      axis.title.y = element_blank(),
-      axis.text = element_blank(),
-      axis.ticks = element_blank(),
-      panel.grid = element_blank(),
-      legend.title = element_blank()
-    )
-
-  return(pie_chart)
+    # Calculate the number of occurrences for each protein motif
+    name_counts <- data %>%
+        count(.data$Name, name = "count") %>%
+        mutate(
+            percentage = .data$count / sum(.data$count) * 100,
+            Name_and_procent = paste0(.data$Name, " (", round(.data$percentage, 1), "%)")
+        ) %>%
+        arrange(desc(.data$Name))
+    
+    pie_chart <-
+        ggplot(name_counts,
+               aes(
+                   x = "",
+                   y = .data$count,
+                   fill = .data$Name_and_procent
+               )) +
+        geom_bar(stat = "identity",
+                 width = 1,
+                 color = "white") +
+        coord_polar(theta = "y", start = 0) +
+        theme_minimal() +
+        theme(
+            axis.title.x = element_blank(),
+            axis.title.y = element_blank(),
+            axis.text = element_blank(),
+            axis.ticks = element_blank(),
+            panel.grid = element_blank(),
+            legend.title = element_blank()
+        )
+    
+    return(pie_chart)
 }

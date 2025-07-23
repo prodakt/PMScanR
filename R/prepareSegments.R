@@ -21,11 +21,11 @@
 #'
 #' @noRd
 prepareSegments <- function(seq, from, to) {
-  # Check if the sequence is long enough for the extraction
-  if (length(seq) >= to) {
-    # Using seq() is slightly more robust than from:to
-    return(paste(seq[seq(from, to)], collapse = ""))
-  } else {
-    return(NA)
-  }
+    # Check if the sequence is long enough for the extraction
+    if (length(seq) >= to) {
+        # Using seq() is slightly more robust than from:to
+        return(paste(seq[seq(from, to)], collapse = ""))
+    } else {
+        return(NA)
+    }
 }

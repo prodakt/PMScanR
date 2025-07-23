@@ -10,12 +10,13 @@ readPsa(psa_file)
 \item{psa_file}{A character string specifying the path to the input PSA file.}
 }
 \value{
-A data frame with a GFF-like structure, containing columns such as
-  'seqnames', 'start', 'end', and 'Name'.
+A data frame with a GFF-like structure, including all original
+  placeholder columns.
 }
 \description{
 This function reads a file in PSA format and converts it into a
-standardized, GFF-like data frame for downstream analysis.
+standardized, GFF-like data frame for downstream analysis. It is robust
+to files that may contain extraneous, non-PSA formatted data at the end.
 }
 \examples{
 # Get the path to the example PSA file included with the package

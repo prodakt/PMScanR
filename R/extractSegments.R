@@ -20,8 +20,8 @@
 #' }
 #' @export
 extractSegments <- function(sequences, from, to) {
-  segments <- lapply(sequences, prepareSegments, from, to)
-  segments <- segments[!is.na(segments)]
-
-  return(segments)
+    segments <- lapply(sequences, prepareSegments, from, to)
+    segments <- segments[!is.na(segments)]
+    
+    return(segments)
 }

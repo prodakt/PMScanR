@@ -11,7 +11,7 @@
 # The 'seqLogo' package is from Bioconductor and is required for generating sequence logos.
 # BiocManager is used to install packages from Bioconductor.
 if (!require("BiocManager", quietly = TRUE))
-  install.packages("BiocManager")
+    install.packages("BiocManager")
 
 # Install 'seqLogo' and PMScanR packages from Bioconductor using BiocManager
 BiocManager::install("seqLogo")
@@ -45,12 +45,18 @@ library(seqinr)      # For reading and handling biological sequences (FASTA file
 # Define variables for the paths to PS-Scan perl script, PROSITE database,
 # output format, PFSCAN executable, output file, and input FASTA file.
 
-ps_scan <- "ps_scan/ps_scan.pl"        # Path to the PS-Scan script (e.g., 'ps_scan/ps_scan.pl')
-patterns_dat <- "ps_scan/prosite.dat"   # Path to the PROSITE database file (e.g., 'ps_scan/prosite.dat')
-out_format <- "psa"                    # Default output format for PS-Scan (PSA - PROSITE scan ASCII)
-pf_scan <- "ps_scan/pfscan.exe"          # Path to the PFSCAN executable (Windows, e.g., 'ps_scan/pfscan.exe') - for Windows version
-out_file <- "out_Hb_psa.txt"           # Default output filename for PSA format results (e.g., 'out_Hb_psa.txt')
-in_file <- system.file("extdata", "hemoglobins.fasta", package = "PMScanR")   # Path to the input FASTA file (example: hemoglobin sequences)
+ps_scan <-
+    "ps_scan/ps_scan.pl"        # Path to the PS-Scan script (e.g., 'ps_scan/ps_scan.pl')
+patterns_dat <-
+    "ps_scan/prosite.dat"   # Path to the PROSITE database file (e.g., 'ps_scan/prosite.dat')
+out_format <-
+    "psa"                    # Default output format for PS-Scan (PSA - PROSITE scan ASCII)
+pf_scan <-
+    "ps_scan/pfscan.exe"          # Path to the PFSCAN executable (Windows, e.g., 'ps_scan/pfscan.exe') - for Windows version
+out_file <-
+    "out_Hb_psa.txt"           # Default output filename for PSA format results (e.g., 'out_Hb_psa.txt')
+in_file <-
+    system.file("extdata", "hemoglobins.fasta", package = "PMScanR")   # Path to the input FASTA file (example: hemoglobin sequences)
 
 # --- Section 4: Running PS-Scan for Motif Scanning ---
 # This section demonstrates how to use functions in PMScanR to run PS-Scan
@@ -58,32 +64,58 @@ in_file <- system.file("extdata", "hemoglobins.fasta", package = "PMScanR")   # 
 # Example 1: Running runPsScan() with a basic attributes of function.
 # Without specifing the rest of attributes required files will be downloaded by default from prosite page,
 # and user will be prompted to confirm that dtetected OS is correct
-runPsScan(in_file = in_file, out_format = 'gff', out_file = "results_pfscan.gff")
+runPsScan(in_file = in_file,
+          out_format = 'gff',
+          out_file = "results_pfscan.gff")
 
 # Example 2: Running runPsScan() with a specific PFScan executable path for Windows
 # Set the pf_scan parameter to the location of your pfscan.exe file.
-runPsScan(in_file = in_file, out_format = 'gff', out_file = "results_pfscan.gff",
-          ps_scan = "ps_scan/ps_scan.pl", patterns_dat = "prosite.dat",
-          pf_scan = "path/to/your/pfscan.exe", OS = "WIN")
+runPsScan(
+    in_file = in_file,
+    out_format = 'gff',
+    out_file = "results_pfscan.gff",
+    ps_scan = "ps_scan/ps_scan.pl",
+    patterns_dat = "prosite.dat",
+    pf_scan = "path/to/your/pfscan.exe",
+    OS = "WIN"
+)
 
 # Example 3: Running runPsScan() for macOS (MAC) with default file downloads
 # Set OS = "MAC" to run PS-Scan on macOS, allowing the function to download necessary files.
-runPsScan(in_file = in_file, out_format = 'psa', out_file = "macos_analysis.psa", OS = "MAC")
+runPsScan(
+    in_file = in_file,
+    out_format = 'psa',
+    out_file = "macos_analysis.psa",
+    OS = "MAC"
+)
 
 # Example 4: Running runPsScan() with all paths explicitly defined for Linux
 # Provide full paths to all the required files for a Linux system.
-runPsScan(in_file = in_file, out_format = 'fasta', out_file = "/home/user/results/full_analysis.fasta",
-          ps_scan = "/opt/prosite/ps_scan.pl", patterns_dat = "/opt/prosite/prosite.dat",
-          pf_scan = "/opt/prosite/pfscan", OS = "LINUX")
+runPsScan(
+    in_file = in_file,
+    out_format = 'fasta',
+    out_file = "/home/user/results/full_analysis.fasta",
+    ps_scan = "/opt/prosite/ps_scan.pl",
+    patterns_dat = "/opt/prosite/prosite.dat",
+    pf_scan = "/opt/prosite/pfscan",
+    OS = "LINUX"
+)
 
 # Example 5: Running runPsScan() with a different output file name
 # This example shows how to change the name of the output file.
-runPsScan(in_file = in_file, out_format = 'gff', out_file = "unique_output_name.gff")
+runPsScan(in_file = in_file,
+          out_format = 'gff',
+          out_file = "unique_output_name.gff")
 
 # Example 6: Running runPsScan() and relying on automatic OS detection for Linux
 # If the OS is correctly detected as Linux, you can omit the OS parameter.
-runPsScan(in_file = in_file, out_format = 'psa', out_file = "linux_default.psa",
-          ps_scan = "ps_scan/ps_scan.pl", patterns_dat = "prosite.dat")
+runPsScan(
+    in_file = in_file,
+    out_format = 'psa',
+    out_file = "linux_default.psa",
+    ps_scan = "ps_scan/ps_scan.pl",
+    patterns_dat = "prosite.dat"
+)
 
 
 # --- Section 5: File Format Conversion from PSA or PROSITE to GFF ---
@@ -97,12 +129,17 @@ runPsScan(in_file = in_file, out_format = 'psa', out_file = "linux_default.psa",
 # and returns a data frame in a GFF-like format, suitable for further analysis in R.
 
 # Example 5.1.1: Converting a PSA output file (using a filename variable)
-motifs_psa <- system.file("extdata", "out_Hb_psa.txt", package = "PMScanR", mustWork = TRUE)
+motifs_psa <-
+    system.file("extdata",
+                "out_Hb_psa.txt",
+                package = "PMScanR",
+                mustWork = TRUE)
 psaGFF <- read.psa(motifs_psa)
 head(psaGFF) # Display the first few rows of the converted GFF-like data frame
 
 # Example 5.1.2: Converting a PSA output file (using a relative path directly)
-psaGFF <- read.psa(".../out_Hb_psa.txt") # Using a relative path to PSA file
+psaGFF <-
+    read.psa(".../out_Hb_psa.txt") # Using a relative path to PSA file
 head(psaGFF)
 
 # 5.2 Converting PROSITE Format to GFF using read.prosite()
@@ -110,12 +147,17 @@ head(psaGFF)
 # and returns a data frame in a GFF-like format, suitable for further analysis in R.
 
 # Example 5.2.1: Converting a PROSTIE output file (using a filename variable)
-motifs_prosite <- system.file("extdata", "PROSITEoutput.txt", package = "PMScanR", mustWork = TRUE)
+motifs_prosite <-
+    system.file("extdata",
+                "PROSITEoutput.txt",
+                package = "PMScanR",
+                mustWork = TRUE)
 prositeGFF <- read.prosite(motifs_prosite)
 head(prositeGFF) # Display the first few rows of the converted GFF-like data frame
 
 # Example 5.2.2: Converting a PROSITE output file (using a relative path directly)
-prositeGFF <- read.prosite(".../PROSITEoutput.txt") # Using a relative path to PSA file
+prositeGFF <-
+    read.prosite(".../PROSITEoutput.txt") # Using a relative path to PSA file
 head(prositeGFF)
 
 # --- Section 6: Reading GFF Format Files Directly ---
@@ -128,11 +170,13 @@ head(prositeGFF)
 # for reading GFF, GTF, and other genomic annotation files.
 
 # Example 6.1.1: Reading a GFF format file (using filename variable)
-gff_format <- rtracklayer::import.gff("nopfGFF.txt") # Reading GFF format file
+gff_format <-
+    rtracklayer::import.gff("nopfGFF.txt") # Reading GFF format file
 head(gff_format) # Display the first few lines of the imported GFF object
 
 # Example 6.1.2: Reading a GFF format file (using different output file from PS-Scan)
-gff_format <- rtracklayer::import.gff("out_Hb_gff.txt") # Reading a different GFF output file
+gff_format <-
+    rtracklayer::import.gff("out_Hb_gff.txt") # Reading a different GFF output file
 head(gff_format)
 
 
@@ -148,15 +192,18 @@ head(gff_format)
 # from 'read.prosite()' or an imported GFF object) and creates a motif occurrence matrix.
 
 # Example 7.1.1: Creating matrix from PSA-converted GFF data
-mom <- gff2matrix(psaGFF) # 'psaGFF' is the GFF-like data frame from PSA conversion
+mom <-
+    gff2matrix(psaGFF) # 'psaGFF' is the GFF-like data frame from PSA conversion
 head(mom) # Display the first few rows of the Motif Occurrence Matrix (MOM)
 
 # Example 7.1.2: Creating matrix from directly read GFF format data
-momGFF <- gff2matrix(as.data.frame(gff_format)) # 'gff_format' is the GFF object imported by rtracklayer
+momGFF <-
+    gff2matrix(as.data.frame(gff_format)) # 'gff_format' is the GFF object imported by rtracklayer
 head(momGFF) # Display the first few rows of the MOM from direct GFF input
 
 # Example 7.1.3: Creating matrix from PROSITE-converted GFF data
-mom <- gff2matrix(prositeGFF) # 'prositeGFF' is the GFF-like data frame from PROSITE conversion
+mom <-
+    gff2matrix(prositeGFF) # 'prositeGFF' is the GFF-like data frame from PROSITE conversion
 head(mom) # Display the first few rows of the Motif Occurrence Matrix (MOM)
 
 # 7.2 Saving Motif Occurrence Matrix to CSV file
@@ -175,9 +222,12 @@ write.csv2(mom, "MotifsOccurenceMatrix.csv") # Save the MOM to 'MotifsOccurenceM
 # 8.1 Heatmap using matrix2hm() - from PSA-converted Matrix
 # The 'matrix2hm()' function (assumed from PMScanR) generates a heatmap from a motif occurrence matrix.
 # This example creates a heatmap from the MOM derived from PSA-converted GFF data ('mom').
-hm1 <- matrix2hm(x = colnames(mom),    # 'x' argument specifies columns (motifs) to be shown on heatmap's x-axis
-                 y = row.names(mom),    # 'y' argument specifies rows (sequences) to be shown on heatmap's y-axis
-                 input = mom)           # 'input' argument takes the Motif Occurrence Matrix
+hm1 <-
+    matrix2hm(x = colnames(mom),
+              # 'x' argument specifies columns (motifs) to be shown on heatmap's x-axis
+              y = row.names(mom),
+              # 'y' argument specifies rows (sequences) to be shown on heatmap's y-axis
+              input = mom)           # 'input' argument takes the Motif Occurrence Matrix
 hm1 # Display the heatmap 'hm1'
 
 # 8.2 Heatmap using matrix2hm() - from Directly Read GFF Matrix
@@ -201,9 +251,12 @@ hm2 # Display heatmap 'hm2'
 # When dealing with a large number of sequences, it might be useful to visualize a subset of rows
 # to make the heatmap more readable. This example shows how to create a heatmap of the first 10 sequences
 # from the MOM derived from directly read GFF data ('momGFF') using 'matrix2hm_2()'.
-hm2gff <- matrix2hm_2(x = colnames(momGFF),                  # Motifs on x-axis
-                      y = row.names(momGFF)[1:10],          # First 10 sequences on y-axis
-                      input = momGFF[c(1:10),])             # Input matrix - first 10 rows
+hm2gff <-
+    matrix2hm_2(x = colnames(momGFF),
+                # Motifs on x-axis
+                y = row.names(momGFF)[1:10],
+                # First 10 sequences on y-axis
+                input = momGFF[c(1:10), ])             # Input matrix - first 10 rows
 hm2gff # Display heatmap 'hm2gff'
 
 
@@ -221,9 +274,11 @@ hm2gff # Display heatmap 'hm2gff'
 from_pos <- 10 # Starting position of the region
 to_pos <- 20   # Ending position of the region
 
-seq <- read.fasta(file = "../data/hemoglobins.fasta", seqtype = "AA") # Read the FASTA file containing protein sequences
-seqShort <- extract_segments(seq = seq, from_pos, to_pos)          # Extract segments from position 'from_pos' to 'to_pos' for all sequences
-ggseqlogo(unlist(seqShort), seq_type= "aa")                       # Generate and display the sequence logo of the extracted segments
+seq <-
+    read.fasta(file = "../data/hemoglobins.fasta", seqtype = "AA") # Read the FASTA file containing protein sequences
+seqShort <-
+    extract_segments(seq = seq, from_pos, to_pos)          # Extract segments from position 'from_pos' to 'to_pos' for all sequences
+ggseqlogo(unlist(seqShort), seq_type = "aa")                       # Generate and display the sequence logo of the extracted segments
 
 # 9.2 Sequence Logo from Identified Motifs (PSA/GFF output) using ggseqlogo
 # To create sequence logos for identified motifs, you first need to extract the motif sequences
@@ -231,12 +286,13 @@ ggseqlogo(unlist(seqShort), seq_type= "aa")                       # Generate and
 
 # Example 9.2.1: Creating sequence logos for motifs from PSA output
 # First, extract protein motif sequences from a PSA format file using 'extract_protein_motifs()'.
-protein_motifs_psa <- extract_protein_motifs(motifs_psa) # or use 'out_Hb_psa.txt' filename
+protein_motifs_psa <-
+    extract_protein_motifs(motifs_psa) # or use 'out_Hb_psa.txt' filename
 
 # Now, you can generate sequence logos for specific motifs from 'protein_motifs_psa'.
-ggseqlogo(protein_motifs_psa$PS60007, seq_type='aa') # Sequence logo for motif 'PS60007' (example motif ID)
-ggseqlogo(protein_motifs_psa[1], seq_type='aa')       # Sequence logo for the first motif in the list
-ggseqlogo(protein_motifs_psa[5], seq_type='aa')       # Sequence logo for the fifth motif in the list
+ggseqlogo(protein_motifs_psa$PS60007, seq_type = 'aa') # Sequence logo for motif 'PS60007' (example motif ID)
+ggseqlogo(protein_motifs_psa[1], seq_type = 'aa')       # Sequence logo for the first motif in the list
+ggseqlogo(protein_motifs_psa[5], seq_type = 'aa')       # Sequence logo for the fifth motif in the list
 
 # --- Section 10: Shiny app run ---
 # If you want you can use shiny to use all the features of the package with user friendly UI helping to follow all the above steps

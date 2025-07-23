@@ -15,21 +15,24 @@
 
 
 extractProteinMotifs <- function(file_path) {
-  lines <- readLines(file_path)
-  motif_header_indices <- which(grepl("(PS\\d{5})", lines, perl = TRUE))
-
-  result <- list()
-
-  for (header_index in motif_header_indices) {
-    sequence_index <- header_index + 1
-
-    if (sequence_index <= length(lines) && grepl("^[A-Za-z]+$", lines[sequence_index])) {
-
-      motif_sequence <- lines[sequence_index]
-      ps_identifier <- sub(".*(PS\\d{5}).*", "\\1", lines[header_index])
-      result[[ps_identifier]] <- c(result[[ps_identifier]], motif_sequence)
+    lines <- readLines(file_path)
+    motif_header_indices <-
+        which(grepl("(PS\\d{5})", lines, perl = TRUE))
+    
+    result <- list()
+    
+    for (header_index in motif_header_indices) {
+        sequence_index <- header_index + 1
+        
+        if (sequence_index <= length(lines) &&
+            grepl("^[A-Za-z]+$", lines[sequence_index])) {
+            motif_sequence <- lines[sequence_index]
+            ps_identifier <-
+                sub(".*(PS\\d{5}).*", "\\1", lines[header_index])
+            result[[ps_identifier]] <-
+                c(result[[ps_identifier]], motif_sequence)
+        }
     }
-  }
-
-  return(result)
+    
+    return(result)
 }

@@ -18,16 +18,21 @@
 #' @importFrom reshape2 dcast
 #' @export
 gff2matrix <- function(input) {
-  if (nrow(input) == 0) {
-    return(matrix(nrow = 0, ncol = 0))
-  }
-  input$matchID <- paste0(input$type, ":", input$start, "-", input$end)
-  at <- input[, c("seqnames", "matchID")]
-  at <- unique(at) #should be uniqe right ?
-  at$exist <- 1
-  df_at <- reshape2::dcast(at, matchID ~ seqnames, value.var = "exist", fill = 0)
-  rownames(df_at) <- df_at$matchID
-  df_at <- df_at[, -1, drop = FALSE]
-  
-  return(as.matrix(df_at))
+    if (nrow(input) == 0) {
+        return(matrix(nrow = 0, ncol = 0))
+    }
+    input$matchID <-
+        paste0(input$type, ":", input$start, "-", input$end)
+    at <- input[, c("seqnames", "matchID")]
+    at <- unique(at) #should be uniqe right ?
+    at$exist <- 1
+    df_at <-
+        reshape2::dcast(at,
+                        matchID ~ seqnames,
+                        value.var = "exist",
+                        fill = 0)
+    rownames(df_at) <- df_at$matchID
+    df_at <- df_at[, -1, drop = FALSE]
+    
+    return(as.matrix(df_at))
 }

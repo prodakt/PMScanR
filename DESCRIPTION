@@ -40,7 +40,6 @@ Imports:
     dplyr (>= 1.1.0),
     shiny,
     bslib,
-    bsicons,
     shinyFiles,
     plotly,
     rtracklayer,
@@ -51,6 +50,7 @@ Imports:
     magrittr,
     rlang,
     utils,
+    stringr,
 	BiocFileCache
 Suggests: 
     BiocStyle,

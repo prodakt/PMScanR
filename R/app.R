@@ -20,8 +20,8 @@
 #' @export
 #' @importFrom shiny shinyApp
 runPMScanRShiny <- function() {
-  options(shiny.maxRequestSize = 60 * 1024^2)
-  ui <- buildUi()
-  server <- buildServer
-  shiny::shinyApp(ui = ui, server = server)
+    options(shiny.maxRequestSize = 60 * 1024 ^ 2)
+    ui <- buildUi()
+    server <- buildServer
+    shiny::shinyApp(ui = ui, server = server)
 }
