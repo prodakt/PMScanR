@@ -27,7 +27,7 @@ buildServer <- function(input, output, session) {
   original_data <- reactiveVal(NULL)
   volumes <- getLogicalDrives()
   loading <- reactiveVal(FALSE)
-
+  
   # --- UI Rendering ---
   output$logo <- renderImage(
     {
@@ -39,13 +39,13 @@ buildServer <- function(input, output, session) {
     },
     deleteFile = FALSE
   )
-
+  
   output$run_prosite_button <- renderUI({
     if (loading()) {
       tags$button(
         class = "btn btn-primary", type = "button", disabled = "disabled",
         tags$span(class = "spinner-border spinner-border-sm", `aria-hidden` = "true"),
-        tags$span(role = "status", "Loading...")
+        tags$span(role = "status", "Running...")
       )
     } else {
       actionButton(
@@ -54,99 +54,91 @@ buildServer <- function(input, output, session) {
       )
     }
   })
-
+  
   # --- Status Text Outputs ---
   output$prosite_analysis_status <- renderText({
     prosite_status_text()
   })
-
+  
   # --- Observers ---
-
+  
   # Directory selection logic
   observeEvent(input$output_dir_button, {
     shinyDirChoose(input, 'output_dir_button', roots = volumes, session = session)
   })
-
+  
   observe({
     if (is.list(input$output_dir_button)) {
       tryCatch({
         selected_dir <- parseDirPath(volumes, input$output_dir_button)
         updateTextInput(session, "output_dir", value = selected_dir)
       }, error = function(e) {
-        # Error handled by updating the input text field
         updateTextInput(session, "output_dir", value = "Error selecting directory")
       })
     }
   })
-
+  
   # Main "Run Analysis" for Prosite
   observeEvent(input$run_prosite, {
     loading(TRUE)
     prosite_status_text("Analysis status: running...")
-
-    # Allow UI to update before long computation
     Sys.sleep(0.1)
-
+    
     in_file <- input$file_upload$datapath
     out_dir <- input$output_dir
     out_name <- input$output_name
     out_format <- input$output_format
-
-    # Use our fixed runPsScan which handles caching automatically
-    # User-provided paths are no longer passed from the UI
-
+    
     if (is.null(in_file)) {
       showNotification("Please upload an input file.", type = "warning")
       prosite_status_text("Analysis status: waiting for inputs")
       loading(FALSE)
       return()
     }
-
+    
     if (!dir.exists(out_dir)) dir.create(out_dir, recursive = TRUE)
-
+    
     if (!file.access(out_dir, mode = 2) == 0) {
       showNotification("Output directory is not writable.", type = "error")
       prosite_status_text("Analysis status: error")
       loading(FALSE)
       return()
     }
-
+    
     full_output_path <- file.path(out_dir, out_name)
-
+    
     tryCatch({
       message(sprintf("Starting Prosite analysis. Output will be saved to: %s", full_output_path))
-
       runPsScan(
-        in_file = in_file,
-        out_file = full_output_path,
+        in_file = in_file, 
+        out_file = full_output_path, 
         out_format = out_format
       )
-
-      # Process results
+      
       if (out_format == "gff") {
         prosite_results_data(rtracklayer::import.gff(full_output_path))
       } else if (out_format == "psa") {
         prosite_results_data(readPsa(full_output_path))
       }
-
+      
       prosite_analysis_run(TRUE)
       prosite_params$output_name <- out_name
       prosite_params$output_dir <- out_dir
       prosite_params$output_format <- out_format
-
+      
       output$prosite_results_output <- renderTable({
         req(prosite_results_data())
         as.data.frame(prosite_results_data())
       })
-
+      
       updateTabsetPanel(session, "results_tabs", selected = "results")
       prosite_status_text("Analysis status: completed")
-
+      
     }, error = function(e) {
       showNotification(sprintf("Error during analysis: %s", e$message), type = "error", duration = 10)
       prosite_status_text(sprintf("Analysis status: error - %s", e$message))
     }, finally = {
-      loading(FALSE) # Ensure loading spinner is turned off
+      loading(FALSE)
     })
   })
 
