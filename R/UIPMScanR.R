@@ -50,7 +50,7 @@ buildUi <- function() {
           style = " margin-bottom: 20px;",
           layout_columns(
             imageOutput("logo"),
-            display_card("Description", p(
+            displayCard("Description", p(
               "Explore protein sequences for functional motifs using the Prosite Analysis tool.
           This feature allows you to input a protein sequence either as a raw string or by uploading a FASTA file.
           Once submitted, the app will scan the sequence using the Prosite database to identify known motifs and patterns,
