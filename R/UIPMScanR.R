@@ -50,12 +50,21 @@ buildUi <- function() {
           style = " margin-bottom: 20px;",
           layout_columns(
             imageOutput("logo"),
-            displayCard("Description", p(
+            display_card("Description", p(
               "Explore protein sequences for functional motifs using the Prosite Analysis tool.
-               This feature allows you to input a protein sequence by uploading a FASTA file.
-               Once submitted, the app will scan the sequence using the Prosite database to identify known motifs and patterns.
-               The results are displayed in a detailed table, which can be used for further analysis in
-               the Data Analysis section."
+          This feature allows you to input a protein sequence either as a raw string or by uploading a FASTA file.
+          Once submitted, the app will scan the sequence using the Prosite database to identify known motifs and patterns,
+          such as phosphorylation sites, glycosylation sites, and more. The results are displayed in a detailed table,
+          showing each motif's location, type, and additional attributes. You can then use these results for further analysis in
+          the Data Analysis section, where they can be visualized as heatmaps or pie charts to better understand motif distribution
+          across your sequence.
+          Visualize and analyze protein motif data with the Data Analysis tool. Here, you can either upload your own motif data
+          in GFF or PSA format or use the results generated from the Prosite Analysis. The app processes your data into a binary matrix,
+          where rows represent motifs (e.g., specific patterns or features) and columns represent sequences or proteins.
+          Two interactive heatmaps allow you to explore motif presence across sequences: one with a standard layout and another
+          with a square-shaped layout for better comparison. Additionally, a pie chart visualizes the frequency distribution of different
+          motif types. Use the highlighting feature in the heatmaps to focus on specific motifs or sequences, making it easier to identify
+          patterns and trends in your data."
             ))
           )
         ),
@@ -69,7 +78,7 @@ buildUi <- function() {
               page_sidebar(
                 sidebar = sidebar(
                   width = "25em",
-                  title = "Input settings",
+                  title = "Input load",
                   tags$div(
                     style = "background-color: #f0f0f0; border-radius: 5px; padding: 10px; margin-bottom: 10px; text-align: center;",
                     textOutput("prosite_analysis_status", inline = TRUE)
