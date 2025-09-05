@@ -2,11 +2,11 @@
 title: "PMScanR: An R Package for the large-scale identification, analysis, and visualization of protein motifs"
 author:
   - Jan Pawel Jastrzebski
+  - Damian Czopek
   - Monika Gawronska
   - Wiktor Babis
-  - Damian Czopek
   - Miriana Quaranta
-date: "`r Sys.Date()`" # Or use the specific date: "2 April 2025"
+date: "`r Sys.Date()`"
 output: BiocStyle::html_document
 vignette: >
   %\VignetteIndexEntry{PMScanR: Protein Motif Scanning and Analysis}
@@ -17,31 +17,30 @@ vignette: >
 ```{r setup, include=FALSE}
 # Standard setup chunk
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
-# Ensure necessary libraries are loaded for the vignette build process itself
-# (Users need to install them separately to run the code interactively)
+# Load libraries required for the vignette to build
 library(PMScanR)
 library(ggseqlogo)
-library(seqinr) # Seems to be used in extract_segments example
+library(seqinr)
+library(plotly)
 ```
 
 # 1 Introduction
-
-This vignette provides a description of the `PMScanR` package. Which can be downloaded and loaded by using following functions:
-
-```{r installation-loading, eval=FALSE}
-# Installation command - typically not evaluated in a vignette
-# User should install before using the vignette
-# devtools::install_github("prodakt/PMScanR", force = TRUE)
-
-# Load libraries
-library(PMScanR)
-library(ggseqlogo)
-```
 
 The `PMScanR` package provides large-scale identification, analysis and visualization of protein motifs. The package integrates various methods to facilitate motif identification, characterization, and visualization. It includes functions for running PS-Scan, a PROSITE database tool. Additionally, `PMScanR` supports format conversion to GFF, enhancing downstream analyses such as graphical representation and database integration. The library offers multiple visualization tools, including heatmaps, sequence logos, and pie charts, enabling a deeper understanding of motif distribution and conservation. Through its integration with PROSITE, `PMScanR` provides access to up-to-date motif data.
 
 Proteins play a crucial role in biological processes, with their functions closely related to structure. Protein functions are often associated with the presence of specific motifs, which are short, sometimes repetitive amino acid sequences essential for distinctive molecular interactions or modifications. Most of the existing bioinformatics tools focus mainly on the identification of known motifs and often do not provide during motif extraction, interactive analysis and visualization tools. Moreover, they do not take into account the effect of single variations on an entire domain or protein motif. These limitations highlight the need for a tool that can automate and scale the analysis. To address this, we have developed `PMScanR`, an R-based package. Designed to facilitate and automate the prediction and the evaluation of the effect of single amino acid substitutions on the occurrence of protein motifs on a large scale of both motifs and sequences. However, existing tools lacked the capability to perform comparative analysis of multiple motifs across multiple sequences, a gap that `PMScanR` was particularly developed to fill.
 
+## 1.1 Instalation and loading
+To install this package, start R (version "4.4" or higher) and enter:
+
+```{r installation-loading, eval=FALSE}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("PMScanR")
+
+library(PMScanR)
+```
 # 2 Data manipulation and overall usage
 
 ## 2.1 GUI
@@ -50,8 +49,8 @@ If the user prefers to perform the analysis using a graphical user interface (GU
 If you want you can use shiny to use all the features of the library with user friendly GUI helping to follow all the steps which are contained in this library.
 
 ```{r run-shiny-app, eval=FALSE}
-# Running Shiny apps is interactive, usually set eval=FALSE in vignettes
-# runPMScanRShiny()
+# This command launches the interactive Shiny app
+runPMScanRShiny()
 ```
 
 ## 2.2 Command Line
@@ -64,8 +63,8 @@ The following list of commands provides a step-by-step description of the functi
 
 The first step of the analyses is to establish the working environment through the use of functions:
 
-```{r set-working-directory, eval=FALSE}
-# Setting working directory is user-specific, usually eval=FALSE in vignettes
+```{r set-working-directory}
+# Setting working directory is user-specific,
 # setwd("disc:/your/path/to/working/directory")
 ```
 
@@ -74,205 +73,116 @@ The next step is to load the data for the analysis (more example input files are
 ```{r load-example-fasta}
 # Load example FASTA file included with the package
 fasta_file <- system.file("extdata", "hemoglobins.fasta", package = "PMScanR")
-# Check if file exists (optional, good practice)
-if (!file.exists(fasta_file)) {
-  warning("Example FASTA file not found. Vignette examples may fail.")
-}
 ```
 
 Once the previous steps have been completed, you can move on to the relevant part of the analysis. Below is a description of the function, together with an example of its use.
 
 #### `runPsScan()`
 
-A function that allows ps_scan to be run from the user's operating system, they receive an output file containing information about the protein motifs - used for further analysis. This function requires the user to provide values for three arguments: `in_file=`, `out_format=`, and `out_file=`. These are essential for the function to run. If other arguments use their default values, the function first detects the operating system. A message is displayed to the user, asking for confirmation that the detected operating system is correct (yes/no response). If the detected system is incorrect, the user will be prompted to provide the correct value for the `OS=` argument. The function then proceeds to automatically download necessary files from the PROSITE database to perform the analysis. Users can bypass this automatic download feature by providing their own files, downloaded from the PROSITE website.
+This function runs the ps_scan tool from the user's operating system to find protein motifs. It requires in_file, out_format, and out_file arguments. The function automatically detects the operating system and uses a cached version of the required PROSITE files.
 
-```{r run-ps-scan-auto, eval=FALSE}
-# This requires ps_scan to be installed and configured,
-# and might download data, so often set eval=FALSE in automated checks/vignettes.
-# Set eval=TRUE if you have a small example and ps_scan configured in the build environment.
-# runPsScan(in_file = fasta_file, out_format = 'gff', out_file = "results_pfscan.gff")
+```{r runPsScan, eval=FALSE}
+# This command is not evaluated in the vignette as it requires an external
+# dependency (Perl) and can be time-consuming.
+runPsScan(in_file = fasta_file, out_format = 'gff', out_file = "results_pfscan.gff")
 ```
 
 This function is an automatic form of analysis loading, which searches the sequence for protein motifs present on it, but there is also an alternative option where the user can manually point the path to each of the files and the version of the operation system.
 
-After analysis, which finally searched for protein motifs located on the input file sequence, the two functions below can be used to convert the output files into GFF format:
+After running the scan, the output files can be converted into a GFF-like format for downstream analysis.
 
-#### `read.prosite()`
+#### `readPsa()` and `readProsite()`
 
-A function that enables an input file in prosite format to be converted into a GFF format file, which is a more universal format used for analysis and visualisation such as heatmap or pie chart. 
+These functions are used to parse the output files generated by `runPsScan`. They convert the raw text output into a standardized GFF-like data frame, which is a structured format required by the other analysis and visualization functions in the package.
 
-```{r define-prosite-output-path, eval=FALSE}
-## Path to an actual output file (user specific)
-# motifs_prosite <- "out_Hb_psa.txt"
-```
-
-#### `read.psa()`
-
-A function that enables an input file in psa format to be converted into a GFF format file, which is a more universal format used for analysis and visualisation such as heatmap or pie chart. You can point the path to the output file generated by the actual analysis:
-
-```{r define-psa-output-path, eval=FALSE}
-# Path to an actual output file (user specific)
-# motifs_psa <- "out_Hb_psa.txt"
-```
-
-Or to the file attached in the examples:
+The following example shows how to parse a sample PSA output file that is included with the `PMScanR` package.
 
 ```{r read-example-psa}
-# Load example PSA output file included with the package
+# Load the path to an example PSA output file
 motifs_psa_file <- system.file("extdata", "out_Hb_psa.txt", package = "PMScanR")
 
-# Check if file exists
-if (file.exists(motifs_psa_file)) {
-  psaGFF <- read.psa(motifs_psa_file)
-  # Optional: display structure or head if needed
-  # str(psaGFF)
-  # head(psaGFF)
-} else {
-  warning("Example PSA file not found. Downstream examples may fail.")
-  # Create a placeholder empty data frame if needed for vignette to build
-  psaGFF <- data.frame(seqid=character(), source=character(), type=character(),
-                       start=integer(), end=integer(), score=numeric(),
-                       strand=character(), phase=character(), attributes=character(),
-                       stringsAsFactors=FALSE)
-}
+# Use readPsa to convert the file to a GFF-like data frame
+gff_data <- readPsa(motifs_psa_file)
 
+# Display the first few rows of the resulting data frame
+head(gff_data)
 ```
 
 Once the analysis output files have been converted to GFF format, the next step is to create the matrix from this file needed for further visualisation in the form of heatmap generation. That can me make by using:
 
 #### `gff2matrix()`
 
-Function used when the user receives a file in GFF format. this function enables the creation of a matrix of the occurrence from a GFF file of all the motifs in the entire sequence (or only those selected by the user), which contains 0/1 digits so even for very large-scale analyses it should not take up much disk space and is easy to visualise and analyse in any external program in which tables can be imported as calculation sheets.
+This function converts the GFF-like data frame into a binary motif-occurrence matrix. This matrix format is compact and is the required input for the heatmap visualization functions. Each row represents a unique motif, each column represents a sequence, and a `1` indicates the presence of that motif in that sequence.
 
 ```{r convert-gff-to-matrix}
-# 'psaGFF' is the GFF-like data frame from PSA conversion
-# Check if psaGFF has data before proceeding
-if (nrow(psaGFF) > 0) {
- mom <- gff2matrix(psaGFF)
- # Display the first few rows of the Motif Occurrence Matrix (MOM)
- head(mom)
-} else {
- warning("Input GFF data is empty. Cannot create matrix.")
- mom <- matrix(nrow=0, ncol=0) # Placeholder
-}
+# The 'gff_data' is used from the previous chunk
+motif_matrix <- gff2matrix(gff_data)
+
+# Display the first few rows of the resulting matrix
+head(motif_matrix)
 ```
 
 After using this function a heatmap can be generate by using:
 
-#### `matrix2hm()`
+#### `matrix2hm()` and `matrixToSquareHeatmap()`
 
-Once the matrix of the occurrence is obtained, this function is used to generate a heatmap, which is one of the options for visualising user data. This function provides the ability to adjust the plot size - this facilitates comparative analysis. By using the plotly library, the plots are interactive, allowing both extensive manipulation of the plot area, but also precise identification of individual results. The code shows an example of usage for creating a heatmap using `matrix2hm()` - from PSA-converted Matrix: The `matrix2hm()` function (assumed from `PMScanR`) generates a heatmap from a motif occurrence matrix.
+These functions generate interactive heatmaps from the motif-occurrence matrix, which is an effective way to visualize the presence or absence of motifs across many sequences simultaneously. `matrix2hm` creates a standard rectangular heatmap, while `matrixToSquareHeatmap` creates one with a square aspect ratio, which can be useful for comparing motifs.
 
-```{r generate-heatmap-1, fig.show='hold'}
-# This example creates a heatmap from the MOM derived from PSA-converted GFF data ('mom').
-# Check if mom has data
-if (nrow(mom) > 0 && ncol(mom) > 0) {
-  hm1 <- matrix2hm(x = colnames(mom), # 'x' argument specifies columns (motifs)
-                   y = row.names(mom), # 'y' argument specifies rows (sequences)
-                   input = mom)        # 'input' argument takes the MOM
-  # Display the heatmap 'hm1' (might require explicit print for plotly in vignettes)
-  print(hm1)
-} else {
-  warning("Motif matrix is empty. Cannot generate heatmap.")
-}
+```{r generate-heatmap-1}
+# Generate a standard heatmap from the motif_matrix
+heatmap1 <- matrix2hm(input = motif_matrix)
+heatmap1
 ```
 
-#### `matrix2hm_2()`
-
-It’s also the function used after receiving the matrix of the occurrence to generate the heatmap, but differing from the above heatmap dimension to allow easier identification of individual variations. By using the plotly library, the plots are interactive, allowing both extensive manipulation of the plot area, but also precise identification of individual results. The `matrix2hm_2()` function (assumed from `PMScanR`) is another function for heatmap generation, possibly with a different style or options compared to `matrix2hm()`.
-
-```{r generate-heatmap-2, fig.show='hold'}
-# Example of usage for creating a heatmap using matrix2hm_2() - from PSA-converted Matrix:
-# This example uses 'matrix2hm_2()' to visualize the MOM from PSA-converted data ('mom').
-# Check if mom has data
-if (nrow(mom) > 0 && ncol(mom) > 0) {
-  hm2 <- matrix2hm_2(x = colnames(mom),
-                     y = row.names(mom),
-                     input = mom)
-  # Display heatmap 'hm2'
-  print(hm2)
-} else {
-  warning("Motif matrix is empty. Cannot generate heatmap 2.")
-}
+```{r generate-heatmap-2, eval=FALSE}
+# Generate a square heatmap from the motif_matrix
+heatmap2 <- matrixToSquareHeatmap(input = motif_matrix)
+heatmap2
 ```
 
 Heatmap is the first option to visualise the data (shown above), the next option is to generate a seqlogo, after preparing the protein motifs for their generation using the functions described below:
 
-#### `extract_segments()`
+#### `extractSegments()` and `extractProteinMotifs()`
 
-Function used for another type of data visualisation which is a seqlogo generated based on the frequency of occurrence of individual amino acid residues in a selected part of the sequence, that is the defined region in selected sequences. Function used for a fasta format input file. This function extracts the protein motifs present on the sequence thus preparing the file for seqlogo creation.
+These functions are used to prepare data for sequence logo visualizations. A sequence logo provides a graphical representation of the conservation of nucleotides or amino acids in a set of aligned sequences.
+
+`extractSegments` is used to pull out a specific region (e.g., from position 10 to 20) from a list of raw sequences. `extractProteinMotifs` is used to extract all occurrences of a specific, defined motif from a PSA scan result file.
+
+The example below demonstrates how to extract a segment from our sample hemoglobin sequences and generate a logo.
 
 ```{r extract-segments-from-fasta, fig.show='hold'}
-# Starting position of the region
-from_pos <- 10
-# Ending position of the region
-to_pos <- 20
+# Read the FASTA file into a list of sequences
+sequences <- seqinr::read.fasta(file = fasta_file, seqtype = "AA")
 
-# Read the FASTA file containing protein sequences (loaded earlier)
-# Check if fasta_file path is valid and file exists
-if (exists("fasta_file") && file.exists(fasta_file)) {
-  seq <- seqinr::read.fasta(file = fasta_file, seqtype = "AA")
-  # Extract segments from position 'from_pos' to 'to_pos' for all sequences
-  # Ensure the function exists and seq has content
-  if (length(seq) > 0) {
-     seqShort <- extract_segments(seq = seq, from = from_pos, to = to_pos)
-     # Check if seqShort has content before plotting
-     if (length(unlist(seqShort)) > 0) {
-        ggseqlogo::ggseqlogo(unlist(seqShort), seq_type = "aa")
-     } else {
-        warning("No segments extracted, cannot generate seqlogo.")
-     }
-  } else {
-     warning("FASTA sequence data is empty.")
-  }
-} else {
-  warning("Example FASTA file path not found or invalid.")
-}
+# Extract segments from position 10 to 20 from all sequences
+segments <- extractSegments(sequences, from = 10, to = 20)
 
+# Generate the sequence logo from the extracted segments
+ggseqlogo::ggseqlogo(unlist(segments), seq_type = "aa")
 ```
 
-#### `extract_protein_motifs()`
+### `extractProteinMotifs()`
 
-Function used for another type of data visualisation which is a seqlogo generated based on the frequency of occurrence of individual amino acid residues in a selected part of the sequence, that is the defined region in selected sequences. The function used for the input file in PSA format, which extracts the protein motifs present on the sequence in the file, thus preparing them for data visualisation using seqlogo. Example of usage for creating sequence logo for a selected region from PSA:
-
-Firstly start with defining the start and end position of the region you want to visualize as a sequence logo. *(Note: Example doesn't define start/end, it extracts motifs from PSA)*
+This function is used to extract all protein motifs belonging to specific PROSITE IDs from a PSA-formatted file. It returns a list where each element is named by a PROSITE ID (e.g., "PS00223") and contains all the sequence instances found for that motif. This is used for sequence logo visualizations of specific motifs.
 
 ```{r extract-motifs-from-psa, fig.show='hold'}
-# Check if motifs_psa_file exists
-if (exists("motifs_psa_file") && file.exists(motifs_psa_file)) {
-  protein_motifs_psa <- extract_protein_motifs(motifs_psa_file)
-  # Check results before plotting
-  if (length(protein_motifs_psa) >= 1) {
-     ggseqlogo::ggseqlogo(protein_motifs_psa[[1]], seq_type = 'aa')
-  } else {
-     warning("No motifs extracted or result format unexpected (expected list).")
-  }
-  if (length(protein_motifs_psa) >= 5) {
-     ggseqlogo::ggseqlogo(protein_motifs_psa[[5]], seq_type = 'aa')
-  } else {
-     warning("Fewer than 5 motifs extracted.")
-  }
-} else {
-  warning("Example PSA file path not found or invalid.")
-}
+# Extract all protein motifs into a list
+protein_motifs <- extractProteinMotifs(motifs_psa_file)
 
+# Generate the sequence logo from the extracted protein motifs
+ggseqlogo::ggseqlogo(protein_motifs$PS60007, seq_type='aa') # Sequence logo for motif 'PS60007' (example motif ID)
+ggseqlogo::ggseqlogo(protein_motifs[1], seq_type='aa')       # Sequence logo for the first motif in the list
+ggseqlogo::ggseqlogo(protein_motifs[5], seq_type='aa')       # Sequence logo for the fifth motif in the list
 ```
 
 #### `freqPie()`
 
-There is also a visualization that generates a pie chart of the frequency of each motif type from the GFF format file containing information about the motif names and their locations. The pie chart shows the percentage of each motif/protein motif type in the analyzed dataset. This function uses the `ggplot2` library. The pie chart allows a quick assessment of motif frequencies. If you want to run a pie chart visualization use the function named `freqPie()`.
+This function generates a pie chart to visualize the frequency distribution of each motif type found in the analysis. It takes the GFF-like data frame as input and provides a quick, high-level overview of which motifs are most common in the dataset.
 
-```{r generate-pie-chart, eval=FALSE, fig.show='hold'}
-# Example usage would require the psaGFF object from earlier
-# Check if psaGFF has data
-# if (exists("psaGFF") && nrow(psaGFF) > 0) {
-#   # Assuming freqPie takes the GFF data frame as input
-#   pie_chart <- freqPie(psaGFF)
-#   print(pie_chart)
-# } else {
-#   warning("GFF data is empty. Cannot generate pie chart.")
-# }
-# Setting eval=FALSE as freqPie function definition/usage isn't fully clear from text
+```{r generate-pie-chart, eval=FALSE}
+# The 'gff_data'  from a previous chunk is used here
+pie_chart <- freqPie(gff_data)
+pie_chart
 ```
 
 # References

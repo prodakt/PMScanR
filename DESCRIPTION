@@ -1,6 +1,6 @@
 Package: PMScanR
 Title: Protein motifs analysis and visualisation
-Version: 0.99.3
+Version: 0.99.4
 Authors@R: c(
     person(given = "Jan Pawel",
            family = "Jastrzebski",
@@ -28,18 +28,18 @@ Authors@R: c(
            email = "dcwmpl@gmail.com",
 		   comment = c(ORCID = "0009-0005-3471-4866")))
 Description: Provides tools for large-scale protein motif analysis and visualization in R. PMScanR facilitates the identification of motifs using external tools like PROSITE's ps_scan (handling necessary file downloads and execution) and enables downstream analysis of results. Key features include parsing scan outputs, converting formats (e.g., to GFF-like structures), generating motif occurrence matrices, and creating informative visualizations such as heatmaps, sequence logos (via seqLogo/ggseqlogo). The package also offers an optional Shiny-based graphical user interface for interactive analysis, aiming to streamline the process of exploring motif patterns across multiple protein sequences.
+URL: https://github.com/prodakt/PMScanR
+BugReports: https://github.com/prodakt/PMScanR/issues
 License: GPL-3
 Encoding: UTF-8
 LazyData: false
 RoxygenNote: 7.3.2
 VignetteBuilder: knitr
 biocViews: MotifDiscovery, Visualization
-Depends:
 Imports:
     dplyr (>= 1.1.0),
     shiny,
     bslib,
-    bsicons,
     shinyFiles,
     plotly,
     rtracklayer,
@@ -50,9 +50,14 @@ Imports:
     magrittr,
     rlang,
     utils,
-	stringr
+    stringr,
+	BiocFileCache
 Suggests: 
     BiocStyle,
     knitr,
     seqLogo,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
+SystemRequirements: 
+	Perl
+Config/testthat/edition: 3

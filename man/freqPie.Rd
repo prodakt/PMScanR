@@ -2,20 +2,21 @@
 % Please edit documentation in R/freqPie.R
 \name{freqPie}
 \alias{freqPie}
-\title{Create a pie chart from a GFF file which showing the distribution of protein motifs in the 'Name' column}
+\title{Create a pie chart showing protein motif distribution}
 \usage{
 freqPie(data)
 }
 \arguments{
-\item{data}{A file in GFF format containing a column named 'Name' with the names of each protein motifs}
+\item{data}{A data frame in GFF format containing a column named 'Name'
+with the names of each protein motif.}
 }
 \value{
-A pie chart in ggplot which displays the percentage distribution of each protein motifs
-        in the `Name` column, with labels showing the protein motifs name and its corresponding percentage.
+A ggplot object representing the pie chart.
 }
 \description{
-This function calculates the number of occurrences and percentages for each protein motifs in the `Name` column.
-It then creates a pie chart using `ggplot2` to visualize the distribution of these protein motifs.
+This function calculates the occurrences and percentages for each protein
+motif in the 'Name' column of a GFF-like data frame. It then creates a
+pie chart using `ggplot2` to visualize the distribution.
 }
 \examples{
 # Create sample data frame similar to parsed GFF output
@@ -28,13 +29,11 @@ sample_data <- data.frame(
   score = runif(10),
   strand = sample(c("+", "-"), 10, replace = TRUE),
   phase = sample(0:2, 10, replace = TRUE),
-  # Ensure the 'Name' column exists and has some repetition
   Name = sample(c("Zinc_finger", "EGF_domain", "Kinase_domain"), 10, replace = TRUE)
 )
 
-# Generate the pie chart using the function
-  motif_pie_chart <- freqPie(sample_data)
-  # To display the chart (usually not done directly in examples unless needed)
-  # print(motif_pie_chart)
+# Generate the pie chart
+motif_pie_chart <- freqPie(sample_data)
+# print(motif_pie_chart)
 
 }

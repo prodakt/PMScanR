@@ -2,13 +2,27 @@
 % Please edit documentation in R/app.R
 \name{runPMScanRShiny}
 \alias{runPMScanRShiny}
-\title{Launch the PMScanR Shiny app}
+\title{Launch the PMScanR Shiny Application}
 \usage{
 runPMScanRShiny()
 }
 \value{
-Launches the GUI for users not familiar with R and those who prefer graphical interface.
+This function is called for its side effect of launching the Shiny
+  application and does not return a value.
 }
 \description{
-Launch the PMScanR Shiny app
+Calling this function will launch the interactive graphical user interface
+for the PMScanR package.
+}
+\details{
+This function sets a higher file upload size limit for Shiny and then
+launches the application, which is built using an internal UI function
+(`buildUi`) and server function (`buildServer`).
+}
+\examples{
+if (interactive()) {
+  # To run the app, simply call the function
+  runPMScanRShiny()
+}
+
 }

@@ -2,46 +2,50 @@
 % Please edit documentation in R/runPsScan.R
 \name{runPsScan}
 \alias{runPsScan}
-\title{Run PS-Scan}
+\title{Run PS-Scan with Caching and Improved Execution}
 \usage{
-runPsScan(
-  in_file,
-  out_file,
-  out_format,
-  ps_scan = NULL,
-  patterns_dat = NULL,
-  pf_scan = NULL,
-  OS = NULL
-)
+runPsScan(in_file, out_file, out_format, os = NULL)
 }
 \arguments{
-\item{in_file}{Input file containing protein sequences.}
+\item{in_file}{Path to the input file containing protein sequences.}
 
-\item{out_file}{A character string specifying the path to the output file where results will be saved.}
+\item{out_file}{Path for the output file where results will be saved.}
 
-\item{out_format}{Specifying the output format (e.g., "fasta").}
+\item{out_format}{The output format for ps_scan (e.g., 'gff', 'psa').}
 
-\item{ps_scan}{A character string specifying the path to the PS-Scan Perl script. If NULL, it will be downloaded.}
-
-\item{patterns_dat}{A character string specifying the path to the PROSITE patterns database file. If NULL, it will be downloaded.
-This file can be downloaded from: https://ftp.expasy.org/databases/prosite/}
-
-\item{pf_scan}{A character string specifying the path to the pfscan executable. If NULL, it will be downloaded and extracted based on OS (except for MAC).}
-
-\item{OS}{Operating system ("WIN", "LINUX", "MAC"). If NULL, it will be detected automatically.}
+\item{os}{The operating system ('WIN', 'LINUX', 'MAC'). If NULL, it is
+detected automatically.}
 }
 \value{
-Writes the results of the PS-Scan analysis to the specified output file.
+Invisibly returns the exit status of the ps_scan command. The primary
+  output is the result file created at `out_file`.
 }
 \description{
-Extended function to run PS-Scan with automatic OS detection, file downloading, extraction, and improved error handling.
+This function runs the PROSITE ps_scan tool. It handles the downloading and
+caching of required executables and databases using BiocFileCache, detects
+the operating system, and executes the scan in a robust manner.
 }
 \examples{
-{
+# This example is resource-intensive and requires an internet connection
+# on first run to cache necessary files.
 if (interactive()) {
-  in_file <- system.file("extdata", "hemoglobins.fasta", package = "PMScanR")
+  # Create a dummy input file for the example
+  fasta_content <- c(">sp|P02025|HEMA_MESAU Hemoglobin subunit alpha",
+                     "MVLSAADKGNVKAAWGKVGGHAAEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHG",
+                     "KKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFT",
+                     "PAVHASLDKFLASVSTVLTSKYR")
+  in_file <- tempfile(fileext = ".fasta")
+  writeLines(fasta_content, in_file)
+
   out_file <- tempfile(fileext = ".gff")
+
+  # The first run will download and cache ~100MB of data.
+  # Subsequent runs will use the cached files.
   runPsScan(in_file = in_file, out_format = 'gff', out_file = out_file)
+
+  # Clean up temporary files
+  unlink(in_file)
+  unlink(out_file)
 }
-}
+
 }
