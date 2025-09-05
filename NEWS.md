@@ -1,3 +1,8 @@
+# PMScanR 0.99.5
+**Date:** 2025-09-05
+
+Fixes a merge issue between branches without adding changes to the package.
+
 # PMScanR 0.99.4
 
 **Date:** 2025-07-17
