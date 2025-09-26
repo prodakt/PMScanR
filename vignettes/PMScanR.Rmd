@@ -14,7 +14,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=TRUE}
 # Standard setup chunk
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
 # Load libraries required for the vignette to build
@@ -179,10 +179,10 @@ ggseqlogo::ggseqlogo(protein_motifs[5], seq_type='aa')       # Sequence logo for
 
 This function generates a pie chart to visualize the frequency distribution of each motif type found in the analysis. It takes the GFF-like data frame as input and provides a quick, high-level overview of which motifs are most common in the dataset.
 
-```{r generate-pie-chart, eval=FALSE}
+```{r generate-pie-chart, eval=TRUE}
 # The 'gff_data'  from a previous chunk is used here
 pie_chart <- freqPie(gff_data)
-pie_chart
+print(pie_chart)
 ```
 
 # References

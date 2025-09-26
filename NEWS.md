@@ -1,3 +1,7 @@
+# PMScanR 0.99.6
+**Date:** 2025-09-26
+This version includes minor changes in Vignette to align with Bioconductor submission standards.
+
 # PMScanR 0.99.5
 **Date:** 2025-09-05
 
