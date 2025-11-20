@@ -77,7 +77,8 @@ gff_file <- system.file("extdata", "out_Hb_gff.txt", package = "PMScanR")
 
 # 3. Load example PSA output
 psa_file <- system.file("extdata", "out_Hb_psa.txt", package = "PMScanR")
-
+setwd("F:/Dragoni/Projekty Git/test/PMScanR/inst/extdata/")
+psa_file <- ""
 # 4. Load example PROSITE text output (Scan format)
 prosite_txt_file <- system.file("extdata", "out_Hb_PROSITE.txt", package = "PMScanR")
 ```
@@ -153,6 +154,7 @@ These functions generate interactive heatmaps from the motif-occurrence matrix. 
 
 ```{r generate-heatmap-1}
 # Generate a standard heatmap from the motif_matrix
+#occurence plot zmienić nazwę na matrix2OP
 heatmap1 <- matrix2hm(input = motif_matrix)
 heatmap1
 ```
@@ -176,17 +178,17 @@ print(pie_chart)
 
 To generate sequence logos, you can extract motif sequences directly from your loaded data.
 
-#### Method 1: From loaded Data Frame (Recommended)
+#### Method 1: From loaded Data Frame
 Since the parsed data frame (from GFF, PSA, or TXT) already contains the motif sequences, you can easily split them by motif ID and generate a logo.
 
 ```{r extract-motifs-from-df, fig.show='hold'}
 # Extract sequences and IDs from the data frame
 motif_sequences <- as.character(gff_data$Sequence)
-motif_ids <- as.character(gff_data$Name) # or gff_data$type depending on preference
+motif_ids <- as.character(gff_data$type) # or gff_data$type depending on preference
 
 # Create a list of motifs (key = Motif ID, value = Sequences)
 protein_motifs_from_df <- split(motif_sequences, motif_ids)
-
+head(protein_motifs_from_df)
 # Generate SeqLogo for a specific motif (e.g., MYRISTYL)
 if ("MYRISTYL" %in% names(protein_motifs_from_df)) {
   ggseqlogo::ggseqlogo(protein_motifs_from_df$MYRISTYL, seq_type='aa')
