@@ -6,7 +6,7 @@
 #'
 #' @param in_file Path to the input file containing protein sequences.
 #' @param out_file Path for the output file where results will be saved.
-#' @param out_format The output format for ps_scan (e.g., 'gff', 'psa').
+#' @param out_format The output format for ps_scan (e.g., 'scan' 'gff', 'psa').
 #' @param os The operating system ('WIN', 'LINUX', 'MAC'). If NULL, it is
 #'   detected automatically.
 #'
@@ -38,7 +38,7 @@
 #' @importFrom BiocFileCache BiocFileCache bfcrpath bfcadd bfcquery
 #' @importFrom utils untar unzip
 #' @export
-runPsScan <- function(in_file, out_file, out_format, os = NULL) {
+runPsScan <- function(in_file, out_file, out_format = "scan", os = NULL) {
     # 1. Detect OS if not provided
     if (is.null(os)) {
         os <- detectOs()
