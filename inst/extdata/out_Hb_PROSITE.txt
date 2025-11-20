@@ -1,0 +1,228 @@
+>NP_000508.1 : PS00005 PKC_PHOSPHO_SITE Protein kinase C phosphorylation site.
+      39 - 41  TtK
+    138 - 140  TsK
+>NP_000508.1 : PS00006 CK2_PHOSPHO_SITE Casein kinase II phosphorylation site.
+        4 - 7  SpaD
+>NP_000508.1 : PS00008 MYRISTYL N-myristoylation site.
+      19 - 24  GAhaGE
+>NP_000508.1 : PS00009 AMIDATION Amidation site.
+      59 - 62  hGKK
+>NP_000508.1 : PS01033 GLOBIN Globin domain profile.
+      2 - 142  VLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHF---DLSHGSAQVKG L=0
+ HGKKVADALTNAVAHV---DDMPNALSALSDLHAhKLRVDPVNFKLLSHCLLVTLAAHLP
+ AEFTPAVHASLDKFLASVSTVLTSKYR
+>NP_000549.1 : PS00005 PKC_PHOSPHO_SITE Protein kinase C phosphorylation site.
+      39 - 41  TtK
+    138 - 140  TsK
+>NP_000549.1 : PS00006 CK2_PHOSPHO_SITE Casein kinase II phosphorylation site.
+        4 - 7  SpaD
+>NP_000549.1 : PS00008 MYRISTYL N-myristoylation site.
+      19 - 24  GAhaGE
+>NP_000549.1 : PS00009 AMIDATION Amidation site.
+      59 - 62  hGKK
+>NP_000549.1 : PS01033 GLOBIN Globin domain profile.
+      2 - 142  VLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHF---DLSHGSAQVKG L=0
+ HGKKVADALTNAVAHV---DDMPNALSALSDLHAhKLRVDPVNFKLLSHCLLVTLAAHLP
+ AEFTPAVHASLDKFLASVSTVLTSKYR
+>NP_000550.2 : PS00001 ASN_GLYCOSYLATION N-glycosylation site.
+      48 - 51  NLSS
+>NP_000550.2 : PS00005 PKC_PHOSPHO_SITE Protein kinase C phosphorylation site.
+      39 - 41  TqR
+    143 - 145  SsR
+>NP_000550.2 : PS00006 CK2_PHOSPHO_SITE Casein kinase II phosphorylation site.
+        5 - 8  TeeD
+      71 - 74  SlgD
+>NP_000550.2 : PS00008 MYRISTYL N-myristoylation site.
+      47 - 52  GNlsSA
+>NP_000550.2 : PS00009 AMIDATION Amidation site.
+      64 - 67  hGKK
+>NP_000550.2 : PS01033 GLOBIN Globin domain profile.
+      3 - 147  HFTEEDKATITSLWGKV--NVEDAGGETLGRLLVVYPWTQRFFDSFGNlssASAIMGNPK L=0
+ VKAHGKKVLTSLGDATKHL---DDLKGTFAQLSELHCdKLHVDPENFKLLGNVLVTVLAI
+ HFGKEFTPEVQASWQKMVTAVASALSSRYH
+>NP_000175.1 : PS00001 ASN_GLYCOSYLATION N-glycosylation site.
+      48 - 51  NLSS
+>NP_000175.1 : PS00005 PKC_PHOSPHO_SITE Protein kinase C phosphorylation site.
+      39 - 41  TqR
+    143 - 145  SsR
+>NP_000175.1 : PS00006 CK2_PHOSPHO_SITE Casein kinase II phosphorylation site.
+        5 - 8  TeeD
+      71 - 74  SlgD
+>NP_000175.1 : PS00008 MYRISTYL N-myristoylation site.
+      47 - 52  GNlsSA
+    137 - 142  GVasAL
+>NP_000175.1 : PS00009 AMIDATION Amidation site.
+      64 - 67  hGKK
+>NP_000175.1 : PS01033 GLOBIN Globin domain profile.
+      3 - 147  HFTEEDKATITSLWGKV--NVEDAGGETLGRLLVVYPWTQRFFDSFGNlssASAIMGNPK L=0
+ VKAHGKKVLTSLGDAIKHL---DDLKGTFAQLSELHCdKLHVDPENFKLLGNVLVTVLAI
+ HFGKEFTPEVQASWQKMVTGVASALSSRYH
+>NP_001305150.1 : PS00006 CK2_PHOSPHO_SITE Casein kinase II phosphorylation site.
+      33 - 36  SeeD
+      39 - 42  TvvE
+>NP_001350615.1 : PS00001 ASN_GLYCOSYLATION N-glycosylation site.
+    362 - 365  NETC
+    457 - 460  NKST
+>NP_001350615.1 : PS00004 CAMP_PHOSPHO_SITE cAMP- and cGMP-dependent protein kinase phosphorylation site.
+        6 - 9  KKqT
+>NP_001350615.1 : PS00005 PKC_PHOSPHO_SITE Protein kinase C phosphorylation site.
+        4 - 6  SgK
+      74 - 76  SgK
+    135 - 137  SkK
+    172 - 174  TtK
+    258 - 260  TgK
+    312 - 314  SfK
+    342 - 344  TgK
+    366 - 368  TvK
+    464 - 466  TkK
+    483 - 485  TqR
+>NP_001350615.1 : PS00006 CK2_PHOSPHO_SITE Casein kinase II phosphorylation site.
+      18 - 21  SseE
+    152 - 155  TgeE
+    167 - 170  TkfE
+    177 - 180  TlmD
+    208 - 211  SrgE
+    371 - 374  TlhD
+    442 - 445  TvsE
+    459 - 462  StgE
+>NP_001350615.1 : PS00008 MYRISTYL N-myristoylation site.
+    194 - 199  GAaqAD
+    336 - 341  GSgfCI
+    401 - 406  GCifCG
+    507 - 512  GStiAA
+>NP_001350615.1 : PS00009 AMIDATION Amidation site.
+        4 - 7  sGKK
+>NP_001350615.1 : PS00017 ATP_GTP_A ATP/GTP-binding site motif A (P-loop).
+    103 - 110  GhvdaGKS
+>NP_001350615.1 : PS51722 G_TR_2 Translational (tr)-type guanine nucleotide-binding (G) domain profile.
+     94 - 318  KQLLNLVVIGHVDAGKSTLMGHMLYLLGNINKRTMhkyeqeskkagkasFAYAWVLDETG L=0
+ EERERGVTMDVGMTKFETTTKVITLMDAPGHKDFIPNMITGAAQADVAVLVVDASRGEfe
+ agfetGGQTREHGLLVRSLGVTqLAVAVNKMDQVNWQQERFQEITGKLGH----FLKQAG
+ FKESDVGF---------IPTSGLSGenlitrsqsseltkwYKGLCLLEQIDSFKPPQR
+>NP_001138679.1 : PS00001 ASN_GLYCOSYLATION N-glycosylation site.
+    189 - 192  NSSV
+    295 - 298  NNSL
+    302 - 305  NNSL
+    332 - 335  NMTV
+    339 - 342  NASK
+    348 - 351  NVSL
+    358 - 361  NHTF
+    387 - 390  NISQ
+    399 - 402  NQSS
+    451 - 454  NLSL
+>NP_001138679.1 : PS00004 CAMP_PHOSPHO_SITE cAMP- and cGMP-dependent protein kinase phosphorylation site.
+    470 - 473  KKeS
+    577 - 580  KRrT
+>NP_001138679.1 : PS00005 PKC_PHOSPHO_SITE Protein kinase C phosphorylation site.
+      43 - 45  SrR
+    127 - 129  SlK
+    138 - 140  TgK
+    171 - 173  SsK
+    206 - 208  TrK
+    209 - 211  SeK
+    215 - 217  ScK
+    241 - 243  SvR
+    355 - 357  SaK
+    360 - 362  TfK
+    514 - 516  SsR
+    521 - 523  SsK
+    543 - 545  TrK
+    575 - 577  ScK
+>NP_001138679.1 : PS00006 CK2_PHOSPHO_SITE Casein kinase II phosphorylation site.
+      25 - 28  SveD
+      43 - 46  SrrD
+      74 - 77  SgfD
+      83 - 86  SclD
+    127 - 130  SlkD
+    148 - 151  SssE
+    245 - 248  SstD
+    272 - 275  SkdD
+    304 - 307  SlsD
+    328 - 331  SslE
+    350 - 353  SlvE
+    369 - 372  SqcE
+    375 - 378  SltE
+    393 - 396  TlsD
+    404 - 407  SftD
+    453 - 456  SlsE
+    477 - 480  SlsE
+    488 - 491  SniD
+    608 - 611  TpfD
+    616 - 619  SpdD
+>NP_001138679.1 : PS00008 MYRISTYL N-myristoylation site.
+    144 - 149  GVlfSS
+    185 - 190  GLshNS
+    291 - 296  GTtpNN
+    433 - 438  GSlsSL
+    485 - 490  GIdsNI
+>NP_599030.1 : PS00001 ASN_GLYCOSYLATION N-glycosylation site.
+    177 - 180  NATT
+>NP_599030.1 : PS00005 PKC_PHOSPHO_SITE Protein kinase C phosphorylation site.
+      55 - 57  SaK
+    147 - 149  TqR
+>NP_599030.1 : PS00006 CK2_PHOSPHO_SITE Casein kinase II phosphorylation site.
+      20 - 23  SeaE
+      91 - 94  TvvE
+>NP_599030.1 : PS00008 MYRISTYL N-myristoylation site.
+      87 - 92  GAlnTV
+    156 - 161  GLiySH
+>NP_599030.1 : PS01033 GLOBIN Globin domain profile.
+     18 - 167  ELSEAERKAVQAMWARLYANCEDVGVAILVRFFVNFPSAKQYFSQFKHmedPLEMERSPQ L=0
+ LRKHACRVMGALNTVVENLHDPDKVSSVLALVGKAHA-LkHkVEPVYFKILSGVILEVVA
+ EEFASDFPPETQRAWAKLRGLIYSHVTAAYK
+>NP_599030.1 : PS60007 TYR_PHOSPHO_SITE_2 Tyrosine kinase phosphorylation site 2.
+    116 - 123  KhkvEpvY
+>NP_071441.1 : PS00005 PKC_PHOSPHO_SITE Protein kinase C phosphorylation site.
+      13 - 15  TlR
+    303 - 305  TmR
+>NP_071441.1 : PS00006 CK2_PHOSPHO_SITE Casein kinase II phosphorylation site.
+    242 - 245  SefE
+>NP_071441.1 : PS00008 MYRISTYL N-myristoylation site.
+      18 - 23  GGpgAG
+      81 - 86  GGgaAF
+>NP_071441.1 : PS00009 AMIDATION Amidation site.
+    128 - 131  vGRR
+>NP_071441.1 : PS00029 LEUCINE_ZIPPER Leucine zipper pattern.
+     96 - 117  LssqaskLgeqmadLhlynqkL
+>NP_001305067.1 : PS00001 ASN_GLYCOSYLATION N-glycosylation site.
+    125 - 128  NLTT
+    148 - 151  NHSE
+    152 - 155  NATA
+    182 - 185  NYSQ
+>NP_001305067.1 : PS00005 PKC_PHOSPHO_SITE Protein kinase C phosphorylation site.
+      47 - 49  SvR
+    141 - 143  TaK
+    154 - 156  TaK
+    264 - 266  TpK
+>NP_001305067.1 : PS00006 CK2_PHOSPHO_SITE Casein kinase II phosphorylation site.
+      21 - 24  SgnD
+      60 - 63  TegD
+      67 - 70  TlnD
+    154 - 157  TakD
+    184 - 187  SqvD
+    198 - 201  SvnE
+    258 - 261  TvpE
+    335 - 338  SiqD
+    343 - 346  TiaE
+>NP_001305067.1 : PS00007 TYR_PHOSPHO_SITE_1 Tyrosine kinase phosphorylation site 1.
+    232 - 239  KftDhlkY
+    286 - 293  KyqEdtcY
+>NP_001305067.1 : PS00008 MYRISTYL N-myristoylation site.
+       5 - 10  GAviAL
+      14 - 19  GQlfAV
+      22 - 27  GNdvTD
+    297 - 302  GSafAV
+>NP_001305067.1 : PS00009 AMIDATION Amidation site.
+    166 - 169  vGKK
+>NP_001305067.1 : PS50240 TRYPSIN_DOM Serine proteases, trypsin domain profile.
+    103 - 345  ILGGHLDAKGSFPWQAKMVSHH-NLTTGATLINEQWLLTTAKNLFLNHsenaTAKDIAPT L=0
+ LTLYV-----GKKQLVEIEKVVLHPNYS----QVDIGLIKLKQKVSVNERVMPICLP-SK
+ DYAEVGRVGYVSGWGRNAN-FKFTDHLKYVMLPVADQDQCirhyegstvpekktpkSPVG
+ VQPILNEHTFCAGMSKYQEDTCYGDAGSAFAVHdlEEDTWYATGILSFDKSCAVAEY-GV
+ YVKVTSIQDWVQKTIA
+>NP_001305067.1 : PS50923 SUSHI Sushi/CCP/SCR domain profile.
+      31 - 88  DGCPKPPE---------IAHGYVE-HSVRYQCKNYYKLRteGDGVYTLNDKKQWINkavg L=0
+ dKLPECEA
+>NP_001305067.1 : PS60007 TYR_PHOSPHO_SITE_2 Tyrosine kinase phosphorylation site 2.
+      59 - 66  RtegDgvY
+    286 - 293  KyqeDtcY
