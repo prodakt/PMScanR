@@ -114,7 +114,7 @@ runPsScan <- function(in_file,
     )
 
     # 6. Execute
-    executeCommand(args = cmd_args)
+    executeCommand(args = cmd_args, out_file = out_file_clean)
 }
 
 #' Check if Perl is available
@@ -236,42 +236,42 @@ constructCommand <- function(ps_scan_script,
                              input_fasta,
                              output_format,
                              pfscan_exec,
-                             output_file = NULL) {
-    args <- c(ps_scan_script,
-              "-d",
-              patterns_db,
-              "-o",
-              output_format,
-              input_fasta)
+                             output_file) {
+  args <- c(ps_scan_script,
+            "-d",
+            patterns_db,
+            input_fasta,
+            "-o",
+            output_format)
 
-    if (is.null(pfscan_exec)) {
-        args <- c(args, "--r")
-    } else {
-        args <- c(args, "--pfscan", pfscan_exec)
-    }
+  if (is.null(pfscan_exec)) {
+    args <- c(args, "--r")
+  } else {
+    args <- c(args, "--pfscan", pfscan_exec)
+  }
 
-    return(args)
+  return(args)
 }
 
 #' Execute the PS-Scan Command using system2
 #' @param args A character vector of command arguments.
+#' @param out_file Path to the output file.
 #' @return Invisibly returns the command's exit status.
 #' @noRd
-executeCommand <- function(args) {
-    message("Starting PROSITE analysis...")
+executeCommand <- function(args, out_file) {
+  message("Starting PROSITE analysis...")
 
-    status_code <- system2("perl", args = args)
+  status_code <- system2("perl",
+                         args = args,
+                         stdout = out_file,
+                         stderr = "")
 
-    if (status_code == 0) {
-        message("PROSITE analysis finished successfully.")
-    } else {
-        warning(sprintf(
-            "PROSITE analysis failed with exit code %d.",
-            status_code
-        ),
-        call. = FALSE)
-        warning("Please ensure Perl is correctly installed and input files are valid.")
-    }
+  if (status_code == 0) {
+    message("PROSITE analysis finished successfully.")
+  } else {
+    warning(sprintf("PROSITE analysis failed with exit code %d.", status_code), call. = FALSE)
+    if (file.exists(out_file)) file.remove(out_file)
+  }
 
-    invisible(status_code)
+  invisible(status_code)
 }

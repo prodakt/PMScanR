@@ -1,6 +1,6 @@
-#' Generate a square heatmap from a matrix
+#' Generate a square occurrence plot from a matrix
 #'
-#' This function generates a heatmap using `plotly`, ensuring the plot has a
+#' This function generates a occurrence plot using `plotly`, ensuring the plot has a
 #' square aspect ratio. It highlights user-specified rows and columns.
 #'
 #' @param input A matrix containing the data to be visualized.
@@ -34,11 +34,11 @@ matrixToSquareHeatmap <- function(input, x = NULL, y = NULL) {
         input[rownames(input) %in% y, ]
     mat_sel[, colnames(mat_sel) %in% x] <-
         input[, colnames(input) %in% x]
-    
+
     # Calculate height based on number of rows
     n_rows <- nrow(mat_sel)
     plot_height <- max(500, n_rows * 20)
-    
+
     # Create heatmap with layout options for a square plot
     heatmap_plot <- plot_ly(
         z = mat_sel,
@@ -85,6 +85,6 @@ matrixToSquareHeatmap <- function(input, x = NULL, y = NULL) {
             line = list(color = "black", width = 0.3),
             inherit = FALSE
         )
-    
+
     return(heatmap_plot)
 }

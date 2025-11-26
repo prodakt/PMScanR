@@ -1,4 +1,4 @@
-#' Generate a heatmap from a matrix
+#' Generate a occurrence plot from a matrix
 #'
 #' This function generates a occurrence plot using the `plotly` package.
 #' The occurrence plot highlights specific rows and columns provided by the user, while the rest of the matrix is dimmed.
