@@ -20,31 +20,6 @@
 #' @return Invisibly returns the exit status of the ps_scan command. The primary
 #'   output is the result file created at `out_file`.
 #'
-#' @examples
-#' # This example shows how to run the scan using cached files.
-#' # It is resource-intensive on the first run.
-#' if (interactive()) {
-#'   # Create a dummy input file for the example
-#'   fasta_content <- c(">sp|P02025|HEMA_MESAU",
-#'                      "MVLSAADKGNVKAAWGKVGGHAAEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHG")
-#'   in_file <- tempfile(fileext = ".fasta")
-#'   writeLines(fasta_content, in_file)
-#'   out_file <- tempfile(fileext = ".gff")
-#'
-#'   # Run scan (auto-downloading dependencies)
-#'   try({
-#'     runPsScan(in_file = in_file, out_format = 'gff', out_file = out_file)
-#'   })
-#'
-#'   # Example with custom paths (hypothetical)
-#'   # runPsScan(in_file, out_file, "gff",
-#'   #           database_path = "/custom/prosite.dat",
-#'   #           ps_scan_path = "/custom/ps_scan.pl")
-#'
-#'   unlink(in_file)
-#'   unlink(out_file)
-#' }
-#'
 #' @importFrom BiocFileCache BiocFileCache bfcrpath bfcadd bfcquery
 #' @importFrom utils untar unzip
 #' @export
@@ -55,76 +30,77 @@ runPsScan <- function(in_file,
                       ps_scan_path = NULL,
                       pfscan_path = NULL,
                       os = NULL) {
-    # 1. Check system dependencies
-    checkPerl()
+  # 1. Check system dependencies
+  checkPerl()
 
-    # 2. Detect OS if not provided
-    if (is.null(os)) {
-        os <- detectOs()
-    }
+  # 2. Detect OS if not provided
+  if (is.null(os)) {
+    os <- detectOs()
+  }
 
-    # 3. Resolve Input/Output Paths
-    if (!file.exists(in_file)) {
-        stop("Input file does not exist: ", in_file)
-    }
-    in_file <- normalizePath(in_file)
+  # 3. Resolve Input/Output Paths
+  if (!file.exists(in_file)) {
+    stop("Input file does not exist: ", in_file)
+  }
+  # FORCE forward slashes to avoid backslash escaping issues in Perl/Shell calls
+  in_file <- normalizePath(in_file, winslash = "/")
 
-    out_dir <- normalizePath(dirname(out_file), mustWork = FALSE)
-    out_base <- basename(out_file)
-    out_file_clean <- file.path(out_dir, out_base)
+  out_dir <- normalizePath(dirname(out_file), winslash = "/", mustWork = FALSE)
+  out_base <- basename(out_file)
+  out_file_clean <- file.path(out_dir, out_base)
 
-    # 4. Resolve Tool Paths (Priority: User Argument > Cache)
+  # 4. Resolve Tool Paths (Priority: User Argument > Cache)
 
-    # --- ps_scan.pl ---
-    final_ps_scan <- if (!is.null(ps_scan_path)) {
-        if (!file.exists(ps_scan_path)) stop("Provided ps_scan_path not found.")
-        normalizePath(ps_scan_path)
+  # --- ps_scan.pl ---
+  final_ps_scan <- if (!is.null(ps_scan_path)) {
+    if (!file.exists(ps_scan_path)) stop("Provided ps_scan_path not found.")
+    normalizePath(ps_scan_path, winslash = "/")
+  } else {
+    getCachedPsScanTool("ps_scan.pl", os)
+  }
+
+  # --- prosite.dat ---
+  final_db <- if (!is.null(database_path)) {
+    if (!file.exists(database_path)) stop("Provided database_path not found.")
+    normalizePath(database_path, winslash = "/")
+  } else {
+    getCachedPsScanTool("prosite.dat", os)
+  }
+
+  # --- pfscan (Executable) ---
+  final_pfscan <- if (!is.null(pfscan_path)) {
+    if (!file.exists(pfscan_path)) stop("Provided pfscan_path not found.")
+    normalizePath(pfscan_path, winslash = "/")
+  } else {
+    if (os != "MAC") {
+      getCachedPsScanTool("pfscan", os)
     } else {
-        getCachedPsScanTool("ps_scan.pl", os)
+      NULL
     }
+  }
 
-    # --- prosite.dat ---
-    final_db <- if (!is.null(database_path)) {
-        if (!file.exists(database_path)) stop("Provided database_path not found.")
-        normalizePath(database_path)
-    } else {
-        getCachedPsScanTool("prosite.dat", os)
-    }
+  # 5. Construct Command
+  cmd_args <- constructCommand(
+    ps_scan_script = final_ps_scan,
+    patterns_db = final_db,
+    input_fasta = in_file,
+    output_format = out_format,
+    pfscan_exec = final_pfscan,
+    output_file = out_file_clean
+  )
 
-    # --- pfscan (Executable) ---
-    final_pfscan <- if (!is.null(pfscan_path)) {
-        if (!file.exists(pfscan_path)) stop("Provided pfscan_path not found.")
-        normalizePath(pfscan_path)
-    } else {
-        # Only fetch from cache if not MAC (optional on Mac/Perl mode)
-        if (os != "MAC") {
-            getCachedPsScanTool("pfscan", os)
-        } else {
-            NULL
-        }
-    }
-
-    # 5. Construct Command
-    cmd_args <- constructCommand(
-        ps_scan_script = final_ps_scan,
-        patterns_db = final_db,
-        input_fasta = in_file,
-        output_format = out_format,
-        pfscan_exec = final_pfscan
-    )
-
-    # 6. Execute
-    executeCommand(args = cmd_args, out_file = out_file_clean)
+  # 6. Execute
+  executeCommand(args = cmd_args, out_file = out_file_clean)
 }
 
 #' Check if Perl is available
 #' @noRd
 checkPerl <- function() {
-    perl_path <- Sys.which("perl")
-    if (!nzchar(perl_path)) {
-        stop("Perl is not found on your system. Please install Perl to use runPsScan.",
-             call. = FALSE)
-    }
+  perl_path <- Sys.which("perl")
+  if (!nzchar(perl_path)) {
+    stop("Perl is not found on your system. Please install Perl to use runPsScan.",
+         call. = FALSE)
+  }
 }
 
 #' Get a Cached PS-Scan Tool/Database File
@@ -135,97 +111,99 @@ checkPerl <- function() {
 #' @return The local path to the cached file.
 #' @noRd
 getCachedPsScanTool <- function(tool_name, os) {
-    cache <-
-        BiocFileCache::BiocFileCache(cache = "PMScanR_cache", ask = FALSE)
+  cache <-
+    BiocFileCache::BiocFileCache(cache = "PMScanR_cache", ask = FALSE)
 
-    base_url <- "https://ftp.expasy.org/databases/prosite/"
+  base_url <- "https://ftp.expasy.org/databases/prosite/"
 
-    resource_map <- list(
-        `ps_scan.pl` = paste0(base_url, "ps_scan/ps_scan.pl"),
-        `prosite.dat` = paste0(base_url, "prosite.dat"),
-        `pfscan_WIN` = paste0(base_url, "ps_scan/ps_scan_win32.zip"),
-        `pfscan_LINUX` = paste0(base_url, "ps_scan/ps_scan_linux_x86_elf.tar.gz"),
-        `pfscan_MAC` = paste0(base_url, "ps_scan/ps_scan_macosx.tar.gz")
-    )
+  resource_map <- list(
+    `ps_scan.pl` = paste0(base_url, "ps_scan/ps_scan.pl"),
+    `prosite.dat` = paste0(base_url, "prosite.dat"),
+    `pfscan_WIN` = paste0(base_url, "ps_scan/ps_scan_win32.zip"),
+    `pfscan_LINUX` = paste0(base_url, "ps_scan/ps_scan_linux_x86_elf.tar.gz"),
+    `pfscan_MAC` = paste0(base_url, "ps_scan/ps_scan_macosx.tar.gz")
+  )
 
-    query_name <-
-        if (tool_name == "pfscan")
-            paste0(tool_name, "_", os)
-    else
-        tool_name
+  query_name <-
+    if (tool_name == "pfscan")
+      paste0(tool_name, "_", os)
+  else
+    tool_name
 
-    # Check cache
-    cache_info <-
-        BiocFileCache::bfcquery(cache, query = query_name, field = "rname")
+  cache_info <-
+    BiocFileCache::bfcquery(cache, query = query_name, field = "rname")
 
-    if (nrow(cache_info) == 0) {
-        message(sprintf(
-            "'%s' not found in cache. Downloading from PROSITE...",
-            query_name
-        ))
-        download_url <- resource_map[[query_name]]
-        if (is.null(download_url)) {
-            stop(sprintf("No download URL defined for '%s'", query_name))
-        }
-        fpath <-
-            BiocFileCache::bfcadd(cache, rname = query_name, fpath = download_url)
-        message("Download complete.")
+  fpath <- NULL
+
+  if (nrow(cache_info) == 0) {
+    message(sprintf(
+      "'%s' not found in cache. Downloading from PROSITE...",
+      query_name
+    ))
+    download_url <- resource_map[[query_name]]
+    if (is.null(download_url)) {
+      stop(sprintf("No download URL defined for '%s'", query_name))
+    }
+    fpath <-
+      BiocFileCache::bfcadd(cache, rname = query_name, fpath = download_url)
+    message("Download complete.")
+  } else {
+    fpath <- cache_info$rpath[1]
+  }
+
+  fpath <- normalizePath(fpath, winslash = "/")
+
+  if (tool_name == "pfscan") {
+    exec_path_map <- list(WIN = "ps_scan/pfscan.exe",
+                          LINUX = "ps_scan/pfscan",
+                          MAC = "ps_scan/pfscan")
+
+    exec_rname <- paste0("executable_", query_name)
+    exec_cache_info <-
+      BiocFileCache::bfcquery(cache, query = exec_rname, field = "rname")
+
+    if (nrow(exec_cache_info) == 0) {
+      message(sprintf("Extracting executable from '%s'...", basename(fpath)))
+      exdir <- tempfile()
+      dir.create(exdir)
+
+      if (os == "WIN") {
+        utils::unzip(fpath, exdir = exdir)
+      } else {
+        utils::untar(fpath, exdir = exdir)
+      }
+
+      extracted_file_path <-
+        file.path(exdir, exec_path_map[[os]])
+
+      if (!file.exists(extracted_file_path)) {
+        stop("Could not find executable after extraction.")
+      }
+
+      final_exec_path <-
+        BiocFileCache::bfcadd(
+          cache,
+          rname = exec_rname,
+          fpath = extracted_file_path,
+          action = "move"
+        )
+
+      if (os != "WIN")
+        Sys.chmod(final_exec_path, mode = "0755")
+      unlink(exdir, recursive = TRUE)
+
+      return(normalizePath(final_exec_path, winslash = "/"))
     } else {
-        fpath <- cache_info$rpath[1]
+      final_exec_path <- exec_cache_info$rpath[1]
+      if (os != "WIN" &&
+          file.access(final_exec_path, 1) != 0) {
+        Sys.chmod(final_exec_path, mode = "0755")
+      }
+      return(normalizePath(final_exec_path, winslash = "/"))
     }
+  }
 
-    # Handle extraction for compressed pfscan archives
-    if (tool_name == "pfscan") {
-        exec_path_map <- list(WIN = "ps_scan/pfscan.exe",
-                              LINUX = "ps_scan/pfscan",
-                              MAC = "ps_scan/pfscan")
-
-        exec_rname <- paste0("executable_", query_name)
-        exec_cache_info <-
-            BiocFileCache::bfcquery(cache, query = exec_rname, field = "rname")
-
-        if (nrow(exec_cache_info) == 0) {
-            message(sprintf("Extracting executable from '%s'...", basename(fpath)))
-            exdir <- tempfile()
-            dir.create(exdir)
-
-            if (os == "WIN") {
-                utils::unzip(fpath, exdir = exdir)
-            } else {
-                utils::untar(fpath, exdir = exdir)
-            }
-
-            extracted_file_path <-
-                file.path(exdir, exec_path_map[[os]])
-
-            if (!file.exists(extracted_file_path)) {
-                stop("Could not find executable after extraction.")
-            }
-
-            final_exec_path <-
-                BiocFileCache::bfcadd(
-                    cache,
-                    rname = exec_rname,
-                    fpath = extracted_file_path,
-                    action = "move"
-                )
-
-            if (os != "WIN")
-                Sys.chmod(final_exec_path, mode = "0755")
-            unlink(exdir, recursive = TRUE)
-
-            return(final_exec_path)
-        } else {
-            final_exec_path <- exec_cache_info$rpath[1]
-            if (os != "WIN" &&
-                file.access(final_exec_path, 1) != 0) {
-                Sys.chmod(final_exec_path, mode = "0755")
-            }
-            return(final_exec_path)
-        }
-    }
-
-    return(fpath)
+  return(fpath)
 }
 
 #' Construct Command Arguments for system2
@@ -237,6 +215,7 @@ constructCommand <- function(ps_scan_script,
                              output_format,
                              pfscan_exec,
                              output_file) {
+
   args <- c(ps_scan_script,
             "-d",
             patterns_db,
@@ -269,8 +248,16 @@ executeCommand <- function(args, out_file) {
   if (status_code == 0) {
     message("PROSITE analysis finished successfully.")
   } else {
-    warning(sprintf("PROSITE analysis failed with exit code %d.", status_code), call. = FALSE)
-    if (file.exists(out_file)) file.remove(out_file)
+    warning(sprintf(
+      "PROSITE analysis failed with exit code %d.",
+      status_code
+    ),
+    call. = FALSE)
+    warning("Please ensure Perl is correctly installed and input files are valid.")
+
+    if(file.exists(out_file) && file.size(out_file) == 0) {
+      file.remove(out_file)
+    }
   }
 
   invisible(status_code)
