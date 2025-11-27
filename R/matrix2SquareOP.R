@@ -12,7 +12,7 @@
 #' mat <- matrix(c(1, 0, 1, 0), 2, 2)
 #' colnames(mat) <- c("Col1", "Col2")
 #' rownames(mat) <- c("Row1", "Row2")
-#' sq_heatmap <- matrixToSquareHeatmap(input = mat, x = "Col1", y = "Row1")
+#' square_occurrence_plot <- matrix2SquareOP(input = mat, x = "Col1", y = "Row1")
 #' # To display in an interactive session:
 #' # sq_heatmap
 #' @importFrom dplyr mutate across everything
@@ -21,11 +21,11 @@
 #' @export
 matrix2SquareOP <- function(input, x = NULL, y = NULL) {
     if (is.null(x)) {
-        x <- colnames(input)
+      x <- colnames(input)
     }
-    if (is.null(y)) {
-        y <- rownames(input)
-    }
+  if (is.null(y)) {
+    y <- rownames(input)
+  }
     # Ensure input is a matrix
     mat_sel <- as.data.frame(input) %>%
         mutate(across(.cols = everything(), .fns = ~ -1))

@@ -180,8 +180,8 @@ buildServer <- function(input, output, session) {
     }
   })
 
-  output$heatmap1_output <- renderPlotly({ req(data_matrix()); matrix2hm(input = data_matrix(), x = input$highlight_x1, y = input$highlight_y1) })
-  output$home_heatmap_output <- renderPlotly({ req(data_matrix()); matrix2hm(input = data_matrix(), x = NULL, y = NULL) })
+  output$heatmap1_output <- renderPlotly({ req(data_matrix()); matrix2OP(input = data_matrix(), x = input$highlight_x1, y = input$highlight_y1) })
+  output$home_heatmap_output <- renderPlotly({ req(data_matrix()); matrix2OP(input = data_matrix(), x = NULL, y = NULL) })
   observe({ req(data_matrix()); updateSelectInput(session, "highlight_x1", choices = colnames(data_matrix())); updateSelectInput(session, "highlight_y1", choices = rownames(data_matrix())) })
   output$piechart_output <- renderPlot({ req(original_data()); freqPie(original_data()) }, height = 800)
 

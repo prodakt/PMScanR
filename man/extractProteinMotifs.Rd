@@ -2,24 +2,33 @@
 % Please edit documentation in R/extractProteinMotifs.R
 \name{extractProteinMotifs}
 \alias{extractProteinMotifs}
-\title{Extract protein motifs form a file in PSA format}
+\title{Extract protein motifs from GFF, PSA, or PROSITE text files}
 \usage{
-extractProteinMotifs(file_path)
+extractProteinMotifs(file_path, format = "auto")
 }
 \arguments{
-\item{file_path}{A PSA file which specifying the path to the input file.
-The file should contain protein motifs.}
+\item{file_path}{A character string specifying the path to the input file.}
+
+\item{format}{A character string specifying the format: "auto" (default),
+"gff", "psa", or "scan" (for PROSITE text output).}
 }
 \value{
-A list with a motif identifier (e.g. PSXXXXX) and the coresponding to it motif sequence which is
-         associated wuth that identifier.
+A list where keys are motif identifiers (e.g., "PS00001") and values
+  are character vectors of the corresponding motif sequences found.
+  Returns an empty list if no motifs/sequences are found.
 }
 \description{
-This function reads a file in PSA format containing protein sequences and extracts motifs based on specific patterns.
+This function extracts protein motif sequences from various file formats
+output by PROSITE analysis tools. It automatically detects the format
+(GFF, PSA, or standard PROSITE scan output) and returns a list of sequences
+grouped by motif identifier.
 }
 \examples{
-file_path <- system.file("extdata/out_Hb_psa.txt", package = "PMScanR")
-if (file_path != "") {
-  protein_motifs <- extractProteinMotifs(file_path)
+# Example with PSA file
+psa_file <- system.file("extdata", "out_Hb_psa.txt", package = "PMScanR")
+if (nzchar(psa_file)) {
+  motifs <- extractProteinMotifs(psa_file)
+  # head(motifs$PS00005)
 }
+
 }

@@ -33,7 +33,7 @@ BugReports: https://github.com/prodakt/PMScanR/issues
 License: GPL-3
 Encoding: UTF-8
 LazyData: false
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 VignetteBuilder: knitr
 biocViews: MotifDiscovery, Visualization
 Imports:
