@@ -19,7 +19,7 @@
 #' @importFrom plotly plot_ly add_segments layout
 #' @importFrom magrittr %>%
 #' @export
-matrixToSquareHeatmap <- function(input, x = NULL, y = NULL) {
+matrix2SquareOP <- function(input, x = NULL, y = NULL) {
     if (is.null(x)) {
         x <- colnames(input)
     }

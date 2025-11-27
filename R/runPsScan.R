@@ -25,7 +25,7 @@
 #' @export
 runPsScan <- function(in_file,
                       out_file,
-                      out_format = "gff",
+                      out_format = "scan",
                       database_path = NULL,
                       ps_scan_path = NULL,
                       pfscan_path = NULL,
