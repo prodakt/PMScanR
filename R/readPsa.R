@@ -8,7 +8,14 @@
 #' @param psa_file A character string specifying the path to the input PSA file.
 #'
 #' @return A data frame with a GFF-like structure.
+#' @examples
+#' # Get path to example file
+#' psa_file <- system.file("extdata", "out_Hb_psa.txt", package = "PMScanR")
 #'
+#' if (nzchar(psa_file) && file.exists(psa_file)) {
+#'   psa_data <- readPsa(psa_file)
+#'   head(psa_data)
+#' }
 #' @importFrom dplyr select
 #' @importFrom magrittr %>%
 #' @importFrom stringr str_match

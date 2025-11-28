@@ -18,3 +18,12 @@ This function parses a file from a PROSITE scan (standard output format)
 into a data frame. It handles multi-line sequence outputs and extracts
 information into a GFF-like structure compatible with rtracklayer imports.
 }
+\examples{
+# Get path to example file
+prosite_file <- system.file("extdata", "out_Hb_PROSITE.txt", package = "PMScanR")
+
+if (nzchar(prosite_file) && file.exists(prosite_file)) {
+  prosite_data <- readProsite(prosite_file)
+  head(prosite_data)
+}
+}

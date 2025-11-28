@@ -7,7 +7,14 @@
 #' @param prosite_input Path to the PROSITE scan output file.
 #' @return A data frame with columns approximating GFF fields plus additional
 #'   PROSITE-specific information.
+#' @examples
+#' # Get path to example file
+#' prosite_file <- system.file("extdata", "out_Hb_PROSITE.txt", package = "PMScanR")
 #'
+#' if (nzchar(prosite_file) && file.exists(prosite_file)) {
+#'   prosite_data <- readProsite(prosite_file)
+#'   head(prosite_data)
+#' }
 #' @importFrom dplyr mutate select bind_rows
 #' @importFrom magrittr %>%
 #' @importFrom stringr str_match str_detect
