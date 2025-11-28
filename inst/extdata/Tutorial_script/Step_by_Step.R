@@ -14,7 +14,6 @@ if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
 # Install 'seqLogo' and PMScanR packages from Bioconductor using BiocManager
-BiocManager::install("seqLogo")
 BiocManager::install("PMScanR")
 # --- Section 2: Package and Library Loading -----------
 # This section loads all the necessary R libraries that will be used in this tutorial.
@@ -44,15 +43,8 @@ library(seqinr)      # For reading and handling biological sequences (FASTA file
 # 3.1 Define File Paths for PS-Scan and Data
 # Define variables for the paths to PS-Scan perl script, PROSITE database,
 # output format, PFSCAN executable, output file, and input FASTA file.
-
-ps_scan <-
-    "ps_scan/ps_scan.pl"        # Path to the PS-Scan script (e.g., 'ps_scan/ps_scan.pl')
-patterns_dat <-
-    "ps_scan/prosite.dat"   # Path to the PROSITE database file (e.g., 'ps_scan/prosite.dat')
 out_format <-
     "psa"                    # Default output format for PS-Scan (PSA - PROSITE scan ASCII)
-pf_scan <-
-    "ps_scan/pfscan.exe"          # Path to the PFSCAN executable (Windows, e.g., 'ps_scan/pfscan.exe') - for Windows version
 out_file <-
     "out_Hb_psa.txt"           # Default output filename for PSA format results (e.g., 'out_Hb_psa.txt')
 in_file <-
@@ -60,63 +52,12 @@ in_file <-
 
 # --- Section 4: Running PS-Scan for Motif Scanning ---
 # This section demonstrates how to use functions in PMScanR to run PS-Scan
-# on different operating systems (Windows, Linux MacOS) with different values of attributes.
-# Example 1: Running runPsScan() with a basic attributes of function.
+# Example 1: Running runPsScan() with requaired attributes.
 # Without specifing the rest of attributes required files will be downloaded by default from prosite page,
 # and user will be prompted to confirm that dtetected OS is correct
 runPsScan(in_file = in_file,
           out_format = 'gff',
           out_file = "results_pfscan.gff")
-
-# Example 2: Running runPsScan() with a specific PFScan executable path for Windows
-# Set the pf_scan parameter to the location of your pfscan.exe file.
-runPsScan(
-    in_file = in_file,
-    out_format = 'gff',
-    out_file = "results_pfscan.gff",
-    ps_scan = "ps_scan/ps_scan.pl",
-    patterns_dat = "prosite.dat",
-    pf_scan = "path/to/your/pfscan.exe",
-    OS = "WIN"
-)
-
-# Example 3: Running runPsScan() for macOS (MAC) with default file downloads
-# Set OS = "MAC" to run PS-Scan on macOS, allowing the function to download necessary files.
-runPsScan(
-    in_file = in_file,
-    out_format = 'psa',
-    out_file = "macos_analysis.psa",
-    OS = "MAC"
-)
-
-# Example 4: Running runPsScan() with all paths explicitly defined for Linux
-# Provide full paths to all the required files for a Linux system.
-runPsScan(
-    in_file = in_file,
-    out_format = 'fasta',
-    out_file = "/home/user/results/full_analysis.fasta",
-    ps_scan = "/opt/prosite/ps_scan.pl",
-    patterns_dat = "/opt/prosite/prosite.dat",
-    pf_scan = "/opt/prosite/pfscan",
-    OS = "LINUX"
-)
-
-# Example 5: Running runPsScan() with a different output file name
-# This example shows how to change the name of the output file.
-runPsScan(in_file = in_file,
-          out_format = 'gff',
-          out_file = "unique_output_name.gff")
-
-# Example 6: Running runPsScan() and relying on automatic OS detection for Linux
-# If the OS is correctly detected as Linux, you can omit the OS parameter.
-runPsScan(
-    in_file = in_file,
-    out_format = 'psa',
-    out_file = "linux_default.psa",
-    ps_scan = "ps_scan/ps_scan.pl",
-    patterns_dat = "prosite.dat"
-)
-
 
 # --- Section 5: File Format Conversion from PSA or PROSITE to GFF ---
 # This section demonstrates how to convert PS-Scan output files from PSA or PROSITE format
@@ -275,7 +216,7 @@ from_pos <- 10 # Starting position of the region
 to_pos <- 20   # Ending position of the region
 
 seq <-
-    read.fasta(file = "../data/hemoglobins.fasta", seqtype = "AA") # Read the FASTA file containing protein sequences
+    read.fasta(file = in_file, seqtype = "AA") # Read the FASTA file containing protein sequences
 seqShort <-
     extract_segments(seq = seq, from_pos, to_pos)          # Extract segments from position 'from_pos' to 'to_pos' for all sequences
 ggseqlogo(unlist(seqShort), seq_type = "aa")                       # Generate and display the sequence logo of the extracted segments
@@ -299,11 +240,4 @@ ggseqlogo(protein_motifs_psa[5], seq_type = 'aa')       # Sequence logo for the 
 # To run Shiny app you can call function runPMScanRShiny()
 runPMScanRShiny()
 
-# Or if you want you can build your own function or run Shiny app from build_app() function
-app <- build_app()
-shiny::runApp(app)
-
-#or
-
-shiny::runApp(build_app())
 # --- End of PMScanR Tutorial Script ---

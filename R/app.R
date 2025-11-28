@@ -17,8 +17,8 @@
 #'   runPMScanRShiny()
 #' }
 #'
-#' @export
 #' @importFrom shiny shinyApp
+#' @export
 runPMScanRShiny <- function() {
     options(shiny.maxRequestSize = 60 * 1024 ^ 2)
     ui <- buildUi()

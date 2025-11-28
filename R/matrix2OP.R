@@ -1,25 +1,25 @@
-#' Generate a heatmap from a matrix
+#' Generate a occurrence plot from a matrix
 #'
-#' This function generates a heatmap using the `plotly` package.
-#' The heatmap highlights specific rows and columns provided by the user, while the rest of the matrix is dimmed.
-#' The function also adds grid lines to the heatmap for better readability.
+#' This function generates a occurrence plot using the `plotly` package.
+#' The occurrence plot highlights specific rows and columns provided by the user, while the rest of the matrix is dimmed.
+#' The function also adds grid lines to the occurrence plot for better readability.
 #'
-#' @param input A matrix containing the data to be visualized in the heatmap
-#' @param x A character vector specifying the columns to highlight in the heatmap
-#' @param y A character vector specifying the rows to highlight in the heatmap
-#' @return A heatmap with highlighted specified rows and columns
+#' @param input A matrix containing the data to be visualized in the occurrence plot
+#' @param x A character vector specifying the columns to highlight in the occurrence plot
+#' @param y A character vector specifying the rows to highlight in the occurrence plot
+#' @return A occurrence plot with highlighted specified rows and columns
 #' @examples
 #' # Create a sample matrix with row and column names
 #' mat <- matrix(c(1, 0, 1, 0), 2, 2)
 #' colnames(mat) <- c("Col1", "Col2")
 #' rownames(mat) <- c("Row1", "Row2")
-#' heatmap <- matrix2hm(input = mat, x = "Col1", y = "Row1")
-#' heatmap
+#' occurrence_plot <- matrix2OP(input = mat, x = "Col1", y = "Row1")
+#' occurrence_plot
 #' @importFrom magrittr %>%
 #' @importFrom dplyr mutate across everything
 #' @importFrom plotly plot_ly add_segments layout
 #' @export
-matrix2hm <- function(input, x = NULL, y = NULL) {
+matrix2OP <- function(input, x = NULL, y = NULL) {
     if (is.null(x)) {
         x <- colnames(input)
     }
@@ -34,21 +34,21 @@ matrix2hm <- function(input, x = NULL, y = NULL) {
         input[rownames(input) %in% y, ]
     mat_sel[, colnames(mat_sel) %in% x] <-
         input[, colnames(input) %in% x]
-    
+
     # Calculate height based on number of rows
     n_rows <- nrow(mat_sel)
     plot_height <-
-        max(500, n_rows * 20)  # At least 500px, or 20px per row
-    
-    # Create heatmap with height specified in plot_ly
-    hp <- plot_ly(
+        max(500, n_rows * 20)
+
+    # Create occurrence plot with height specified in plot_ly
+    OP <- plot_ly(
         z = mat_sel,
         x = colnames(mat_sel),
         y = rownames(mat_sel),
         type = "heatmap",
         colors = c("white", "#80274f", "#008caf"),
         showscale = FALSE,
-        height = plot_height  # Moved height here
+        height = plot_height
     ) %>%
         add_segments(
             x = colnames(mat_sel),
@@ -69,10 +69,8 @@ matrix2hm <- function(input, x = NULL, y = NULL) {
         layout(
             yaxis = list(
                 tickfont = list(size = 10),
-                # Smaller font size for y-axis labels
                 tickangle = 45,
-                # Rotate labels to prevent overlap
-                automargin = TRUE  # Automatically adjust margins for labels
+                automargin = TRUE
             ),
             xaxis = list(
                 tickfont = list(size = 10),
@@ -84,8 +82,8 @@ matrix2hm <- function(input, x = NULL, y = NULL) {
                 r = 50,
                 t = 50,
                 b = 100
-            )  # Adjust margins for better label visibility
+            )
         )
-    
-    return(hp)
+
+    return(OP)
 }

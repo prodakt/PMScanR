@@ -1,6 +1,6 @@
-#' Generate a square heatmap from a matrix
+#' Generate a square occurrence plot from a matrix
 #'
-#' This function generates a heatmap using `plotly`, ensuring the plot has a
+#' This function generates a occurrence plot using `plotly`, ensuring the plot has a
 #' square aspect ratio. It highlights user-specified rows and columns.
 #'
 #' @param input A matrix containing the data to be visualized.
@@ -12,20 +12,20 @@
 #' mat <- matrix(c(1, 0, 1, 0), 2, 2)
 #' colnames(mat) <- c("Col1", "Col2")
 #' rownames(mat) <- c("Row1", "Row2")
-#' sq_heatmap <- matrixToSquareHeatmap(input = mat, x = "Col1", y = "Row1")
+#' square_occurrence_plot <- matrix2SquareOP(input = mat, x = "Col1", y = "Row1")
 #' # To display in an interactive session:
 #' # sq_heatmap
 #' @importFrom dplyr mutate across everything
 #' @importFrom plotly plot_ly add_segments layout
 #' @importFrom magrittr %>%
 #' @export
-matrixToSquareHeatmap <- function(input, x = NULL, y = NULL) {
+matrix2SquareOP <- function(input, x = NULL, y = NULL) {
     if (is.null(x)) {
-        x <- colnames(input)
+      x <- colnames(input)
     }
-    if (is.null(y)) {
-        y <- rownames(input)
-    }
+  if (is.null(y)) {
+    y <- rownames(input)
+  }
     # Ensure input is a matrix
     mat_sel <- as.data.frame(input) %>%
         mutate(across(.cols = everything(), .fns = ~ -1))
@@ -34,11 +34,11 @@ matrixToSquareHeatmap <- function(input, x = NULL, y = NULL) {
         input[rownames(input) %in% y, ]
     mat_sel[, colnames(mat_sel) %in% x] <-
         input[, colnames(input) %in% x]
-    
+
     # Calculate height based on number of rows
     n_rows <- nrow(mat_sel)
     plot_height <- max(500, n_rows * 20)
-    
+
     # Create heatmap with layout options for a square plot
     heatmap_plot <- plot_ly(
         z = mat_sel,
@@ -85,6 +85,6 @@ matrixToSquareHeatmap <- function(input, x = NULL, y = NULL) {
             line = list(color = "black", width = 0.3),
             inherit = FALSE
         )
-    
+
     return(heatmap_plot)
 }

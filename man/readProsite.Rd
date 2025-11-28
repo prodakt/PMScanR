@@ -14,17 +14,16 @@ A data frame with columns approximating GFF fields plus additional
   PROSITE-specific information.
 }
 \description{
-This function parses a file from a PROSITE scan into a data frame,
-extracting information about motif occurrences into a GFF-like structure.
+This function parses a file from a PROSITE scan (standard output format)
+into a data frame. It handles multi-line sequence outputs and extracts
+information into a GFF-like structure compatible with rtracklayer imports.
 }
 \examples{
-prosite_file <- system.file("extdata", "PROSITEoutput.txt", package = "PMScanR")
+# Get path to example file
+prosite_file <- system.file("extdata", "out_Hb_PROSITE.txt", package = "PMScanR")
 
-# Check that the example file exists before running
-if (nzchar(prosite_file)) {
-  gff_like_data <- readProsite(prosite_file)
-  # You can view the output with:
-  # head(gff_like_data)
+if (nzchar(prosite_file) && file.exists(prosite_file)) {
+  prosite_data <- readProsite(prosite_file)
+  head(prosite_data)
 }
-
 }

@@ -1,11 +1,27 @@
-# PMScanR 0.99.6
-**Date:** 2025-09-26
-This version includes minor changes in Vignette to align with Bioconductor submission standards.
+# PMScanR 1.0.1
 
-# PMScanR 0.99.5
-**Date:** 2025-09-05
+**Date:** 2025-11-27
 
-Fixes a merge issue between branches without adding changes to the package.
+This release focuses on improving robustness on Windows systems, enhancing flexibility for external tools, and standardizing data structures.
+
+### IMPROVEMENTS
+
+* **Flexibility in `runPsScan()`:**
+  * Added optional arguments (`database_path`, `ps_scan_path`, `pfscan_path`) to allow users to provide their own paths to PROSITE files. The function now prioritizes user-provided paths over the internal cache, facilitating usage in offline environments or with custom databases.
+
+* **Vignette:**
+  * Added a "Quick Start" section for immediate usage examples.
+  * Clarified workflow descriptions to emphasize that visualization functions work interchangeably with data imported from GFF, PSA, or TXT formats.
+  * Simplified data loading examples.
+
+### BUG FIXES
+
+* **Windows Path Handling:**
+  * Fixed a critical issue in `runPsScan()` on Windows where backslashes in file paths caused the external Perl script to fail. The function now forces forward slashes (`/`) for all system calls.
+
+* **Data Consistency in `readPsa()`:**
+  * Fixed column data types in `readPsa()` (specifically ensuring character types for empty fields instead of logical `NA`).
+  * Aligned the column order of `readPsa()` output to match the standard `GRanges`/`data.frame` structure returned by `rtracklayer::import.gff`. This ensures seamless compatibility between different input formats.
 
 # PMScanR 0.99.4
 
